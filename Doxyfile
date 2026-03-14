@@ -1,0 +1,57 @@
+# ==============================================================================
+# Configurações Gerais do Projeto
+# ==============================================================================
+PROJECT_NAME           = "OrganizationalTool"
+PROJECT_NUMBER         = "1.0.0"
+PROJECT_BRIEF          = "An organizational tool that matches reviewers to reviews in scientific committees"
+
+OUTPUT_DIRECTORY       = docs
+OUTPUT_LANGUAGE        = English
+
+# ==============================================================================
+# Comportamento de Extração C++
+# ==============================================================================
+OPTIMIZE_OUTPUT_FOR_C  = YES
+BUILTIN_STL_SUPPORT    = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+# ==============================================================================
+# Entradas e Ficheiros
+# ==============================================================================
+INPUT                  = .
+RECURSIVE              = YES
+FILE_PATTERNS          = *.cpp *.hpp *.c *.h *.cc *.cxx
+
+# ==============================================================================
+# Ficheiros e Pastas a Ignorar
+# ==============================================================================
+# Lista de pastas estáticas na raiz a ignorar
+EXCLUDE                = build \
+                         cmake-build-debug \
+                         dataset \
+                         lib
+
+# Ignora recursivamente qualquer diretoria chamada "googletest" em qualquer nível do projeto
+EXCLUDE_PATTERNS       = */googletest/*
+
+# ==============================================================================
+# Formatos de Saída
+# ==============================================================================
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+SEARCHENGINE           = YES
+GENERATE_LATEX         = NO
+
+# ==============================================================================
+# Diagramas (Requer Graphviz)
+# ==============================================================================
+HAVE_DOT               = YES
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
