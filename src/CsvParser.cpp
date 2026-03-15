@@ -13,9 +13,11 @@ void CSVParser::parseDocument() {
     while (std::getline(file, line)) {
         if (line.find("#Submissions") != std::string::npos) {
             parseSubmissions(file, submissions);
+            printf("Finished parsing submissions\n");
         }
-        if (line.find("#Reviewers") != std::string::npos) {
+        else if (line.find("#Reviewers") != std::string::npos) {
             parseReviewers(file, reviewers);
+            printf("Finished parsing reviewers\n");
         }
     }
 }
@@ -80,7 +82,6 @@ void CSVParser::parseReviewers(std::ifstream& file, std::vector<Reviewer>& revie
         if (!std::getline(file, line)) {
             break; // End of file
         }
-        if (line.empty()) continue;
         if (line[0] == '#') {
             file.seekg(currentPos);
             break;
@@ -127,12 +128,4 @@ void CSVParser::removeTrailingSpaces(std::string &str) {
     } else {
         str = str.substr(start, end - start + 1);
     }
-}
-
-std::vector<Submission> CSVParser::getSubmissions() const {
-    return submissions;
-}
-
-std::vector<Reviewer> CSVParser::getReviewers() const {
-    return reviewers;
 }
