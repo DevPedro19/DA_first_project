@@ -1,0 +1,7 @@
+#Submissions
+#Id, Title, Authors,E-mail,Primary,Secondary
+1, Invalid Secondary Submission, Test Author, secondary@example.com, 1, 0
+#Reviewers
+#Id, Name, E-mail,Primary,Secondary
+1, Valid Reviewer, reviewer@example.com, 1,
+

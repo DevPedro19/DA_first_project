@@ -73,7 +73,7 @@ private:
      * @param parseLine The function to be called for each specific type of object.
      */
     template<typename T, typename ParseFunction>
-    static void genericParser(std::ifstream&file, std::vector<T>& items, ParseFunction parseLine);
+    void genericParser(std::ifstream&file, std::vector<T>& items, ParseFunction parseLine);
 
     /**
      * @brief This function is responsible for parsing a single line of the CSV file
@@ -81,7 +81,7 @@ private:
      * @param line The line from the CSV file that contains the data for a single submission.
      * @param s The submission object itself that will be populated with the data from the line.
      */
-    static void parseIndividualSubmission(const std::string& line, Submission& s);
+    void parseIndividualSubmission(const std::string& line, Submission& s);
 
 
     /**
@@ -90,7 +90,7 @@ private:
      * @param line The line from the CSV file that contains the data for a single reviewer.
      * @param r The reviewer object itself that will be populated with the data from the line.
      */
-    static void parseIndividualReviewer(const std::string& line, Reviewer& r);
+    void parseIndividualReviewer(const std::string& line, Reviewer& r);
 
 
     /**
@@ -99,7 +99,13 @@ private:
      * @param newId New ID to be checked against the set of existing IDs.
      * @return boolean value indicating whether the ID is repeated (true) or not (false).
      */
-    static bool checkRepeatedIds(std::set<int>& ids, const int& newId);
+    static bool isRepeatedIds(std::set<int>& ids, const int& newId);
+
+    static int getInteger(std::string& str);
+
+    static void isValidIntField(int fieldValue, const std::string& fieldName);
+
+    static void isUniqueId(int id, const std::string& fieldName, std::set<int>& existingIds);
 };
 
 #endif //ORGANIZATIONAL_TOOL_CSVPARSER_H

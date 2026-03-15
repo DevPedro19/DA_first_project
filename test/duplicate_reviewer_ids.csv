@@ -1,0 +1,8 @@
+#Submissions
+#Id, Title, Authors,E-mail,Primary,Secondary
+1, Valid Submission, Author, submission@example.com, 2,
+#Reviewers
+#Id, Name, E-mail,Primary,Secondary
+1, First Reviewer, reviewer1@example.com, 1,
+1, Duplicate Reviewer, reviewer2@example.com, 2,
+
