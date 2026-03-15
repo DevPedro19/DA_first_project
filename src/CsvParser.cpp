@@ -3,8 +3,9 @@
 #include <algorithm>
 #include <iostream>
 #include <sstream>
+#include <utility>
 
-CSVParser::CSVParser(const std::string &filename) : filename(filename) {}
+CSVParser::CSVParser(std::string filename) : filename(std::move(filename)) {}
 
 
 void CSVParser::removeTrailingSpaces(std::string &str) {
@@ -137,7 +138,7 @@ void CSVParser::genericParser(std::ifstream &file, std::vector<T>& items, ParseF
 
 int CSVParser::getInteger(std::string &str) {
     removeTrailingSpaces(str);
-    int id = std::stoi(str);
+    const int id = std::stoi(str);
     return id;
 }
 
@@ -150,7 +151,7 @@ void CSVParser::isValidIntField(const int fieldValue, const std::string& fieldNa
 }
 
 
-void CSVParser::isUniqueId(int id, const std::string &fieldName, std::set<int> &existingIds) {
+void CSVParser::isUniqueId(const int id, const std::string &fieldName, std::set<int> &existingIds) {
     // Check if the field value is unique
     if (existingIds.find(id) != existingIds.end()) {
         const std::string errorMessage = fieldName + " must be unique. Duplicate value: " + std::to_string(id);

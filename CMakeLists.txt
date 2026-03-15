@@ -7,15 +7,10 @@ set( CMAKE_BUILD_TYPE "Release" )
 add_subdirectory(lib/googletest)
 include_directories(lib/googletest/googletest/include)
 include_directories(lib/googletest/googlemock/include)
-include_directories(TP3)
 
 set( CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE_TMP} )
 
 add_executable(Organizational_Tool
-        src/edmondsKarp.cpp
-        headers/csvParser.h
-        headers/submission.h
-        headers/reviewer.h
         src/Reviewer.cpp
         src/Submission.cpp
         src/CsvParser.cpp
