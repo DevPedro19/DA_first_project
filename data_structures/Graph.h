@@ -6,15 +6,16 @@
 
 #include <iostream>
 #include <vector>
-#include <queue>
-#include <limits>
-#include <algorithm>
-#include "../data_structures/MutablePriorityQueue.h" // not needed for now
+
+#include "../headers/Reviewer.h"
+#include "../headers/Submission.h"
 
 template <class T>
 class Edge;
 
 #define INF std::numeric_limits<double>::max()
+
+enum MatchType { PRIMARY, SECONDARY };
 
 /************************* Vertex  **************************/
 
@@ -22,52 +23,30 @@ template <class T>
 class Vertex {
 public:
     Vertex(T in);
-    bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
 
-    T getInfo() const;
+    T getId() const;
     std::vector<Edge<T> *> getAdj() const;
     bool isVisited() const;
-    bool isProcessing() const;
-    unsigned int getIndegree() const;
-    double getDist() const;
     Edge<T> *getPath() const;
     std::vector<Edge<T> *> getIncoming() const;
 
-    void setInfo(T info);
     void setVisited(bool visited);
-    void setProcessing(bool processing);
-
-    int getLow() const;
-    void setLow(int value);
-    int getNum() const;
-    void setNum(int value);
-
-    void setIndegree(unsigned int indegree);
-    void setDist(double dist);
+    void setId(T id);
     void setPath(Edge<T> *path);
-    Edge<T> * addEdge(Vertex<T> *dest, double w);
+    Edge<T> * addEdge(Vertex<T> *d, double c, MatchType t);
     bool removeEdge(T in);
     void removeOutgoingEdges();
 
-    friend class MutablePriorityQueue<Vertex>;
 protected:
-    T info;                // info node
+    T id;                // info node
     std::vector<Edge<T> *> adj;  // outgoing edges
 
     // auxiliary fields
-    bool visited = false; // used by DFS, BFS, Prim ...
-    bool processing = false; // used by isDAG (in addition to the visited attribute)
-    int low = -1, num = -1; // used by SCC Tarjan
-    unsigned int indegree; // used by topsort
-    double dist = 0;
-    Edge<T> *path = nullptr;
+    bool visited = false; // used to mark if a node has been visited
+    Edge<T> *path = nullptr; // used to get the path between two nodes
     std::string primaryField; // used to store the paper's/reviewer's primary field of work
 
     std::vector<Edge<T> *> incoming; // incoming edges
-
-    int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
-
-
 
     void deleteEdge(Edge<T> *edge);
 };
@@ -77,30 +56,28 @@ protected:
 template <class T>
 class Edge {
 public:
-    Edge(Vertex<T> *orig, Vertex<T> *dest, double w);
+    Edge(Vertex<T> *orig, Vertex<T> *dest, double c, MatchType t = PRIMARY);
 
     Vertex<T> * getDest() const;
-    double getWeight() const;
-    bool isSelected() const;
+    double getCapacity() const;
     Vertex<T> * getOrig() const;
-    Edge<T> *getReverse() const;
     double getFlow() const;
+    MatchType getMatchType() const;
 
-    void setSelected(bool selected);
-    void setReverse(Edge<T> *reverse);
     void setFlow(double flow);
+    void setCapacity(double capacity);
+    void setMacthType(MatchType t);
+
 protected:
     Vertex<T> * dest; // destination vertex
-    double weight; // edge weight, can also be used for capacity
-
-    // auxiliary fields
-    bool selected = false;
+    double capacity; // max capacity of the edge
 
     // used for bidirectional edges
     Vertex<T> *orig;
-    Edge<T> *reverse = nullptr;
 
-    double flow; // for flow-related problems
+    double flow = 0; // current flow of the edge
+
+    MatchType type;
 };
 
 /********************** Graph  ****************************/
@@ -108,7 +85,6 @@ protected:
 template <class T>
 class Graph {
 public:
-    ~Graph();
     /*
     * Auxiliary function to find a vertex with a given the content.
     */
@@ -125,7 +101,7 @@ public:
      * destination vertices and the edge weight (w).
      * Returns true if successful, and false if the source or destination vertex does not exist.
      */
-    bool addEdge(const T &sourc, const T &dest, double w);
+    bool addEdge(const T &sourc, const T &dest, double w, MatchType t);
     bool removeEdge(const T &source, const T &dest);
     bool addBidirectionalEdge(const T &sourc, const T &dest, double w);
 
@@ -133,12 +109,10 @@ public:
 
     std::vector<Vertex<T> *> getVertexSet() const;
 
+    void build(std::vector<Submission> submissions, std::vector<Reviewer> reviewers, struct parameters);
 
 protected:
     std::vector<Vertex<T> *> vertexSet;    // vertex set
-
-    double ** distMatrix = nullptr;   // dist matrix for Floyd-Warshall
-    int **pathMatrix = nullptr;   // path matrix for Floyd-Warshall
 
     /*
      * Finds the index of the vertex with a given content.
@@ -150,21 +124,18 @@ protected:
 
 };
 
-void deleteMatrix(int **m, int n);
-void deleteMatrix(double **m, int n);
-
 
 /************************* Vertex  **************************/
 
 template <class T>
-Vertex<T>::Vertex(T in): info(in) {}
+Vertex<T>::Vertex(T in): id(in) {}
 /*
  * Auxiliary function to add an outgoing edge to a vertex (this),
  * with a given destination vertex (d) and edge weight (w).
  */
 template <class T>
-Edge<T> * Vertex<T>::addEdge(Vertex<T> *d, double w) {
-    auto newEdge = new Edge<T>(this, d, w);
+Edge<T> * Vertex<T>::addEdge(Vertex<T> *d, double c, MatchType t) {
+    auto newEdge = new Edge<T>(this, d, c, t);
     adj.push_back(newEdge);
     d->incoming.push_back(newEdge);
     return newEdge;
@@ -182,7 +153,7 @@ bool Vertex<T>::removeEdge(T in) {
     while (it != adj.end()) {
         Edge<T> *edge = *it;
         Vertex<T> *dest = edge->getDest();
-        if (dest->getInfo() == in) {
+        if (dest->getId() == in) {
             it = adj.erase(it);
             deleteEdge(edge);
             removedEdge = true; // allows for multiple edges to connect the same pair of vertices (multigraph)
@@ -208,33 +179,8 @@ void Vertex<T>::removeOutgoingEdges() {
 }
 
 template <class T>
-bool Vertex<T>::operator<(Vertex<T> & vertex) const {
-    return this->dist < vertex.dist;
-}
-
-template <class T>
-T Vertex<T>::getInfo() const {
-    return this->info;
-}
-
-template <class T>
-int Vertex<T>::getLow() const {
-    return this->low;
-}
-
-template <class T>
-void Vertex<T>::setLow(int value) {
-    this->low = value;
-}
-
-template <class T>
-int Vertex<T>::getNum() const {
-    return this->num;
-}
-
-template <class T>
-void Vertex<T>::setNum(int value) {
-    this->num = value;
+T Vertex<T>::getId() const {
+    return this->id;
 }
 
 template <class T>
@@ -248,21 +194,6 @@ bool Vertex<T>::isVisited() const {
 }
 
 template <class T>
-bool Vertex<T>::isProcessing() const {
-    return this->processing;
-}
-
-template <class T>
-unsigned int Vertex<T>::getIndegree() const {
-    return this->indegree;
-}
-
-template <class T>
-double Vertex<T>::getDist() const {
-    return this->dist;
-}
-
-template <class T>
 Edge<T> *Vertex<T>::getPath() const {
     return this->path;
 }
@@ -273,33 +204,18 @@ std::vector<Edge<T> *> Vertex<T>::getIncoming() const {
 }
 
 template <class T>
-void Vertex<T>::setInfo(T in) {
-    this->info = in;
-}
-
-template <class T>
 void Vertex<T>::setVisited(bool visited) {
     this->visited = visited;
 }
 
 template <class T>
-void Vertex<T>::setProcessing(bool processing) {
-    this->processing = processing;
+void Vertex<T>::setId(T id) {
+    this->id = id;
 }
 
 template <class T>
-void Vertex<T>::setIndegree(unsigned int indegree) {
-    this->indegree = indegree;
-}
-
-template <class T>
-void Vertex<T>::setDist(double dist) {
-    this->dist = dist;
-}
-
-template <class T>
-void Vertex<T>::setPath(Edge<T> *path) {
-    this->path = path;
+void Vertex<T>::setPath(Edge<T> *p) {
+    this->path = p;
 }
 
 template <class T>
@@ -308,7 +224,7 @@ void Vertex<T>::deleteEdge(Edge<T> *edge) {
     // Remove the corresponding edge from the incoming list
     auto it = dest->incoming.begin();
     while (it != dest->incoming.end()) {
-        if ((*it)->getOrig()->getInfo() == info) {
+        if ((*it)->getOrig()->getInfo() == id) {
             it = dest->incoming.erase(it);
         }
         else {
@@ -321,7 +237,7 @@ void Vertex<T>::deleteEdge(Edge<T> *edge) {
 /********************** Edge  ****************************/
 
 template <class T>
-Edge<T>::Edge(Vertex<T> *orig, Vertex<T> *dest, double w): orig(orig), dest(dest), weight(w) {}
+Edge<T>::Edge(Vertex<T> *orig, Vertex<T> *dest, double c, MatchType t) : orig(orig), dest(dest), capacity(c),  type(t) {}
 
 template <class T>
 Vertex<T> * Edge<T>::getDest() const {
@@ -329,8 +245,8 @@ Vertex<T> * Edge<T>::getDest() const {
 }
 
 template <class T>
-double Edge<T>::getWeight() const {
-    return this->weight;
+double Edge<T>::getCapacity() const {
+    return this->capacity;
 }
 
 template <class T>
@@ -339,33 +255,28 @@ Vertex<T> * Edge<T>::getOrig() const {
 }
 
 template <class T>
-Edge<T> *Edge<T>::getReverse() const {
-    return this->reverse;
-}
-
-template <class T>
-bool Edge<T>::isSelected() const {
-    return this->selected;
-}
-
-template <class T>
 double Edge<T>::getFlow() const {
     return flow;
 }
 
-template <class T>
-void Edge<T>::setSelected(bool selected) {
-    this->selected = selected;
+template<class T>
+MatchType Edge<T>::getMatchType() const {
+    return type;
 }
 
 template <class T>
-void Edge<T>::setReverse(Edge<T> *reverse) {
-    this->reverse = reverse;
+void Edge<T>::setFlow(double f) {
+    this->flow = f;
+}
+
+template<class T>
+void Edge<T>::setMacthType(MatchType t) {
+    this->type = t;
 }
 
 template <class T>
-void Edge<T>::setFlow(double flow) {
-    this->flow = flow;
+void Edge<T>::setCapacity(double c) {
+    this->capacity = c;
 }
 
 /********************** Graph  ****************************/
@@ -398,7 +309,7 @@ template <class T>
 int Graph<T>::findVertexIdx(const T &in) const {
     for (unsigned i = 0; i < vertexSet.size(); i++)
         if (vertexSet[i]->getInfo() == in)
-            return i;
+            return static_cast<int>(i);
     return -1;
 }
 /*
@@ -441,12 +352,12 @@ bool Graph<T>::removeVertex(const T &in) {
  * Returns true if successful, and false if the source or destination vertex does not exist.
  */
 template <class T>
-bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
+bool Graph<T>::addEdge(const T &sourc, const T &dest, double c, MatchType t) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
         return false;
-    v1->addEdge(v2, w);
+    v1->addEdge(v2, c, t);
     return true;
 }
 
@@ -477,28 +388,116 @@ bool Graph<T>::addBidirectionalEdge(const T &sourc, const T &dest, double w) {
     return true;
 }
 
-inline void deleteMatrix(int **m, int n) {
-    if (m != nullptr) {
-        for (int i = 0; i < n; i++)
-            if (m[i] != nullptr)
-                delete [] m[i];
-        delete [] m;
-    }
-}
+template<class T>
+void Graph<T>::build(std::vector<Submission> submissions, std::vector<Reviewer> reviewers, struct parameters p) {
 
-inline void deleteMatrix(double **m, int n) {
-    if (m != nullptr) {
-        for (int i = 0; i < n; i++)
-            if (m[i] != nullptr)
-                delete [] m[i];
-        delete [] m;
-    }
-}
+    // TODO saber se o id de sub pode ser o mesmo que rev, if so, usar um offset  ,
 
-template <class T>
-Graph<T>::~Graph() {
-    deleteMatrix(distMatrix, vertexSet.size());
-    deleteMatrix(pathMatrix, vertexSet.size());
+                        /* CREATE THE NODES */
+    // Create the source node ID => 0
+    this->addVertex(0);
+    // Create the sink node ID => -1
+    this->addVertex(-1);
+    // Create submission nodes
+    for (const Submission& s : submissions) {
+        this->addVertex(s.getId());
+    }
+    // Create review nodes
+    for (const Reviewer& r : reviewers) {                   /* CREATE THE NODES */
+    // Create the source node ID => 0
+    this->addVertex(0);
+    // Create the sink node ID => -1
+    this->addVertex(-1);
+    // Create submission nodes
+    for (const Submission& s : submissions) {
+        this->addVertex(s.getId());
+    }
+    // Create review nodes
+    for (const Reviewer& r : reviewers) {
+        this->addVertex(r.getId());
+    }
+
+                        /* CREATE THE EDGES*/
+    // Create edge from the source node to submission with capacity MinReviewsPerSubmission
+    for (const Submission& s : submissions) {
+        this->addEdge(0, s.getId(), p.MinReviewsPerSubmission, PRIMARY);
+    }
+    // Create edges between submisions and reviewers
+    for (const Submission& s : submissions) {
+        for (const Reviewer& r : reviewers) {
+            switch (p.GenerateAssignments) {
+                case 0:
+                case 1:
+                    // Create only primary edges
+                    if (s.getPrimaryField() == r.getPrimaryField()) {
+                        this->addEdge(s.getId(), r.getId(), 1, PRIMARY);
+                    }
+
+                    break;
+                case 2:
+                    // Create primary edges
+                    if (s.getPrimaryField() == r.getPrimaryField()) {
+                        this->addEdge(s.getId(), r.getId(), 1), PRIMARY;
+                    }
+                    // Create secondary edges
+
+                    // Check if both have a secundary field, else continue
+                    if (s.getSecondaryField() == 0 && r.getSecondaryField() == 0) continue;
+
+                    if (s.getSecondaryField() == r.getSecondaryField()) {
+                        this->addEdge(s.getId(), r.getId(), 1, SECONDARY);
+                    }
+
+                    break;
+            }
+        }
+    }
+    // Create edges to sink with capacity equal to the MaxReviewsPerReviewer
+    for (const Reviewer& r : reviewers) {
+        this->addEdge(r.getId(), -1, p.MaxReviewsPerReviewer,PRIMARY);
+    }
+        this->addVertex(r.getId());
+    }
+
+                        /* CREATE THE EDGES*/
+    // Create edge from the source node to submission with capacity MinReviewsPerSubmission
+    for (const Submission& s : submissions) {
+        this->addEdge(0, s.getId(), p.MinReviewsPerSubmission, PRIMARY);
+    }
+    // Create edges between submisions and reviewers
+    for (const Submission& s : submissions) {
+        for (const Reviewer& r : reviewers) {
+            switch (p.GenerateAssignments) {
+                case 0:
+                case 1:
+                    // Create only primary edges
+                    if (s.getPrimaryField() == r.getPrimaryField()) {
+                        this->addEdge(s.getId(), r.getId(), 1, PRIMARY);
+                    }
+
+                    break;
+                case 2:
+                    // Create primary edges
+                    if (s.getPrimaryField() == r.getPrimaryField()) {
+                        this->addEdge(s.getId(), r.getId(), 1), PRIMARY;
+                    }
+                    // Create secondary edges
+
+                    // Check if both have a secundary field, else continue
+                    if (s.getSecondaryField() == 0 && r.getSecondaryField() == 0) continue;
+
+                    if (s.getSecondaryField() == r.getSecondaryField()) {
+                        this->addEdge(s.getId(), r.getId(), 1, SECONDARY);
+                    }
+
+                    break;
+            }
+        }
+    }
+    // Create edges to sink with capacity equal to the MaxReviewsPerReviewer
+    for (const Reviewer& r : reviewers) {
+        this->addEdge(r.getId(), -1, p.MaxReviewsPerReviewer,PRIMARY);
+    }
 }
 
 #endif /* DA_TP_CLASSES_GRAPH */
