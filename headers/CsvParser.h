@@ -27,19 +27,79 @@
  */
 class CSVParser {
 public:
+    /**
+     * @brief Constructor for the CSVParser class.
+     * @param filename Filename of the .csv file.
+     */
     CSVParser(const std::string &filename);
+
+    /**
+     * @brief This function essentially is the main method for parsing the .csv file.
+     */
     void parseDocument();
+
+    /**
+     * @brief Getter for the vector of reviewers.
+     * @return Vector of reviewers extracted from the .csv file.
+     */
     std::vector<Reviewer> getReviewers() const { return reviewers; }
+
+    /**
+     * @brief Getter for the vector of submissions.
+     * @return Vector of submissions extracted from the .csv file.
+     */
     std::vector<Submission> getSubmissions() const { return submissions; }
 private:
-    static void removeTrailingSpaces(std::string& str);
+    // Private fields
     std::string filename;
     std::vector<Reviewer> reviewers;
     std::vector<Submission> submissions;
-    static void parseSubmissions(std::ifstream& file, std::vector<Submission>& submissions);
+    std::set<int> submissionIds;
+    std::set<int> reviewerIds;
+
+    /**
+     * @brief Helper function to remove leading and trailing spaces from a string.
+     * @param str String from which to remove leading and trailing spaces.
+     */
+    static void removeTrailingSpaces(std::string& str);
+
+    /**
+     * @brief This function serves as a generic parser for both submissions and reviewers.
+     * It reads the file line by line, skipping the header and any lines starting with '#', and calls the provided parsing function for each line.
+     * @tparam T The type of the items being parsed.
+     * @tparam ParseFunction Serves as a generic type for the parsing function.
+     * @param file The input file stream from which to read the data.
+     * @param items The vector where the parsed items will be stored.
+     * @param parseLine The function to be called for each specific type of object.
+     */
+    template<typename T, typename ParseFunction>
+    static void genericParser(std::ifstream&file, std::vector<T>& items, ParseFunction parseLine);
+
+    /**
+     * @brief This function is responsible for parsing a single line of the CSV file
+     * and populating a Submission object
+     * @param line The line from the CSV file that contains the data for a single submission.
+     * @param s The submission object itself that will be populated with the data from the line.
+     */
     static void parseIndividualSubmission(const std::string& line, Submission& s);
-    static void parseReviewers(std::ifstream& file, std::vector<Reviewer>& reviewers);
+
+
+    /**
+     * @brief This function is responsible for parsing a single line of the CSV file
+     * and populating a Reviewer object
+     * @param line The line from the CSV file that contains the data for a single reviewer.
+     * @param r The reviewer object itself that will be populated with the data from the line.
+     */
     static void parseIndividualReviewer(const std::string& line, Reviewer& r);
+
+
+    /**
+     * @brief This function checks if the given ID has already been processed
+     * @param ids A set of IDs that have already been encountered.
+     * @param newId New ID to be checked against the set of existing IDs.
+     * @return boolean value indicating whether the ID is repeated (true) or not (false).
+     */
+    static bool checkRepeatedIds(std::set<int>& ids, const int& newId);
 };
 
 #endif //ORGANIZATIONAL_TOOL_CSVPARSER_H

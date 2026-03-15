@@ -7,39 +7,32 @@
 CSVParser::CSVParser(const std::string &filename) : filename(filename) {}
 
 
+void CSVParser::removeTrailingSpaces(std::string &str) {
+    const size_t start = str.find_first_not_of(' ');
+    const size_t end = str.find_last_not_of(' ');
+    if (start == std::string::npos || end == std::string::npos) {
+        str = "";
+    } else {
+        str = str.substr(start, end - start + 1);
+    }
+}
+
 void CSVParser::parseDocument() {
     std::ifstream file(filename, std::ios::binary);
     std::string line;
     while (std::getline(file, line)) {
         if (line.find("#Submissions") != std::string::npos) {
-            parseSubmissions(file, submissions);
-            printf("Finished parsing submissions\n");
+            genericParser(file, submissions, [](const std::string& l, Submission& s) {
+                parseIndividualSubmission(l, s);
+            });
+            printf("Finished parsing submissions.\n");
         }
         else if (line.find("#Reviewers") != std::string::npos) {
-            parseReviewers(file, reviewers);
-            printf("Finished parsing reviewers\n");
+            genericParser(file, reviewers, [](const std::string& l, Reviewer& r) {
+                parseIndividualReviewer(l, r);
+            });
+            printf("Finished parsing reviewers.\n");
         }
-    }
-}
-
-void CSVParser::parseSubmissions(std::ifstream& file, std::vector<Submission>& submissions) {
-    std::string line;
-    // Skip header line
-    std::string dummyLine;
-    std::getline(file, dummyLine);
-    std::streampos currentPos;
-    while (true) {
-        currentPos = file.tellg();
-        if (!std::getline(file, line)) {
-            break; // End of file
-        }
-        if (line[0] == '#') {
-            file.seekg(currentPos);
-            break;
-        }
-        auto submission = Submission();
-        parseIndividualSubmission(line, submission);
-        submissions.push_back(submission);
     }
 }
 
@@ -71,27 +64,6 @@ void CSVParser::parseIndividualSubmission(const std::string& line, Submission& s
     }
 }
 
-void CSVParser::parseReviewers(std::ifstream& file, std::vector<Reviewer>& reviewers) {
-    std::string line;
-    // Skip header line
-    std::string dummyLine;
-    std::getline(file, dummyLine);
-    std::streampos currentPos;
-    while (true) {
-        currentPos = file.tellg();
-        if (!std::getline(file, line)) {
-            break; // End of file
-        }
-        if (line[0] == '#') {
-            file.seekg(currentPos);
-            break;
-        }
-        auto reviewer = Reviewer();
-        parseIndividualReviewer(line, reviewer);
-        reviewers.push_back(reviewer);
-    }
-}
-
 void CSVParser::parseIndividualReviewer(const std::string& line, Reviewer& r) {
     std::istringstream iss(line);
     std::string data;
@@ -119,13 +91,33 @@ void CSVParser::parseIndividualReviewer(const std::string& line, Reviewer& r) {
     }
 }
 
+bool CSVParser::checkRepeatedIds(std::set<int> &ids,const int &newId) {
+    if (ids.find(newId) != ids.end()) {
+        return true; // ID is repeated
+    }
+    ids.insert(newId); // Add new ID to the set
+    return false; // ID is not repeated
+}
 
-void CSVParser::removeTrailingSpaces(std::string &str) {
-    const size_t start = str.find_first_not_of(' ');
-    const size_t end = str.find_last_not_of(' ');
-    if (start == std::string::npos || end == std::string::npos) {
-        str = "";
-    } else {
-        str = str.substr(start, end - start + 1);
+
+template<typename T, typename ParseFunction>
+void CSVParser::genericParser(std::ifstream &file, std::vector<T>& items, ParseFunction parseLine) {
+    std::string line;
+    // Skip header line
+    std::string dummyLine;
+    std::getline(file, dummyLine);
+    std::streampos currentPos;
+    while (true) {
+        currentPos = file.tellg();
+        if (!std::getline(file, line)) {
+            break; // End of file
+        }
+        if (line[0] == '#') {
+            file.seekg(currentPos);
+            break;
+        }
+        T item;
+        parseLine(line, item);
+        items.push_back(item);
     }
 }
