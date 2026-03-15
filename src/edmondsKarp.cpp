@@ -25,17 +25,31 @@ bool findAugmentingPath(Graph<T> *g, Vertex<T> *s, Vertex<T> *t) {
         v->setVisited(false);
         v->setPath(nullptr);
     }
+
     std::queue<Vertex<T>*> q;
     q.push(s);
     s->setVisited(true);
+
     while (!q.empty()) {
         Vertex<T>* front = q.front(); q.pop();
-        // Para as forward edges
+
+        // Check forward primary edges
         for (auto e : front -> getAdj()) {
-            // Segundo a função testAndVisit verificamos se podemos usar a aresta
-            testAndVisit(q, e, e->getDest(), e->getWeight() - e->getFlow());
+            if (e->getMatchType() == PRIMARY) {
+                testAndVisit(q, e, e->getDest(), e->getCapacity() - e->getFlow());
+            }
         }
-        // Para as backward edges
+
+        // We need to fill the primary edges first
+
+        // Check forward secondary edges
+        for (auto e : front -> getAdj()) {
+            if (e->getMatchType() == SECONDARY) {
+                testAndVisit(q, e, e->getDest(), e->getCapacity() - e->getFlow());
+            }
+        }
+
+        // Check Backward, they don't need Matchtype because their purpose is to revert flow
         for (auto e : front -> getIncoming()) {
             testAndVisit(q, e, e->getOrig(), e->getFlow());
         }
@@ -51,21 +65,22 @@ double findMinResidualAlongPath(Vertex<T> *s, Vertex<T> *t) {
 
     Vertex<T>* curr = t;
     while (curr != s) {
-        // Verificar se estamos a percorrer uma forward edge ou reverse edge
+        // Check if it's a forward or back edge
         Edge<T>* edgeTaken =  curr->getPath();
-        // Se a partir da edgeTaken chegamos ao vértice atual, forward edge
+
+        // It's a forward edge if the destination of that edge is the same as curr
         if (edgeTaken->getDest() == curr) {
-            // O valor do bottleneck é dado pela capacidade menos o flow
-            f = std::min(f, edgeTaken->getWeight() - edgeTaken->getFlow());
+
+            // The value of the bottleneck is the capacity minus the flow of that edge
+            f = std::min(f, edgeTaken->getCapacity() - edgeTaken->getFlow());
             curr = edgeTaken->getOrig();
         }
         else {
-            // O valor do bottleneck é dado exclusivamente pelo flow
-            // Capacidade residual da backwards edge é igual ao flow da forward edge
+
+            // The value of the bottleneck is the flow of that edge because it's the amount of flow that can be reverted
             f = std::min(f, edgeTaken->getFlow());
             curr = edgeTaken->getDest();
         }
-
     }
 
     return f;
@@ -77,15 +92,17 @@ void augmentFlowAlongPath(Vertex<T> *s, Vertex<T> *t, double f) {
     Vertex<T>* curr = t;
     while (curr != s) {
         Edge<T>* edgeTaken = curr->getPath();
-        // Verificar se estamos a percorrer uma forward edge
+
+        // Check if it's a forward edge
         if (edgeTaken->getDest() == curr) {
-            // Temos de adicionar ao valor do fluxo da forward edge o valor do bottleneck
-            // que é a quantidade máxima de fluxo que pode ser adicionada
+
+            // The augmented flow in a forward edge is achieved by adding the value of the bottleneck to the current flow
             edgeTaken->setFlow(edgeTaken->getFlow() + f);
             curr = edgeTaken->getOrig();
         }
         else {
-            // Subtrair o valor do bottleneck
+
+            // The augmented flow in a backward edge is achieved by subtracting the value of the bottleneck to the current flow
             edgeTaken->setFlow(edgeTaken->getFlow() - f);
             curr = edgeTaken->getDest();
         }
@@ -94,20 +111,19 @@ void augmentFlowAlongPath(Vertex<T> *s, Vertex<T> *t, double f) {
 
 // Main function implementing the Edmonds-Karp algorithm
 template <class T>
-void edmondsKarp(Graph<T> *g, int source, int target) {
+void Graph<T>::runMaxFlowAlgorithm() {
     // Find source and target vertices in the graph
-    Vertex<T>* s = g->findVertex(source);
-    Vertex<T>* t = g->findVertex(target);
+    Vertex<T>* s = this->findVertex(0);
+    Vertex<T>* t = this->findVertex(-1);
 
-    for (auto v : g->getVertexSet()) {
+    for (auto v : this->getVertexSet()) {
         for (auto e : v->getAdj()) {
             e->setFlow(0);
         }
     }
 
-    while (findAugmentingPath(g, s, t)) {
-        double bottleneckVal = findMinResidualAlongPath(s, t);
-        augmentFlowAlongPath(s, t, bottleneckVal);
+    while (findAugmentingPath(this, s, t)) {
+        double bottleneck = findMinResidualAlongPath(s, t);
+        augmentFlowAlongPath(s, t, bottleneck);
     }
-
 }
