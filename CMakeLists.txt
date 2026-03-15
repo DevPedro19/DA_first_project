@@ -13,13 +13,16 @@ set( CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE_TMP} )
 
 add_executable(Organizational_Tool
         src/edmondsKarp.cpp
-        headers/csvParser.h
-        headers/submission.h
-        headers/reviewer.h
+        headers/CsvParser.h
+        headers/Submission.h
+        headers/Reviewer.h
         src/Reviewer.cpp
         src/Submission.cpp
         src/CsvParser.cpp
         test/CsvparserTest.cpp
+        headers/CLI.h
+        src/main.cpp
+        src/CLI.cpp
 )
 add_definitions(-D_ITERATOR_DEBUG_LEVEL=0)
 #set(CMAKE_CXX_FLAGS_DEBUG "/MDd")  # Para Debug
