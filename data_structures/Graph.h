@@ -9,6 +9,7 @@
 
 #include "../headers/Reviewer.h"
 #include "../headers/Submission.h"
+#include "../headers/Data.h"
 
 template <class T>
 class Edge;
@@ -392,9 +393,10 @@ bool Graph<T>::addBidirectionalEdge(const T &sourc, const T &dest, double w) {
 }
 
 template<class T>
-void Graph<T>::build(std::vector<Submission> submissions, std::vector<Reviewer> reviewers, struct parameters p) {
+void Graph<T>::build(Data data) {
 
-    // TODO saber se o id de sub pode ser o mesmo que rev, if so, usar um offset
+    std::vector<Submission> submissions = data.submissions;
+    std::vector<Reviewer> reviewers = data.reviewers;
 
                                 /* CREATE THE NODES */
     // Create the source node ID => 0
@@ -413,12 +415,12 @@ void Graph<T>::build(std::vector<Submission> submissions, std::vector<Reviewer> 
                         /* CREATE THE EDGES*/
     // Create edge from the source node to submission with capacity MinReviewsPerSubmission
     for (const Submission& s : submissions) {
-        this->addEdge(0, s.getId(), p.MinReviewsPerSubmission, PRIMARY);
+        this->addEdge(0, s.getId(), data.parameters.MinReviewsPerSubmission, PRIMARY);
     }
     // Create edges between submisions and reviewers
     for (const Submission& s : submissions) {
         for (const Reviewer& r : reviewers) {
-            switch (p.GenerateAssignments) {
+            switch (data.control.GenerateAssignments) {
                 case 0:
                 case 1:
                     // Create only primary edges
@@ -442,13 +444,14 @@ void Graph<T>::build(std::vector<Submission> submissions, std::vector<Reviewer> 
                     }
 
                     break;
+                default: ;
             }
         }
     }
 
     // Create edges to sink with capacity equal to the MaxReviewsPerReviewer
     for (const Reviewer& r : reviewers) {
-        this->addEdge(r.getId(), -1, p.MaxReviewsPerReviewer,PRIMARY);
+        this->addEdge(r.getId(), -1, data.parameters.MaxReviewsPerReviewer,PRIMARY);
     }
 }
 
