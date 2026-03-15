@@ -65,10 +65,11 @@ void CLI::execute(const std::vector<std::string>& args) {
         setInputFileName(askInputFilePath());
     }
 
-    Data data; // will have fields like submissions, reviewers, parameters and control
+    Data data;
 
-    readInput(this->inputFileName, data);
+    //readInput(this->inputFileName_, data);
 
+    /*
     InfoMenu infoMenu(data);
     infoMenu.display();
 
@@ -83,4 +84,5 @@ void CLI::execute(const std::vector<std::string>& args) {
     if (data.parameters.GenerateAssignments) {
         writeOutput();
     }
+    */
 }

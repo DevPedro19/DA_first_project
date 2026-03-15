@@ -5,10 +5,10 @@
 #ifndef FIRST_PROJECT_CLI_H
 #define FIRST_PROJECT_CLI_H
 
+#include "Data.h"
+
 #include <string>
 #include <vector>
-
-
 
 /**
  * @brief This class is the CLI of the program, that exposes all implemented functionalities in a user-friendly manner.
@@ -22,7 +22,7 @@ public:
 
     void readInput(const std::string& string, Data& data);
 
-    void execute(const std::vector<std::string>&);
+    void execute(const std::vector<std::string>& args);
 
     void setInputFileName(const std::string& inputFileName);
     std::string getInputFileName() const;
