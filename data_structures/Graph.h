@@ -6,9 +6,6 @@
 
 #include <iostream>
 #include <vector>
-#include <queue>
-#include <limits>
-#include <algorithm>
 
 template <class T>
 class Edge;
@@ -32,7 +29,7 @@ public:
     void setVisited(bool visited);
 
     void setPath(Edge<T> *path);
-    Edge<T> * addEdge(Vertex<T> *dest, double w);
+    Edge<T> * addEdge(Vertex<T> *d, double c);
     bool removeEdge(T in);
     void removeOutgoingEdges();
 
@@ -55,11 +52,10 @@ protected:
 template <class T>
 class Edge {
 public:
-    Edge(Vertex<T> *orig, Vertex<T> *dest, double w);
+    Edge(Vertex<T> *orig, Vertex<T> *dest, double c);
 
     Vertex<T> * getDest() const;
     double getCapacity() const;
-    bool isSelected() const;
     Vertex<T> * getOrig() const;
     double getFlow() const;
 
@@ -209,8 +205,8 @@ void Vertex<T>::setVisited(bool visited) {
 }
 
 template <class T>
-void Vertex<T>::setPath(Edge<T> *path) {
-    this->path = path;
+void Vertex<T>::setPath(Edge<T> *p) {
+    this->path = p;
 }
 
 template <class T>
@@ -232,7 +228,7 @@ void Vertex<T>::deleteEdge(Edge<T> *edge) {
 /********************** Edge  ****************************/
 
 template <class T>
-Edge<T>::Edge(Vertex<T> *orig, Vertex<T> *dest, double c): orig(orig), dest(dest), capacity(c) {}
+Edge<T>::Edge(Vertex<T> *orig, Vertex<T> *dest, double c) : orig(orig), dest(dest), capacity(c), flow(0) {}
 
 template <class T>
 Vertex<T> * Edge<T>::getDest() const {
@@ -255,13 +251,13 @@ double Edge<T>::getFlow() const {
 }
 
 template <class T>
-void Edge<T>::setFlow(double flow) {
-    this->flow = flow;
+void Edge<T>::setFlow(double f) {
+    this->flow = f;
 }
 
 template <class T>
-void Edge<T>::setCapacity(double capacity) {
-    this->capacity = capacity;
+void Edge<T>::setCapacity(double c) {
+    this->capacity = c;
 }
 
 /********************** Graph  ****************************/
@@ -294,7 +290,7 @@ template <class T>
 int Graph<T>::findVertexIdx(const T &in) const {
     for (unsigned i = 0; i < vertexSet.size(); i++)
         if (vertexSet[i]->getInfo() == in)
-            return i;
+            return static_cast<int>(i);
     return -1;
 }
 /*
