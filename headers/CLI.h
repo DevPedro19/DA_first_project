@@ -16,11 +16,13 @@
 class CLI {
 public:
 
+    CLI();
+
     static void printTitle();
     static void checkValidInputFile(const std::string& inputFile);
     static std::string askInputFilePath();
 
-    void readInput(const std::string& string, Data& data);
+    void readInput(const std::string& inputFileName, Data& data);
 
     void execute(const std::vector<std::string>& args);
 
@@ -36,5 +38,6 @@ private:
     std::string inputFileName_;
     std::string outputFileName_;
     std::string outputRisk_;
+    std::string spacer_;
 };
 #endif //FIRST_PROJECT_CLI_H
