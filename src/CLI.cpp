@@ -9,10 +9,53 @@
 
 #include "../headers/CsvParser.h"
 
+
+void CLI::setInputFileName(const std::string &inputFileName) {
+    this->inputFileName_ = inputFileName;
+}
+
+
+void CLI::setOutputFileName(const std::string &outputFileName) {
+    this->outputFileName_ = outputFileName;
+}
+
+
+void CLI::setOutputRisk(const std::string &outputRisk) {
+    this->outputRisk_ = outputRisk;
+}
+
+
+void CLI::printTitle() {
+    std::cout << "## Scientific Conference Organization Tool ##" << std::endl;
+}
+
+
+void CLI::checkValidInputFile(const std::string& inputFile) {
+    if (inputFile.empty()) {
+        throw std::invalid_argument("Input file name cannot be empty.");
+    }
+
+    size_t dotPos = inputFile.rfind('.');
+
+    if (dotPos == std::string::npos || inputFile.substr(dotPos) != ".csv") {
+        throw std::invalid_argument("Input file extension should be .csv.");
+    }
+}
+
+
+std::string CLI::askInputFilePath() {
+    std::cout << "Enter input path to input file (.csv): ";
+    std::string inputFilepath;
+    std::cin >> inputFilepath;
+    return inputFilepath;
+}
+
+
 void CLI::execute(const std::vector<std::string>& args) {
     printTitle();
 
     if (args.size() >= 2 && args[1] == "-b") { // batch mode
+        checkValidInputFile(args[2]);
         setInputFileName(args[2]);
         if (args.size() == 4) {
             setOutputRisk(args[3]);
@@ -22,19 +65,9 @@ void CLI::execute(const std::vector<std::string>& args) {
         setInputFileName(askInputFilePath());
     }
 
-    Data data;// will have fields like submissions, reviewers, parameters and control
-    try {
-        readInput(this->inputFileName, data);
+    Data data; // will have fields like submissions, reviewers, parameters and control
 
-    } catch (const std::invalid_argument& e) {
-        std::cerr << "Duplicate ID:" << e.what() << std::endl;
-
-    } catch (const std::runtime_error& e) {
-        std::cerr << e.what() << std::endl; // wrong number of submission/reviewer arguments
-
-    } catch (const std::domain_error& e) {
-        std::cerr << "Expected positive value: " << e.what() << std::endl;
-    }
+    readInput(this->inputFileName, data);
 
     InfoMenu infoMenu(data);
     infoMenu.display();
@@ -47,5 +80,7 @@ void CLI::execute(const std::vector<std::string>& args) {
     Result result;
     flowNetwork.checkFlow(result);
 
-    writeOutput();
+    if (data.parameters.GenerateAssignments) {
+        writeOutput();
+    }
 }
