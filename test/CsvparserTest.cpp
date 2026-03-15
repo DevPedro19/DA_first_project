@@ -1,10 +1,9 @@
 //
 // Created by pedro on 3/11/2026.
 //
-#include <filesystem>
+#include "../headers/CsvParser.h"
 #include <gtest/gtest.h>
 #include <stdexcept>
-#include "../headers/CsvParser.h"
 
 TEST(CsvParserTest, test_full_parsing) {
     CSVParser parse("../test/testing.csv");

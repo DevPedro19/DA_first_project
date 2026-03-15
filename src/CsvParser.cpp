@@ -104,7 +104,7 @@ void CSVParser::parseIndividualReviewer(const std::string& line, Reviewer& r) {
     }
 }
 
-bool CSVParser::isRepeatedIds(std::set<int> &ids,const int &newId) {
+bool CSVParser::isRepeatedId(std::set<int> &ids,const int &newId) {
     if (ids.find(newId) != ids.end()) {
         return true; // ID is repeated
     }

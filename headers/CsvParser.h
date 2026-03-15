@@ -4,14 +4,14 @@
 
 #ifndef ORGANIZATIONAL_TOOL_CSVPARSER_H
 #define ORGANIZATIONAL_TOOL_CSVPARSER_H
-#include <fstream>
-#include <set>
-#include <string>
-#include <vector>
 
 #include "Reviewer.h"
 #include "Submission.h"
 
+#include <fstream>
+#include <set>
+#include <string>
+#include <vector>
 
 /**
  * @brief This class is responsible for parsing the .csv file and extracting the data from it.
@@ -99,12 +99,30 @@ private:
      * @param newId New ID to be checked against the set of existing IDs.
      * @return boolean value indicating whether the ID is repeated (true) or not (false).
      */
-    static bool isRepeatedIds(std::set<int>& ids, const int& newId);
+    static bool isRepeatedId(std::set<int>& ids, const int& newId);
 
+    /**
+     * @brief Convertes a string to an integer
+     * @param str Parse string to be converted to an integer.
+     * @return integer value obtained from the string.
+     */
     static int getInteger(std::string& str);
 
+    /**
+     * @brief Checks if the given integer field is valid (positive integer)
+     * throws a domain_error if the field is not valid.
+     * @param fieldValue Value of the field to be validated.
+     * @param fieldName Name of the field where the violation occurs
+     */
     static void isValidIntField(int fieldValue, const std::string& fieldName);
 
+    /**
+     * @brief Checks if the given ID is unique among the existing IDs
+     * throws an invalid_argument if the ID is not unique.
+     * @param id ID to be checked for uniqueness.
+     * @param fieldName Name of the field where the violation occurs.
+     * @param existingIds Set of existing IDs to check against for uniqueness.
+     */
     static void isUniqueId(int id, const std::string& fieldName, std::set<int>& existingIds);
 };
 
