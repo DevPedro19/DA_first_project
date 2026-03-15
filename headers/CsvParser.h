@@ -29,22 +29,17 @@ class CSVParser {
 public:
     CSVParser(const std::string &filename);
     void parseDocument();
-    // TODO: These two functions should be private since they are only used internally by the parser
-    void parseSubmissions(std::ifstream& file, std::vector<Submission>& submissions);
-    void parseIndividualSubmission(const std::string& line, Submission& s);
-    void parseReviewers(std::ifstream& file, std::vector<Reviewer>& reviewers);
-    void parseIndividualReviewer(const std::string& line, Reviewer& r);
-    std::vector<Submission> getSubmissions() const;
-    std::vector<Reviewer> getReviewers() const;
+    std::vector<Reviewer> getReviewers() const { return reviewers; }
+    std::vector<Submission> getSubmissions() const { return submissions; }
 private:
     static void removeTrailingSpaces(std::string& str);
     std::string filename;
-    /*
-     * TODO: Estes dois vetores seria boa ideia passar para uma nova classe
-     * já que o parser não deve ser responsável por guardar os dados, apenas por os ler e processa
-     */
-    std::vector<Reviewer> reviewers; // Using vector to be able to sort and since reviewers in the csv have unique IDs
+    std::vector<Reviewer> reviewers;
     std::vector<Submission> submissions;
+    static void parseSubmissions(std::ifstream& file, std::vector<Submission>& submissions);
+    static void parseIndividualSubmission(const std::string& line, Submission& s);
+    static void parseReviewers(std::ifstream& file, std::vector<Reviewer>& reviewers);
+    static void parseIndividualReviewer(const std::string& line, Reviewer& r);
 };
 
 #endif //ORGANIZATIONAL_TOOL_CSVPARSER_H

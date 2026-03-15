@@ -6,6 +6,7 @@
 #include "../headers/CsvParser.h"
 
 // The function parseIndividualSubmission is going to be private so it must be moved to public for testing purposes
+/*
 TEST(CsvParserTest, test_parseIndividualSubmissionNoSecondaryField) {
     // The last char is a carriage return because we want to simulate if the code is run on Windows
     // Or in linux
@@ -59,6 +60,7 @@ TEST(CsvParserTest, test_parseIndividualReviewerWithSecondaryField) {
     EXPECT_EQ(r.getPrimaryField(), 1);
     EXPECT_EQ(r.getSecondaryField(), 4);
 }
+*/
 
 TEST(CsvParserTest, test_full_parsing) {
     CSVParser parse("../test/testing.csv");
