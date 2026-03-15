@@ -49,18 +49,22 @@ protected:
 
 /********************** Edge  ****************************/
 
+enum MatchType { PRIMARY, SECONDARY };
+
 template <class T>
 class Edge {
 public:
-    Edge(Vertex<T> *orig, Vertex<T> *dest, double c);
+    Edge(Vertex<T> *orig, Vertex<T> *dest, double c, MatchType t = PRIMARY);
 
     Vertex<T> * getDest() const;
     double getCapacity() const;
     Vertex<T> * getOrig() const;
     double getFlow() const;
+    MatchType getMatchType() const;
 
     void setFlow(double flow);
     void setCapacity(double capacity);
+    void setMacthType(MatchType t);
 
 protected:
     Vertex<T> * dest; // destination vertex
@@ -70,6 +74,8 @@ protected:
     Vertex<T> *orig;
 
     double flow; // current flow of the edge
+
+    MatchType type;
 };
 
 /********************** Graph  ****************************/
@@ -228,7 +234,7 @@ void Vertex<T>::deleteEdge(Edge<T> *edge) {
 /********************** Edge  ****************************/
 
 template <class T>
-Edge<T>::Edge(Vertex<T> *orig, Vertex<T> *dest, double c) : orig(orig), dest(dest), capacity(c), flow(0) {}
+Edge<T>::Edge(Vertex<T> *orig, Vertex<T> *dest, double c, MatchType t) : orig(orig), dest(dest), capacity(c), flow(0), type(t){}
 
 template <class T>
 Vertex<T> * Edge<T>::getDest() const {
@@ -250,9 +256,19 @@ double Edge<T>::getFlow() const {
     return flow;
 }
 
+template<class T>
+MatchType Edge<T>::getMatchType() const {
+    return type;
+}
+
 template <class T>
 void Edge<T>::setFlow(double f) {
     this->flow = f;
+}
+
+template<class T>
+void Edge<T>::setMacthType(MatchType t) {
+    this->type = t;
 }
 
 template <class T>
