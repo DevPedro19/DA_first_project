@@ -49,7 +49,7 @@ private:
      * @brief Helper function to remove leading and trailing spaces from a string.
      * @param str String from which to remove leading and trailing spaces.
      */
-    static void removeTrailingSpaces(std::string& str);
+    static void removeTrailingCharacter(std::string& str, char character);
 
     /**
      * @brief This function serves as a generic parser for both submissions and reviewers.
@@ -112,6 +112,23 @@ private:
      * @param existingIds Set of existing IDs to check against for uniqueness.
      */
     static void isUniqueId(int id, const std::string& fieldName, std::set<int>& existingIds);
+
+    /**
+     * @brief Parses the parameters from the CSV file and populates the structure
+     * @param file The input file stream from which to read the data.
+     * @param data Structure where the parsed data will be stored.
+     */
+    static void parseParameters(std::ifstream&file, Data& data);
+
+    static void parseIndividualParameter(std::istringstream& ss, Data& data);
+
+    static void parseControlParameters(std::ifstream& file, Data& data);
+
+    static void parseIndividualControlParameter(std::istringstream& ss, Data& data);
+
+    static void validateGenerateAssignments(int generateAssignments);
+
+    static void validateRiskAnalysis(int riskAnalysis);
 };
 
 #endif //ORGANIZATIONAL_TOOL_CSVPARSER_H
