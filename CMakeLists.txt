@@ -23,6 +23,7 @@ add_executable(Organizational_Tool
         headers/CLI.h
         src/main.cpp
         src/CLI.cpp
+        headers/Data.h
 )
 add_definitions(-D_ITERATOR_DEBUG_LEVEL=0)
 #set(CMAKE_CXX_FLAGS_DEBUG "/MDd")  # Para Debug

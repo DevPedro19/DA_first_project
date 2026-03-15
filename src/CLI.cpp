@@ -3,11 +3,11 @@
 //
 
 #include "../headers/CLI.h"
+#include "../headers/CsvParser.h"
+#include "../headers/Data.h"
 
 #include <iostream>
 #include <vector>
-
-#include "../headers/CsvParser.h"
 
 
 void CLI::setInputFileName(const std::string &inputFileName) {
@@ -77,7 +77,7 @@ void CLI::execute(const std::vector<std::string>& args) {
 
     flowNetwork.runMaxFlowAlgorithm();
 
-    Result result;
+    Result result; // matches and misses
     flowNetwork.checkFlow(result);
 
     if (data.parameters.GenerateAssignments) {

@@ -36,9 +36,5 @@ private:
     std::string inputFileName_;
     std::string outputFileName_;
     std::string outputRisk_;
-
-
-
-
 };
 #endif //FIRST_PROJECT_CLI_H
