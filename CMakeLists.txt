@@ -7,7 +7,6 @@ set( CMAKE_BUILD_TYPE "Release" )
 add_subdirectory(lib/googletest)
 include_directories(lib/googletest/googletest/include)
 include_directories(lib/googletest/googlemock/include)
-
 set( CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE_TMP} )
 
 add_executable(main
@@ -21,6 +20,9 @@ add_executable(main
 
 add_executable(Test
         test/CsvparserTest.cpp
+        src/CsvParser.cpp
+        src/Submission.cpp
+        src/Reviewer.cpp
 )
 
 add_definitions(-D_ITERATOR_DEBUG_LEVEL=0)
