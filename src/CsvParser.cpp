@@ -1,4 +1,5 @@
 #include "../headers/CsvParser.h"
+#include "../headers/Data.h"
 
 #include <algorithm>
 #include <iostream>
@@ -18,18 +19,18 @@ void CSVParser::removeTrailingSpaces(std::string &str) {
     }
 }
 
-void CSVParser::parseDocument() {
+void CSVParser::parseDocument(Data &data) {
     std::ifstream file(filename, std::ios::binary);
     std::string line;
     while (std::getline(file, line)) {
         if (line.find("#Submissions") != std::string::npos) {
-            genericParser(file, submissions, [this](const std::string& l, Submission& s) {
+            genericParser(file, data.submissions, [this](const std::string& l, Submission& s) {
                 parseIndividualSubmission(l, s);
             });
             printf("Finished parsing submissions.\n");
         }
         else if (line.find("#Reviewers") != std::string::npos) {
-            genericParser(file, reviewers, [this](const std::string& l, Reviewer& r) {
+            genericParser(file, data.reviewers, [this](const std::string& l, Reviewer& r) {
                 parseIndividualReviewer(l, r);
             });
             printf("Finished parsing reviewers.\n");

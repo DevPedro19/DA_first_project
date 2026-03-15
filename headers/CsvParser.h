@@ -13,6 +13,8 @@
 #include <string>
 #include <vector>
 
+#include "Data.h"
+
 /**
  * @brief This class is responsible for parsing the .csv file and extracting the data from it.
  * @details The CSV must follow the specified format:
@@ -36,24 +38,10 @@ public:
     /**
      * @brief This function essentially is the main method for parsing the .csv file.
      */
-    void parseDocument();
-
-    /**
-     * @brief Getter for the vector of reviewers.
-     * @return Vector of reviewers extracted from the .csv file.
-     */
-    std::vector<Reviewer> getReviewers() const { return reviewers; }
-
-    /**
-     * @brief Getter for the vector of submissions.
-     * @return Vector of submissions extracted from the .csv file.
-     */
-    std::vector<Submission> getSubmissions() const { return submissions; }
+    void parseDocument(Data& data);
 private:
     // Private fields
     std::string filename;
-    std::vector<Reviewer> reviewers;
-    std::vector<Submission> submissions;
     std::set<int> submissionIds;
     std::set<int> reviewerIds;
 
