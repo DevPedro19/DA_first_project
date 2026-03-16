@@ -1,4 +1,4 @@
-#include "../headers/Submission.h"
+#include "Submission.h"
 #include <sstream>
 
 Submission::Submission() : Submission(0, "", "", "", 0) {}

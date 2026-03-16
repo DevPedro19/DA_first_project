@@ -1,13 +1,16 @@
-// Original code by Gonçalo Leão
-// Updated by DA 2024/2025 Team
+#include "MaxFlowSolver.h"
+#include <limits>
+#include <queue>
+#include <algorithm>
 
-// Template definitions have been moved to headers/MaxFlowSolver.h
-// because C++ templates must be fully defined in headers (visible at instantiation).
-#include "../headers/MaxFlowSolver.h"
+MaxFlowSolver::MaxFlowSolver(Graph<int>* g) {
+    source = g->findVertex(0);
+    target = g->findVertex(-1);
+    flowNetwork = g;
+}
 
-template<class T>
 // Function to test the given vertex 'w' and visit it if conditions are met
-void MaxFlowSolver<T>::testAndVisit(std::queue<Vertex<T>*> &q, Edge<T> *e, Vertex<T> *w, double residual) {
+void MaxFlowSolver::testAndVisit(std::queue<Vertex<int>*> &q, Edge<int> *e, Vertex<int> *w, double residual) {
     // Check if the vertex 'w' is not visited and there is residual capacity
     if (!w->isVisited() && residual > 0) {
         // Mark 'w' as visited, set the path through which it was reached, and enqueue it
@@ -18,21 +21,20 @@ void MaxFlowSolver<T>::testAndVisit(std::queue<Vertex<T>*> &q, Edge<T> *e, Verte
 }
 
 
-template <class T>
 // Function to find an augmenting path using Breadth-First Search
-bool MaxFlowSolver<T>::findAugmentingPath(Graph<T> *g, Vertex<T> *s, Vertex<T> *t) {
+bool MaxFlowSolver::findAugmentingPath() {
     // Mark all vertices as not visited
-    for (auto v : g->getVertexSet()) {
+    for (auto v : flowNetwork->getVertexSet()) {
         v->setVisited(false);
         v->setPath(nullptr);
     }
 
-    std::queue<Vertex<T>*> q;
-    q.push(s);
-    s->setVisited(true);
+    std::queue<Vertex<int>*> q;
+    q.push(source);
+    source->setVisited(true);
 
     while (!q.empty()) {
-        Vertex<T>* front = q.front(); q.pop();
+        Vertex<int>* front = q.front(); q.pop();
 
         // Forward primary edges first
         for (auto e : front->getAdj())
@@ -48,17 +50,16 @@ bool MaxFlowSolver<T>::findAugmentingPath(Graph<T> *g, Vertex<T> *s, Vertex<T> *
         for (auto e : front->getIncoming())
             testAndVisit(q, e, e->getOrig(), e->getFlow());
     }
-    return t->isVisited();
+    return target->isVisited();
 }
 
-template <class T>
 // Function to find the minimum residual capacity along the augmenting path
-double MaxFlowSolver<T>::findMinResidualAlongPath(Vertex<T> *s, Vertex<T> *t) {
+double MaxFlowSolver::findMinResidualAlongPath() {
     double f = INF;
-    Vertex<T>* curr = t;
-    while (curr != s) {
+    Vertex<int>* curr = target;
+    while (curr != source) {
         // Check if it's a forward or back edge
-        Edge<T>* e = curr->getPath();
+        Edge<int>* e = curr->getPath();
 
         // It's a forward edge if the destination of that edge is the same as curr
         if (e->getDest() == curr) {
@@ -78,13 +79,12 @@ double MaxFlowSolver<T>::findMinResidualAlongPath(Vertex<T> *s, Vertex<T> *t) {
     return f;
 }
 
-template <class T>
 // Function to augment flow along the augmenting path with the given flow value
-void MaxFlowSolver<T>::augmentFlowAlongPath(Vertex<T> *s, Vertex<T> *t, double f) {
-    Vertex<T>* curr = t;
+void MaxFlowSolver::augmentFlowAlongPath(double f) {
+    Vertex<int>* curr = target;
 
-    while (curr != s) {
-        Edge<T>* e = curr->getPath();
+    while (curr != source) {
+        Edge<int>* e = curr->getPath();
 
         // Check if it's a forward edge
         if (e->getDest() == curr) {
@@ -101,23 +101,18 @@ void MaxFlowSolver<T>::augmentFlowAlongPath(Vertex<T> *s, Vertex<T> *t, double f
     }
 }
 
-template <class T>
 // Main function implementing the Edmonds-Karp algorithm
-void MaxFlowSolver<T>::edmondsKarp(Graph<T>* g, int source, int target) {
-    Vertex<T>* s = g->findVertex(source);
-    Vertex<T>* t = g->findVertex(target);
-
-    for (auto v : g->getVertexSet())
+void MaxFlowSolver::edmondsKarp() {
+    for (auto v : flowNetwork->getVertexSet())
         for (auto e : v->getAdj())
             e->setFlow(0);
 
-    while (findAugmentingPath(g, s, t)) {
-        double bottleneck = findMinResidualAlongPath(s, t);
-        augmentFlowAlongPath(s, t, bottleneck);
+    while (findAugmentingPath()) {
+        double bottleneck = findMinResidualAlongPath();
+        augmentFlowAlongPath(bottleneck);
     }
 }
 
-template<class T>
-void MaxFlowSolver<T>::execute(Graph<T> *g, int source, int target) {
-    edmondsKarp(g, source, target);
+void MaxFlowSolver::execute() {
+    edmondsKarp();
 }

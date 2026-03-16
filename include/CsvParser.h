@@ -64,7 +64,7 @@ private:
      * @brief Helper function to remove leading and trailing spaces from a string.
      * @param str String from which to remove leading and trailing spaces.
      */
-    static void removeTrailingCharacter(std::string& str, char character);
+    static void removeTrailingCharacter(std::string& str, const std::string& s);
 
 
 

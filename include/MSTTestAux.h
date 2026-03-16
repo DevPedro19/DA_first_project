@@ -2,7 +2,7 @@
 #define TEST_AUX_H_
 #endif //TEST_AUX_H_
 
-#include "../data_structures/Graph.h"
+#include "Graph.h"
 #include <random>
 #include <map>
 #include <set>

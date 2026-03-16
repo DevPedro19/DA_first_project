@@ -2,19 +2,19 @@
 // Created by guilhermecunha on 15/03/26.
 //
 
-#include "../data_structures/Graph.h"
-#include "../headers/CLI.h"
-#include "../headers/CsvParser.h"
-#include "../headers/Data.h"
-#include "../headers/InfoMenu.h"
-#include "../headers/Result.h"
+#include "Graph.h"
+#include "CLI.h"
+#include "CsvParser.h"
+#include "Data.h"
+#include "InfoMenu.h"
+#include "Result.h"
+#include "MaxFlowSolver.h"
+#include "OutputWriter.h"
 
 #include <iostream>
 #include <vector>
-#include <fstream>
+#include <filesystem>
 
-
-#include "../headers/OutputWriter.h"
 
 
 CLI::CLI() = default;
@@ -65,7 +65,8 @@ void CLI::checkValidInputFile(const std::string& inputFile) {
 
 
 std::string CLI::askInputFilePath() {
-    std::cout << "Enter input path to input file (.csv): ";
+    char sep = std::filesystem::path::preferred_separator;
+    std::cout << "Enter input path to input file (.csv):\n(" << std::filesystem::current_path().string() << sep << ")";
     std::string inputFilepath;
     std::cin >> inputFilepath;
     return inputFilepath;
@@ -77,8 +78,6 @@ void CLI::readInput(const std::string &inputFileName, Data &data) {
     csvParser.parseDocument(data);
 }
 
-
-//TODO: check if the default output file name is working (ie, if the parser admits an empty string for this field in the "Control" section)
 void CLI::writeOutput(const Result& result, unsigned riskAnalysis) const {
     OutputWriter output_writer = OutputWriter(outputFileName_, outputRisk_);
     output_writer.writeOutput(result, riskAnalysis);
@@ -94,16 +93,18 @@ void CLI::execute(const std::vector<std::string>& args) {
 
     InfoMenu infoMenu(data);
     if (infoMenu.display()) {
-        Graph<unsigned> flowNetwork(data);
+        Graph<int> flowNetwork(data);
 
-        MaxFlowSolver solver;
-        solver.execute(flowNetwork);
-
-        Result result; // matches and misses
-        solver.checkFlow(result);
-
+        MaxFlowSolver solver(&flowNetwork);
+        solver.execute();
+        /*
         if (data.control.GenerateAssignments) {
             writeOutput(result, data.control.RiskAnalysis);
+        }*/
+        for (auto v : flowNetwork.getVertexSet()) {
+            for (auto e : v->getAdj()) {
+                std::cout << v->getId() << ":" << e->getDest()->getId() << "(" << e->getFlow() << "," << e->getCapacity() << ")" << std::endl;
+            }
         }
     }
 }

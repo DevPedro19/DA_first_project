@@ -1,4 +1,4 @@
-#include "../headers/Reviewer.h"
+#include "Reviewer.h"
 #include <sstream>
 
 Reviewer::Reviewer() : Reviewer(0, "", "", 0) {}

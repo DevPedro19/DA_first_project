@@ -1,5 +1,5 @@
-#include "../headers/CsvParser.h"
-#include "../headers/Data.h"
+#include "CsvParser.h"
+#include "Data.h"
 
 #include <algorithm>
 #include <iostream>
@@ -9,9 +9,9 @@
 CSVParser::CSVParser(std::string filename) : filename(std::move(filename)) {}
 
 
-void CSVParser::removeTrailingCharacter(std::string &str, const char character) {
-    const size_t start = str.find_first_not_of(character);
-    const size_t end = str.find_last_not_of(character);
+void CSVParser::removeTrailingCharacter(std::string &str, const std::string& s) {
+    const size_t start = str.find_first_not_of(s);
+    const size_t end = str.find_last_not_of(s);
     if (start == std::string::npos || end == std::string::npos) {
         str = "";
     } else {
@@ -23,8 +23,7 @@ void CSVParser::loadAndSplitFile() {
     fileSections.clear(); // Clear previous reads
     std::ifstream file(filename); // Read the CSV
     if (!file.is_open()) {
-        std::cout << "Could not open file: " << filename << std::endl;
-        return;
+        throw std::runtime_error("Could not open file " + filename);
     }
     std::string line; // Current line
     std::string currentSection; // String that identifies the section
@@ -129,9 +128,9 @@ void CSVParser::parseIndividualSubmission(const std::string& line, Submission& s
                 isUniqueId(id, "Submission ID ", submissionIds);
                 s.setId(id);
                 break;
-            case 1: removeTrailingCharacter(data, ' '); s.setTitle(data); break;
-            case 2: removeTrailingCharacter(data, ' '); s.setAuthor(data); break;
-            case 3: removeTrailingCharacter(data, ' '); s.setEmail(data); break;
+            case 1: removeTrailingCharacter(data, " "); s.setTitle(data); break;
+            case 2: removeTrailingCharacter(data, " "); s.setAuthor(data); break;
+            case 3: removeTrailingCharacter(data, " "); s.setEmail(data); break;
             case 4:
                 primaryField = getInteger(data);
                 isValidIntField(primaryField, "Primary field ");
@@ -164,8 +163,8 @@ void CSVParser::parseIndividualReviewer(const std::string& line, Reviewer& r) {
                 isUniqueId(id, "Reviewer ID ", reviewerIds);
                 r.setId(id);
                 break;
-            case 1: removeTrailingCharacter(data, ' '); r.setName(data); break;
-            case 2: removeTrailingCharacter(data, ' '); r.setEmail(data); break;
+            case 1: removeTrailingCharacter(data, " "); r.setName(data); break;
+            case 2: removeTrailingCharacter(data, " "); r.setEmail(data); break;
             case 3:
                 primaryField = getInteger(data);
                 isValidIntField(primaryField, "Primary field ");
@@ -196,7 +195,7 @@ bool CSVParser::isRepeatedId(std::set<int> &ids,const int &newId) {
 
 
 int CSVParser::getInteger(std::string &str) {
-    removeTrailingCharacter(str, ' ');
+    removeTrailingCharacter(str, " ");
     const int id = std::stoi(str);
     return id;
 }
@@ -265,9 +264,12 @@ void CSVParser::parseIndividualControlParameter(const std::string& line, Data &d
         else if (parameterName.find("OutputFileName") != std::string::npos) {
             std::getline(ss, dataStr);
             removeCarriageReturn(dataStr);
-            removeTrailingCharacter(dataStr, ' ');
-            removeTrailingCharacter(dataStr, '"');
-            data.control.OutputFileName = dataStr;
+            removeTrailingCharacter(dataStr, " ");
+            removeTrailingCharacter(dataStr, "“");
+            removeTrailingCharacter(dataStr, "”");
+            if (!dataStr.empty()) {
+                data.control.OutputFileName = dataStr;
+            }
         }
     }
 }

@@ -6,7 +6,7 @@
 #include <fstream>
 #include <algorithm>
 
-#include "../headers/OutputWriter.h"
+#include "OutputWriter.h"
 
 OutputWriter::OutputWriter(std::string outputFileName, std::string outputRisk) :
 outputFileName_(std::move(outputFileName)), outputRisk_(std::move(outputRisk)) {}

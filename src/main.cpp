@@ -4,9 +4,9 @@
 
 #include <iostream>
 
-#include "../headers/CsvParser.h"
+#include "CsvParser.h"
 
-#include "../headers/CLI.h"
+#include "CLI.h"
 
 int main(int argc, char* argv[]) {
     const std::vector<std::string> args(argv, argv + argc);

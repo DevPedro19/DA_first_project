@@ -2,7 +2,7 @@
 // Created by guilhermecunha on 15/03/26.
 //
 
-#include "../headers/InfoMenu.h"
+#include "InfoMenu.h"
 
 #include <iostream>
 
@@ -32,7 +32,7 @@ void InfoMenu::displayParameters() const {
 
 
 void InfoMenu::displayReviewers() const {
-    std::cout << "#Submissions" << std::endl;
+    std::cout << "#Reviewers" << std::endl;
     std::cout << "#Id, Name, E-mail,Primary,Secondary" << std::endl;
 
     for (const Reviewer& reviewer : data_.reviewers) {
@@ -61,7 +61,7 @@ void InfoMenu::displayOptions() {
                    "5. Run Max FLow Algorithm\n" <<
                    "6. Exit" << std::endl;
 
-    std::cout << "Insert option (1-4): ";
+    std::cout << "Insert option (1-6): ";
 }
 
 int InfoMenu::display() const {

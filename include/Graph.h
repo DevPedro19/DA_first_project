@@ -7,9 +7,9 @@
 #include <vector>
 #include <queue>
 
-#include "../headers/Reviewer.h"
-#include "../headers/Submission.h"
-#include "../headers/Data.h"
+#include "Reviewer.h"
+#include "Submission.h"
+#include "Data.h"
 
 template <class T>
 class Edge;
@@ -114,10 +114,6 @@ public:
     int getNumVertex() const;
 
     std::vector<Vertex<T> *> getVertexSet() const;
-
-    void build(Data &data);
-
-    void runMaxFlowAlgorithm();
 
 
 protected:
@@ -469,5 +465,4 @@ Graph<T>::Graph(Data &data) {
         this->addEdge(r.getId() + REVIEWER_OFFSET, -1, p.MaxReviewsPerReviewer,PRIMARY);
     }
 }
-
-#endif DA_TP_CLASSES_GRAPH
+#endif  /*DA_TP_CLASSES_GRAPH*/
