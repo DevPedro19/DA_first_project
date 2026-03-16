@@ -36,7 +36,9 @@ void CLI::setOutputRisk(const std::string &outputRisk) {
 
 
 void CLI::printTitle() {
-    std::cout << "## Scientific Conference Organization Tool ##" << std::endl;
+    std::cout << "\n========================================\n"
+              << "      CONFERENCE ORGANIZATION TOOL      \n"
+              << "========================================\n" << std::endl;
 }
 
 
