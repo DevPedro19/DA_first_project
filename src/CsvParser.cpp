@@ -19,38 +19,101 @@ void CSVParser::removeTrailingCharacter(std::string &str, const char character) 
     }
 }
 
-void CSVParser::parseDocument(Data &data) {
-    std::ifstream file(filename, std::ios::binary);
-    std::string line;
+void CSVParser::loadAndSplitFile() {
+    fileSections.clear(); // Clear previous reads
+    std::ifstream file(filename); // Read the CSV
+    if (!file.is_open()) {
+        std::cout << "Could not open file: " << filename << std::endl;
+        return;
+    }
+    std::string line; // Current line
+    std::string currentSection; // String that identifies the section
     while (std::getline(file, line)) {
-        // Inside parseLine arguments we must pass the object itself since internal functions of the parser need to
-        // access fields associated with the object, in this case, the sets for duplicate ID validation
+        removeCarriageReturn(line); // Remove carriage return if on Windows
+        if (line.empty()) continue;
+        // Create new section inside the map (maps each section with a vector with associated lines) for each new section in the file
         if (line.find("#Submissions") != std::string::npos) {
-            genericObjectParser(file, data.submissions, [this](const std::string& l, Submission& s) {
-                parseIndividualSubmission(l, s);
-            });
-            printf("Finished parsing submissions.\n");
+            currentSection = "#Submissions";
+            continue;
         }
-        else if (line.find("#Reviewers") != std::string::npos) {
-            genericObjectParser(file, data.reviewers, [this](const std::string& l, Reviewer& r) {
-                parseIndividualReviewer(l, r);
-            });
-            printf("Finished parsing reviewers.\n");
+        if (line.find("#Reviewers") != std::string::npos) {
+            currentSection = "#Reviewers";
+            continue;
         }
-        // Inside parseLine now it's not needed to pass the object itself since all internal methods from which the parser
-        // depends on are all static, meaning they don't need access to class fields
-        else if (line.find("#Parameters") != std::string::npos) {
-            genericParameterParser(file, data, [](const std::string& l, Data& d) {
-                parseIndividualParameter(l, d);
-            });
-            printf("Finished parsing parameters.\n");
+        if (line.find("#Parameters") != std::string::npos) {
+            currentSection = "#Parameters";
+            continue;
         }
-        else if (line.find("#Control") != std::string::npos) {
-            genericParameterParser(file, data, [](const std::string& l, Data& d) {
-                parseIndividualControlParameter(l, d);
-            });
-            printf("Finished parsing control parameters.\n");
+        if (line.find("#Control") != std::string::npos) {
+            currentSection = "#Control";
+            continue;
         }
+        // Adds the line to the respective section in case of an already existing section
+        if (!currentSection.empty()) {
+            fileSections[currentSection].push_back(line);
+        }
+    }
+}
+
+void CSVParser::parseDocument(Data &data) {
+    loadAndSplitFile();
+    // Parses different existing sections (now part of the map of sections)
+    // Only allows parsing of existing sections inside the csv
+    if (fileSections.find("#Submissions") != fileSections.end()) {
+        parseSubmissions(fileSections["#Submissions"], data.submissions);
+        std::cout << "Finished parsing submissions." << std::endl;
+    }
+
+    if (fileSections.find("#Reviewers") != fileSections.end()) {
+        parseReviewers(fileSections["#Reviewers"], data.reviewers);
+        std::cout << "Finished parsing reviewers." << std::endl;
+    }
+
+    if (fileSections.find("#Parameters") != fileSections.end()) {
+        parseParameters(fileSections["#Parameters"], data);
+        std::cout << "Finished parsing parameters." << std::endl;
+    }
+
+    if (fileSections.find("#Control") != fileSections.end()) {
+        parseControl(fileSections["#Control"], data);
+        std::cout << "Finished parsing control parameters." << std::endl;
+    }
+}
+
+void CSVParser::parseSubmissions(const std::vector<std::string>& lines, std::vector<Submission>& submissions) {
+    if (lines.empty()) return;
+    // Skips header line (starts in 1) and iterates over the lines of the submission section
+    for (size_t i = 1; i < lines.size(); ++i) {
+        const std::string& line = lines[i];
+        if (line.empty()) continue;
+        Submission s;
+        parseIndividualSubmission(line, s);
+        submissions.push_back(s);
+    }
+}
+
+void CSVParser::parseReviewers(const std::vector<std::string>& lines, std::vector<Reviewer>& reviewers) {
+    if (lines.empty()) return;
+    for (size_t i = 1; i < lines.size(); ++i) {
+        const std::string& line = lines[i];
+        if (line.empty()) continue;
+        Reviewer r;
+        parseIndividualReviewer(line, r);
+        reviewers.push_back(r);
+    }
+}
+
+void CSVParser::parseParameters(const std::vector<std::string>& lines, Data& data) {
+    for (const std::string& line : lines) {
+        if (line.empty()) continue;
+        parseIndividualParameter(line, data);
+    }
+}
+
+void CSVParser::parseControl(const std::vector<std::string>& lines, Data& data) {
+    for (const std::string& line : lines) {
+        if (line.empty()) continue;
+        parseIndividualControlParameter(line, data);
     }
 }
 
@@ -131,42 +194,6 @@ bool CSVParser::isRepeatedId(std::set<int> &ids,const int &newId) {
 }
 
 
-template<typename T, typename ParseFunction>
-void CSVParser::genericObjectParser(std::ifstream &file, std::vector<T>& items, ParseFunction parseLine) {
-    std::string line;
-    // Skip header line
-    std::string dummyLine;
-    std::getline(file, dummyLine);
-    while (true) {
-        const std::streampos currentPos = file.tellg();
-        if (!std::getline(file, line)) {
-            break; // End of file
-        }
-        if (line[0] == '#') {
-            file.seekg(currentPos);
-            break;
-        }
-        T item;
-        parseLine(line, item);
-        items.push_back(item);
-    }
-}
-
-template<typename ParseFunction>
-void CSVParser::genericParameterParser(std::ifstream &file, Data &data, ParseFunction parseLine) {
-    std::string line;
-    while (true) {
-        const std::streampos currentPos = file.tellg();
-        if (!std::getline(file, line)) {
-            break; // End of file
-        }
-        if (line[0] == '#') {
-            file.seekg(currentPos);
-            break;
-        }
-        parseLine(line, data);
-    }
-}
 
 int CSVParser::getInteger(std::string &str) {
     removeTrailingCharacter(str, ' ');
@@ -264,4 +291,3 @@ void CSVParser::removeCarriageReturn(std::string &str) {
         str.pop_back();
     }
 }
-
