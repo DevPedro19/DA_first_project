@@ -1,6 +1,6 @@
 #Submissions
 #Id, Title, Authors,E-mail,Primary,Secondary
-1, Invalid Primary Submission, Test Author, primary@example.com, 0,
+1, "Invalid Primary Submission", Test Author, primary@example.com, 0,
 #Reviewers
 #Id, Name, E-mail,Primary,Secondary
 1, Valid Reviewer, reviewer@example.com, 1,

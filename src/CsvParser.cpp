@@ -1,4 +1,5 @@
 #include "../headers/CsvParser.h"
+#include "../headers/Data.h"
 
 #include <algorithm>
 #include <iostream>
@@ -8,9 +9,9 @@
 CSVParser::CSVParser(std::string filename) : filename(std::move(filename)) {}
 
 
-void CSVParser::removeTrailingSpaces(std::string &str) {
-    const size_t start = str.find_first_not_of(' ');
-    const size_t end = str.find_last_not_of(' ');
+void CSVParser::removeTrailingCharacter(std::string &str, char character) {
+    const size_t start = str.find_first_not_of(character);
+    const size_t end = str.find_last_not_of(character);
     if (start == std::string::npos || end == std::string::npos) {
         str = "";
     } else {
@@ -18,21 +19,29 @@ void CSVParser::removeTrailingSpaces(std::string &str) {
     }
 }
 
-void CSVParser::parseDocument() {
+void CSVParser::parseDocument(Data &data) {
     std::ifstream file(filename, std::ios::binary);
     std::string line;
     while (std::getline(file, line)) {
         if (line.find("#Submissions") != std::string::npos) {
-            genericParser(file, submissions, [this](const std::string& l, Submission& s) {
+            genericParser(file, data.submissions, [this](const std::string& l, Submission& s) {
                 parseIndividualSubmission(l, s);
             });
             printf("Finished parsing submissions.\n");
         }
         else if (line.find("#Reviewers") != std::string::npos) {
-            genericParser(file, reviewers, [this](const std::string& l, Reviewer& r) {
+            genericParser(file, data.reviewers, [this](const std::string& l, Reviewer& r) {
                 parseIndividualReviewer(l, r);
             });
             printf("Finished parsing reviewers.\n");
+        }
+        else if (line.find("#Parameters") != std::string::npos) {
+            parseParameters(file, data);
+            printf("Finished parsing parameters.\n");
+        }
+        else if (line.find("#Control") != std::string::npos) {
+            parseControlParameters(file, data);
+            printf("Finished parsing control parameters.\n");
         }
     }
 }
@@ -49,9 +58,9 @@ void CSVParser::parseIndividualSubmission(const std::string& line, Submission& s
                 isUniqueId(id, "Submission ID ", submissionIds);
                 s.setId(id);
                 break;
-            case 1: removeTrailingSpaces(data); s.setTitle(data); break;
-            case 2: removeTrailingSpaces(data); s.setAuthor(data); break;
-            case 3: removeTrailingSpaces(data); s.setEmail(data); break;
+            case 1: removeTrailingCharacter(data, ' '); s.setTitle(data); break;
+            case 2: removeTrailingCharacter(data, ' '); s.setAuthor(data); break;
+            case 3: removeTrailingCharacter(data, ' '); s.setEmail(data); break;
             case 4:
                 primaryField = getInteger(data);
                 isValidIntField(primaryField, "Primary field ");
@@ -84,8 +93,8 @@ void CSVParser::parseIndividualReviewer(const std::string& line, Reviewer& r) {
                 isUniqueId(id, "Reviewer ID ", reviewerIds);
                 r.setId(id);
                 break;
-            case 1: removeTrailingSpaces(data); r.setName(data); break;
-            case 2: removeTrailingSpaces(data); r.setEmail(data); break;
+            case 1: removeTrailingCharacter(data, ' '); r.setName(data); break;
+            case 2: removeTrailingCharacter(data, ' '); r.setEmail(data); break;
             case 3:
                 primaryField = getInteger(data);
                 isValidIntField(primaryField, "Primary field ");
@@ -120,9 +129,8 @@ void CSVParser::genericParser(std::ifstream &file, std::vector<T>& items, ParseF
     // Skip header line
     std::string dummyLine;
     std::getline(file, dummyLine);
-    std::streampos currentPos;
     while (true) {
-        currentPos = file.tellg();
+        const std::streampos currentPos = file.tellg();
         if (!std::getline(file, line)) {
             break; // End of file
         }
@@ -137,7 +145,7 @@ void CSVParser::genericParser(std::ifstream &file, std::vector<T>& items, ParseF
 }
 
 int CSVParser::getInteger(std::string &str) {
-    removeTrailingSpaces(str);
+    removeTrailingCharacter(str, ' ');
     const int id = std::stoi(str);
     return id;
 }
@@ -159,3 +167,102 @@ void CSVParser::isUniqueId(const int id, const std::string &fieldName, std::set<
     }
     existingIds.insert(id);
 }
+
+void CSVParser::parseParameters(std::ifstream &file, Data &data) {
+    std::string line;
+    while (true) {
+        const std::streampos currentPos = file.tellg();
+        if (!std::getline(file, line)) {
+            break; // End of file
+        }
+        if (line[0] == '#') {
+            file.seekg(currentPos);
+            break;
+        }
+        std::istringstream iss(line);
+        parseIndividualParameter(iss, data);
+    }
+}
+
+void CSVParser::parseIndividualParameter(std::istringstream &ss, Data &data) {
+    std::string parameterName;
+    while (std::getline(ss, parameterName, ',')) {
+        std::string dataStr;
+        // parameter name
+        if (parameterName.find("MinReviewsPerSubmission") != std::string::npos) {
+            std::getline(ss, dataStr);
+            if (dataStr.back() == '\r') dataStr.pop_back();
+            const int minReviewsPerSubmission = getInteger(dataStr);
+            isValidIntField(minReviewsPerSubmission, "Minimum reviews per submission ");
+            data.parameters.MinReviewsPerSubmission = minReviewsPerSubmission;
+        }
+        else if (parameterName.find("MaxReviewsPerReviewer") != std::string::npos) {
+            std::getline(ss, dataStr);
+            if (dataStr.back() == '\r') dataStr.pop_back();
+            const int maxReviewsPerReviewer = getInteger(dataStr);
+            isValidIntField(maxReviewsPerReviewer, "Maximum reviews per reviewer ");
+            data.parameters.MaxReviewsPerReviewer = maxReviewsPerReviewer;
+        }
+    }
+}
+
+
+void CSVParser::parseControlParameters(std::ifstream &file, Data &data) {
+    std::string line;
+    while (true) {
+        const std::streampos currentPos = file.tellg();
+        if (!std::getline(file, line)) {
+            break; // End of file
+        }
+        if (line[0] == '#') {
+            file.seekg(currentPos);
+            break;
+        }
+        std::istringstream iss(line);
+        parseIndividualControlParameter(iss, data);
+    }
+}
+
+void CSVParser::parseIndividualControlParameter(std::istringstream &ss, Data &data) {
+    std::string parameterName;
+    while (std::getline(ss, parameterName, ',')) {
+        std::string dataStr;
+        if (parameterName.find("GenerateAssignments") != std::string::npos) {
+            std::getline(ss, dataStr);
+            if (dataStr.back() == '\r') dataStr.pop_back();
+            int generateAssignments = getInteger(dataStr);
+            validateGenerateAssignments(generateAssignments);
+            data.control.GenerateAssignments = generateAssignments;
+        }
+        else if (parameterName.find("RiskAnalysis") != std::string::npos) {
+            std::getline(ss, dataStr);
+            if (dataStr.back() == '\r') dataStr.pop_back();
+            int riskAnalysis = getInteger(dataStr);
+            validateRiskAnalysis(riskAnalysis);
+            data.control.RiskAnalysis = riskAnalysis;
+        }
+        else if (parameterName.find("OutputFileName") != std::string::npos) {
+            std::getline(ss, dataStr);
+            if (dataStr.back() == '\r') dataStr.pop_back();
+            removeTrailingCharacter(dataStr, ' ');
+            removeTrailingCharacter(dataStr, '"');
+            data.control.OutputFileName = dataStr;
+        }
+    }
+}
+
+void CSVParser::validateGenerateAssignments(const int generateAssignments) {
+    if (generateAssignments < 0 || generateAssignments > 3) {
+        const std::string errorMessage = "GenerateAssignments must be a non-negative integer. Invalid value: " + std::to_string(generateAssignments);
+        throw std::domain_error(errorMessage);
+    }
+}
+
+void CSVParser::validateRiskAnalysis(const int riskAnalysis) {
+    if (riskAnalysis < 0 || riskAnalysis > 2) {
+        const std::string errorMessage = "RiskAnalysis must be a non-negative integer. Invalid value: " + std::to_string(riskAnalysis);
+        throw std::domain_error(errorMessage);
+    }
+}
+
+

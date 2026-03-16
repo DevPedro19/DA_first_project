@@ -13,6 +13,8 @@
 #include <string>
 #include <vector>
 
+#include "Data.h"
+
 /**
  * @brief This class is responsible for parsing the .csv file and extracting the data from it.
  * @details The CSV must follow the specified format:
@@ -36,24 +38,10 @@ public:
     /**
      * @brief This function essentially is the main method for parsing the .csv file.
      */
-    void parseDocument();
-
-    /**
-     * @brief Getter for the vector of reviewers.
-     * @return Vector of reviewers extracted from the .csv file.
-     */
-    std::vector<Reviewer> getReviewers() const { return reviewers; }
-
-    /**
-     * @brief Getter for the vector of submissions.
-     * @return Vector of submissions extracted from the .csv file.
-     */
-    std::vector<Submission> getSubmissions() const { return submissions; }
+    void parseDocument(Data& data);
 private:
     // Private fields
     std::string filename;
-    std::vector<Reviewer> reviewers;
-    std::vector<Submission> submissions;
     std::set<int> submissionIds;
     std::set<int> reviewerIds;
 
@@ -61,7 +49,7 @@ private:
      * @brief Helper function to remove leading and trailing spaces from a string.
      * @param str String from which to remove leading and trailing spaces.
      */
-    static void removeTrailingSpaces(std::string& str);
+    static void removeTrailingCharacter(std::string& str, char character);
 
     /**
      * @brief This function serves as a generic parser for both submissions and reviewers.
@@ -124,6 +112,23 @@ private:
      * @param existingIds Set of existing IDs to check against for uniqueness.
      */
     static void isUniqueId(int id, const std::string& fieldName, std::set<int>& existingIds);
+
+    /**
+     * @brief Parses the parameters from the CSV file and populates the structure
+     * @param file The input file stream from which to read the data.
+     * @param data Structure where the parsed data will be stored.
+     */
+    static void parseParameters(std::ifstream&file, Data& data);
+
+    static void parseIndividualParameter(std::istringstream& ss, Data& data);
+
+    static void parseControlParameters(std::ifstream& file, Data& data);
+
+    static void parseIndividualControlParameter(std::istringstream& ss, Data& data);
+
+    static void validateGenerateAssignments(int generateAssignments);
+
+    static void validateRiskAnalysis(int riskAnalysis);
 };
 
 #endif //ORGANIZATIONAL_TOOL_CSVPARSER_H

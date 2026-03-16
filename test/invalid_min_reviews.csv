@@ -1,0 +1,18 @@
+#Submissions
+#Id, Title, Authors,E-mail,Primary,Secondary
+1, "Test Submission", Author, author@example.com, 1,
+#Reviewers
+#Id, Name, E-mail,Primary,Secondary
+1, Test Reviewer, reviewer@example.com, 1,
+#Parameters
+MinReviewsPerSubmission, 0
+MaxReviewsPerReviewer, 1
+PrimaryReviewerExpertise, 1
+SecondaryReviewerExpertise, 0
+PrimarySubmissionDomain, 1
+SecondarySubmissionDomain, 1
+#Control
+GenerateAssignments, 1
+RiskAnalysis, 0
+OutputFileName, "output.csv"
+

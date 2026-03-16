@@ -9,12 +9,14 @@
 
 #include "../headers/Reviewer.h"
 #include "../headers/Submission.h"
+#include "../headers/Data.h"
 
 template <class T>
 class Edge;
 
 #define INF std::numeric_limits<double>::max()
 
+// Used to differentiate edges between submissions and reviewers, as they have different priorities when generating the assignments
 enum MatchType { PRIMARY, SECONDARY };
 
 /************************* Vertex  **************************/
@@ -101,7 +103,7 @@ public:
      * destination vertices and the edge weight (w).
      * Returns true if successful, and false if the source or destination vertex does not exist.
      */
-    bool addEdge(const T &sourc, const T &dest, double w, MatchType t);
+    bool addEdge(const T &sourc, const T &dest, double c, MatchType t);
     bool removeEdge(const T &source, const T &dest);
     bool addBidirectionalEdge(const T &sourc, const T &dest, double w);
 
@@ -110,6 +112,8 @@ public:
     std::vector<Vertex<T> *> getVertexSet() const;
 
     void build(std::vector<Submission> submissions, std::vector<Reviewer> reviewers, struct parameters);
+
+    void runMaxFlowAlgorithm();
 
 protected:
     std::vector<Vertex<T> *> vertexSet;    // vertex set
@@ -389,21 +393,12 @@ bool Graph<T>::addBidirectionalEdge(const T &sourc, const T &dest, double w) {
 }
 
 template<class T>
-void Graph<T>::build(std::vector<Submission> submissions, std::vector<Reviewer> reviewers, struct parameters p) {
+void Graph<T>::build(Data data) {
 
-    // TODO saber se o id de sub pode ser o mesmo que rev, if so, usar um offset  ,
+    std::vector<Submission> submissions = data.submissions;
+    std::vector<Reviewer> reviewers = data.reviewers;
 
-                        /* CREATE THE NODES */
-    // Create the source node ID => 0
-    this->addVertex(0);
-    // Create the sink node ID => -1
-    this->addVertex(-1);
-    // Create submission nodes
-    for (const Submission& s : submissions) {
-        this->addVertex(s.getId());
-    }
-    // Create review nodes
-    for (const Reviewer& r : reviewers) {                   /* CREATE THE NODES */
+                                /* CREATE THE NODES */
     // Create the source node ID => 0
     this->addVertex(0);
     // Create the sink node ID => -1
@@ -420,12 +415,12 @@ void Graph<T>::build(std::vector<Submission> submissions, std::vector<Reviewer> 
                         /* CREATE THE EDGES*/
     // Create edge from the source node to submission with capacity MinReviewsPerSubmission
     for (const Submission& s : submissions) {
-        this->addEdge(0, s.getId(), p.MinReviewsPerSubmission, PRIMARY);
+        this->addEdge(0, s.getId(), data.parameters.MinReviewsPerSubmission, PRIMARY);
     }
     // Create edges between submisions and reviewers
     for (const Submission& s : submissions) {
         for (const Reviewer& r : reviewers) {
-            switch (p.GenerateAssignments) {
+            switch (data.control.GenerateAssignments) {
                 case 0:
                 case 1:
                     // Create only primary edges
@@ -449,54 +444,14 @@ void Graph<T>::build(std::vector<Submission> submissions, std::vector<Reviewer> 
                     }
 
                     break;
+                default: ;
             }
         }
     }
+
     // Create edges to sink with capacity equal to the MaxReviewsPerReviewer
     for (const Reviewer& r : reviewers) {
-        this->addEdge(r.getId(), -1, p.MaxReviewsPerReviewer,PRIMARY);
-    }
-        this->addVertex(r.getId());
-    }
-
-                        /* CREATE THE EDGES*/
-    // Create edge from the source node to submission with capacity MinReviewsPerSubmission
-    for (const Submission& s : submissions) {
-        this->addEdge(0, s.getId(), p.MinReviewsPerSubmission, PRIMARY);
-    }
-    // Create edges between submisions and reviewers
-    for (const Submission& s : submissions) {
-        for (const Reviewer& r : reviewers) {
-            switch (p.GenerateAssignments) {
-                case 0:
-                case 1:
-                    // Create only primary edges
-                    if (s.getPrimaryField() == r.getPrimaryField()) {
-                        this->addEdge(s.getId(), r.getId(), 1, PRIMARY);
-                    }
-
-                    break;
-                case 2:
-                    // Create primary edges
-                    if (s.getPrimaryField() == r.getPrimaryField()) {
-                        this->addEdge(s.getId(), r.getId(), 1), PRIMARY;
-                    }
-                    // Create secondary edges
-
-                    // Check if both have a secundary field, else continue
-                    if (s.getSecondaryField() == 0 && r.getSecondaryField() == 0) continue;
-
-                    if (s.getSecondaryField() == r.getSecondaryField()) {
-                        this->addEdge(s.getId(), r.getId(), 1, SECONDARY);
-                    }
-
-                    break;
-            }
-        }
-    }
-    // Create edges to sink with capacity equal to the MaxReviewsPerReviewer
-    for (const Reviewer& r : reviewers) {
-        this->addEdge(r.getId(), -1, p.MaxReviewsPerReviewer,PRIMARY);
+        this->addEdge(r.getId(), -1, data.parameters.MaxReviewsPerReviewer,PRIMARY);
     }
 }
 
