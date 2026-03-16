@@ -9,7 +9,7 @@
 CSVParser::CSVParser(std::string filename) : filename(std::move(filename)) {}
 
 
-void CSVParser::removeTrailingCharacter(std::string &str, char character) {
+void CSVParser::removeTrailingCharacter(std::string &str, const char character) {
     const size_t start = str.find_first_not_of(character);
     const size_t end = str.find_last_not_of(character);
     if (start == std::string::npos || end == std::string::npos) {
@@ -23,8 +23,8 @@ void CSVParser::parseDocument(Data &data) {
     std::ifstream file(filename, std::ios::binary);
     std::string line;
     while (std::getline(file, line)) {
-        // No genericObject parser precisamos de passar this nos capture arguments uma vez que
-        // funções internas necessitam de aceder ao set de ID's para verificar se estes são únicos.
+        // Inside parseLine arguments we must pass the object itself since internal functions of the parser need to
+        // access fields associated with the object, in this case, the sets for duplicate ID validation
         if (line.find("#Submissions") != std::string::npos) {
             genericObjectParser(file, data.submissions, [this](const std::string& l, Submission& s) {
                 parseIndividualSubmission(l, s);
@@ -37,8 +37,8 @@ void CSVParser::parseDocument(Data &data) {
             });
             printf("Finished parsing reviewers.\n");
         }
-        // Nos parsers dos parâmetros já não é necessário fazê-lo uma vez que estes não necessitam de aceder a
-        // nenhum field do CSV parser: as funções são static
+        // Inside parseLine now it's not needed to pass the object itself since all internal methods from which the parser
+        // depends on are all static, meaning they dont need access to class fields
         else if (line.find("#Parameters") != std::string::npos) {
             genericParameterParser(file, data, [](const std::string& l, Data& d) {
                 parseIndividualParameter(l, d);
