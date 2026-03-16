@@ -38,7 +38,7 @@ void CSVParser::parseDocument(Data &data) {
             printf("Finished parsing reviewers.\n");
         }
         // Inside parseLine now it's not needed to pass the object itself since all internal methods from which the parser
-        // depends on are all static, meaning they dont need access to class fields
+        // depends on are all static, meaning they don't need access to class fields
         else if (line.find("#Parameters") != std::string::npos) {
             genericParameterParser(file, data, [](const std::string& l, Data& d) {
                 parseIndividualParameter(l, d);
@@ -75,7 +75,7 @@ void CSVParser::parseIndividualSubmission(const std::string& line, Submission& s
                 s.setPrimaryField(primaryField);
                 std::getline(iss, data);
                 // Remove carriage return char (if present - for example if the code is run on Windows)
-                if (data.back() == '\r') data.pop_back();
+                removeCarriageReturn(data);
                 if (!data.empty()) {
                     secondaryField = getInteger(data);
                     isValidIntField(secondaryField, "Secondary field ");
@@ -109,7 +109,7 @@ void CSVParser::parseIndividualReviewer(const std::string& line, Reviewer& r) {
                 r.setPrimaryField(primaryField);
                 std::getline(iss, data);
                 // Remove carriage return char (if present - for example if the code is run on Windows)
-                if (data.back() == '\r') data.pop_back();
+                removeCarriageReturn(data);
                 if (!data.empty()) {
                     secondaryField = getInteger(data);
                     isValidIntField(secondaryField, "Secondary field ");
@@ -201,14 +201,14 @@ void CSVParser::parseIndividualParameter(const std::string& line, Data &data) {
         // parameter name
         if (parameterName.find("MinReviewsPerSubmission") != std::string::npos) {
             std::getline(ss, dataStr);
-            if (dataStr.back() == '\r') dataStr.pop_back();
+            removeCarriageReturn(dataStr);
             const int minReviewsPerSubmission = getInteger(dataStr);
             isValidIntField(minReviewsPerSubmission, "Minimum reviews per submission ");
             data.parameters.MinReviewsPerSubmission = minReviewsPerSubmission;
         }
         else if (parameterName.find("MaxReviewsPerReviewer") != std::string::npos) {
             std::getline(ss, dataStr);
-            if (dataStr.back() == '\r') dataStr.pop_back();
+            removeCarriageReturn(dataStr);
             const int maxReviewsPerReviewer = getInteger(dataStr);
             isValidIntField(maxReviewsPerReviewer, "Maximum reviews per reviewer ");
             data.parameters.MaxReviewsPerReviewer = maxReviewsPerReviewer;
@@ -223,21 +223,21 @@ void CSVParser::parseIndividualControlParameter(const std::string& line, Data &d
         std::string dataStr;
         if (parameterName.find("GenerateAssignments") != std::string::npos) {
             std::getline(ss, dataStr);
-            if (dataStr.back() == '\r') dataStr.pop_back();
+            removeCarriageReturn(dataStr);
             int generateAssignments = getInteger(dataStr);
             validateGenerateAssignments(generateAssignments);
             data.control.GenerateAssignments = generateAssignments;
         }
         else if (parameterName.find("RiskAnalysis") != std::string::npos) {
             std::getline(ss, dataStr);
-            if (dataStr.back() == '\r') dataStr.pop_back();
+            removeCarriageReturn(dataStr);
             int riskAnalysis = getInteger(dataStr);
             validateRiskAnalysis(riskAnalysis);
             data.control.RiskAnalysis = riskAnalysis;
         }
         else if (parameterName.find("OutputFileName") != std::string::npos) {
             std::getline(ss, dataStr);
-            if (dataStr.back() == '\r') dataStr.pop_back();
+            removeCarriageReturn(dataStr);
             removeTrailingCharacter(dataStr, ' ');
             removeTrailingCharacter(dataStr, '"');
             data.control.OutputFileName = dataStr;
@@ -259,4 +259,9 @@ void CSVParser::validateRiskAnalysis(const int riskAnalysis) {
     }
 }
 
+void CSVParser::removeCarriageReturn(std::string &str) {
+    if (!str.empty() && str.back() == '\r') {
+        str.pop_back();
+    }
+}
 

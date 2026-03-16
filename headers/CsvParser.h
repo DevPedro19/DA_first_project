@@ -124,6 +124,10 @@ private:
     static void validateGenerateAssignments(int generateAssignments);
 
     static void validateRiskAnalysis(int riskAnalysis);
+
+    static void removeCarriageReturn(std::string& str);
+
+    std::set<int> setSubmissionIds(const std::set<int>& ids);
 };
 
 #endif //ORGANIZATIONAL_TOOL_CSVPARSER_H
