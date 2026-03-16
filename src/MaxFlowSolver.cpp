@@ -2,15 +2,16 @@
 #include <limits>
 #include <queue>
 #include <algorithm>
+#include "Graph.h"
 
-MaxFlowSolver::MaxFlowSolver(Graph<int>* g) {
-    source = g->findVertex(0);
-    target = g->findVertex(-1);
+MaxFlowSolver::MaxFlowSolver(Graph* g) {
+    source = g->findVertex("Source");
+    target = g->findVertex("Sink");
     flowNetwork = g;
 }
 
 // Function to test the given vertex 'w' and visit it if conditions are met
-void MaxFlowSolver::testAndVisit(std::queue<Vertex<int>*> &q, Edge<int> *e, Vertex<int> *w, double residual) {
+void MaxFlowSolver::testAndVisit(std::queue<Vertex*> &q, Edge *e, Vertex *w, double residual) {
     // Check if the vertex 'w' is not visited and there is residual capacity
     if (!w->isVisited() && residual > 0) {
         // Mark 'w' as visited, set the path through which it was reached, and enqueue it
@@ -29,24 +30,18 @@ bool MaxFlowSolver::findAugmentingPath() {
         v->setPath(nullptr);
     }
 
-    std::queue<Vertex<int>*> q;
+    std::queue<Vertex*> q;
     q.push(source);
     source->setVisited(true);
 
     while (!q.empty()) {
-        Vertex<int>* front = q.front(); q.pop();
+        Vertex* front = q.front(); q.pop();
 
-        // Forward primary edges first
+        // Forward edges
         for (auto e : front->getAdj())
-            if (e->getMatchType() == PRIMARY)
-                testAndVisit(q, e, e->getDest(), e->getCapacity() - e->getFlow());
+            testAndVisit(q, e, e->getDest(), e->getCapacity() - e->getFlow());
 
-        // Forward secondary edges
-        for (auto e : front->getAdj())
-            if (e->getMatchType() == SECONDARY)
-                testAndVisit(q, e, e->getDest(), e->getCapacity() - e->getFlow());
-
-        // Backward edges (flow reversal)
+        // Backward edges
         for (auto e : front->getIncoming())
             testAndVisit(q, e, e->getOrig(), e->getFlow());
     }
@@ -56,10 +51,10 @@ bool MaxFlowSolver::findAugmentingPath() {
 // Function to find the minimum residual capacity along the augmenting path
 double MaxFlowSolver::findMinResidualAlongPath() {
     double f = INF;
-    Vertex<int>* curr = target;
+    Vertex* curr = target;
     while (curr != source) {
         // Check if it's a forward or back edge
-        Edge<int>* e = curr->getPath();
+        Edge* e = curr->getPath();
 
         // It's a forward edge if the destination of that edge is the same as curr
         if (e->getDest() == curr) {
@@ -81,10 +76,10 @@ double MaxFlowSolver::findMinResidualAlongPath() {
 
 // Function to augment flow along the augmenting path with the given flow value
 void MaxFlowSolver::augmentFlowAlongPath(double f) {
-    Vertex<int>* curr = target;
+    Vertex* curr = target;
 
     while (curr != source) {
-        Edge<int>* e = curr->getPath();
+        Edge* e = curr->getPath();
 
         // Check if it's a forward edge
         if (e->getDest() == curr) {
