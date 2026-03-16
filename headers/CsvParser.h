@@ -12,6 +12,7 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <map>
 
 #include "Data.h"
 
@@ -44,6 +45,20 @@ private:
     std::string filename;
     std::set<int> submissionIds;
     std::set<int> reviewerIds;
+    std::map<std::string, std::vector<std::string>> fileSections;
+
+    /**
+     * @brief Reads the entire file and splits it into sections.
+     */
+    void loadAndSplitFile();
+
+    void parseSubmissions(const std::vector<std::string>& lines, std::vector<Submission>& submissions);
+
+    void parseReviewers(const std::vector<std::string>& lines, std::vector<Reviewer>& reviewers);
+
+    static void parseParameters(const std::vector<std::string>& lines, Data& data);
+
+    static void parseControl(const std::vector<std::string>& lines, Data& data);
 
     /**
      * @brief Helper function to remove leading and trailing spaces from a string.
@@ -51,17 +66,7 @@ private:
      */
     static void removeTrailingCharacter(std::string& str, char character);
 
-    /**
-     * @brief This function serves as a generic parser for both submissions and reviewers.
-     * It reads the file line by line, skipping the header and any lines starting with '#', and calls the provided parsing function for each line.
-     * @tparam T The type of the items being parsed.
-     * @tparam ParseFunction Serves as a generic type for the parsing function.
-     * @param file The input file stream from which to read the data.
-     * @param items The vector where the parsed items will be stored.
-     * @param parseLine The function to be called for each specific type of object.
-     */
-    template<typename T, typename ParseFunction>
-    void genericParser(std::ifstream&file, std::vector<T>& items, ParseFunction parseLine);
+
 
     /**
      * @brief This function is responsible for parsing a single line of the CSV file
@@ -113,22 +118,16 @@ private:
      */
     static void isUniqueId(int id, const std::string& fieldName, std::set<int>& existingIds);
 
-    /**
-     * @brief Parses the parameters from the CSV file and populates the structure
-     * @param file The input file stream from which to read the data.
-     * @param data Structure where the parsed data will be stored.
-     */
-    static void parseParameters(std::ifstream&file, Data& data);
+    static void parseIndividualParameter(const std::string& line, Data& data);
 
-    static void parseIndividualParameter(std::istringstream& ss, Data& data);
-
-    static void parseControlParameters(std::ifstream& file, Data& data);
-
-    static void parseIndividualControlParameter(std::istringstream& ss, Data& data);
+    static void parseIndividualControlParameter(const std::string& line, Data& data);
 
     static void validateGenerateAssignments(int generateAssignments);
 
     static void validateRiskAnalysis(int riskAnalysis);
+
+    static void removeCarriageReturn(std::string& str);
+
 };
 
 #endif //ORGANIZATIONAL_TOOL_CSVPARSER_H
