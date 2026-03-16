@@ -18,6 +18,7 @@ add_executable(main
         src/InfoMenu.cpp
         src/OutputWriter.cpp
         src/MaxFlowSolver.cpp
+        src/Graph.cpp
 )
 
 set_target_properties(main PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
