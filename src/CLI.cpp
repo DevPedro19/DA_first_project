@@ -6,10 +6,15 @@
 #include "../headers/CsvParser.h"
 #include "../headers/Data.h"
 #include "../headers/InfoMenu.h"
+#include "../headers/Result.h"
 #include "../data_structures/Graph.h"
 
 #include <iostream>
 #include <vector>
+#include <fstream>
+
+
+#include "../headers/OutputWriter.h"
 
 
 CLI::CLI() = default;
@@ -32,6 +37,17 @@ void CLI::setOutputRisk(const std::string &outputRisk) {
 
 void CLI::printTitle() {
     std::cout << "## Scientific Conference Organization Tool ##" << std::endl;
+}
+
+
+void CLI::processArgs(const std::vector<std::string> &args) {
+    if (args.size() >= 2 && args[1] == "-b") { // batch mode
+        checkValidInputFile(args[2]);
+        setInputFileName(args[2]);
+        if (args.size() == 4) setOutputRisk(args[3]);
+        // otherwise, the risk output will be written in the same output file as the rest
+
+    } else setInputFileName(askInputFilePath()); // interactive mode
 }
 
 
@@ -62,16 +78,16 @@ void CLI::readInput(const std::string &inputFileName, Data &data) {
 }
 
 
+//TODO: check if the default output file name is working (ie, if the parser admits an empty string for this field in the "Control" section)
+void CLI::writeOutput(const Result& result, unsigned riskAnalysis) const {
+    OutputWriter output_writer = OutputWriter(outputFileName_, outputRisk_);
+    output_writer.writeOutput(result, riskAnalysis);
+}
+
+
 void CLI::execute(const std::vector<std::string>& args) {
     printTitle();
-
-    if (args.size() >= 2 && args[1] == "-b") { // batch mode
-        checkValidInputFile(args[2]);
-        setInputFileName(args[2]);
-        if (args.size() == 4) setOutputRisk(args[3]);
-        // otherwise, the risk output will be written in the same output file as the rest
-
-    } else setInputFileName(askInputFilePath()); // interactive mode
+    processArgs(args);
 
     Data data;
     readInput(this->inputFileName_, data);
@@ -87,7 +103,7 @@ void CLI::execute(const std::vector<std::string>& args) {
         flowNetwork.checkFlow(result);
 
         if (data.control.GenerateAssignments) {
-            writeOutput();
+            writeOutput(result, data.control.RiskAnalysis);
         }
     }
 }

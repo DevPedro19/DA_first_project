@@ -12,12 +12,13 @@ struct Match {
 };
 
 struct Miss {
-    unsigned submissionId, reviewerId, missing;
+    unsigned submissionId, domain, missingReviews;
 };
 
 struct Result {
     std::vector<Match> matches;
     std::vector<Miss> misses;
+    std::vector<unsigned> riskyReviewers;
 };
 
 #endif //ORGANIZATIONALTOOL_RESULT_H
