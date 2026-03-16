@@ -2,12 +2,12 @@
 // Created by guilhermecunha on 15/03/26.
 //
 
+#include "../data_structures/Graph.h"
 #include "../headers/CLI.h"
 #include "../headers/CsvParser.h"
 #include "../headers/Data.h"
 #include "../headers/InfoMenu.h"
 #include "../headers/Result.h"
-#include "../data_structures/Graph.h"
 
 #include <iostream>
 #include <vector>
@@ -87,20 +87,20 @@ void CLI::writeOutput(const Result& result, unsigned riskAnalysis) const {
 
 void CLI::execute(const std::vector<std::string>& args) {
     printTitle();
-    processArgs(args);
+    processArgs(args); // also sets the input file path
 
     Data data;
     readInput(this->inputFileName_, data);
 
     InfoMenu infoMenu(data);
     if (infoMenu.display()) {
-        Graph flowNetwork;
-        flowNetwork.build(data);
+        Graph<unsigned> flowNetwork(data);
 
-        flowNetwork.runMaxFlowAlgorithm();
+        MaxFlowSolver solver;
+        solver.execute(flowNetwork);
 
         Result result; // matches and misses
-        flowNetwork.checkFlow(result);
+        solver.checkFlow(result);
 
         if (data.control.GenerateAssignments) {
             writeOutput(result, data.control.RiskAnalysis);
