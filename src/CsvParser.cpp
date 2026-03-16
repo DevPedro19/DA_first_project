@@ -29,7 +29,7 @@ void CSVParser::loadAndSplitFile() {
     std::string currentSection; // String that identifies the section
     while (std::getline(file, line)) {
         removeCarriageReturn(line); // Remove carriage return if on Windows
-        if (line.empty()) continue;
+        if (line.empty() || line == "#") continue; // Ignore weird # line with no fields
         // Create new section inside the map (maps each section with a vector with associated lines) for each new section in the file
         if (line.find("#Submissions") != std::string::npos) {
             currentSection = "#Submissions";
@@ -265,8 +265,7 @@ void CSVParser::parseIndividualControlParameter(const std::string& line, Data &d
             std::getline(ss, dataStr);
             removeCarriageReturn(dataStr);
             removeTrailingCharacter(dataStr, " ");
-            removeTrailingCharacter(dataStr, "“");
-            removeTrailingCharacter(dataStr, "”");
+            removeTrailingCharacter(dataStr, "\"");
             if (!dataStr.empty()) {
                 data.control.OutputFileName = dataStr;
             }

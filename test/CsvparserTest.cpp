@@ -6,7 +6,7 @@
 #include <stdexcept>
 
 TEST(CsvParserTest, test_full_parsing) {
-    CSVParser parse("../test/testing.csv");
+    CSVParser parse("test/testing.csv");
     Data data;
     parse.parseDocument(data);
 
@@ -46,31 +46,31 @@ TEST(CsvParserTest, test_full_parsing) {
 }
 
 TEST(CsvParserTest, throwsOnInvalidSubmissionId) {
-    CSVParser parser("../test/invalid_submission_id.csv");
+    CSVParser parser("test/invalid_submission_id.csv");
     Data data;
     EXPECT_THROW(parser.parseDocument(data), std::domain_error);
 }
 
 TEST(CsvParserTest, throwsOnInvalidSubmissionPrimary) {
-    CSVParser parser("../test/invalid_submission_primary.csv");
+    CSVParser parser("test/invalid_submission_primary.csv");
     Data data;
     EXPECT_THROW(parser.parseDocument(data), std::domain_error);
 }
 
 TEST(CsvParserTest, throwsOnInvalidSubmissionSecondary) {
-    CSVParser parser("../test/invalid_submission_secondary.csv");
+    CSVParser parser("test/invalid_submission_secondary.csv");
     Data data;
     EXPECT_THROW(parser.parseDocument(data), std::domain_error);
 }
 
 TEST(CsvParserTest, throwsOnDuplicateSubmissionIds) {
-    CSVParser parser("../test/duplicate_submission_ids.csv");
+    CSVParser parser("test/duplicate_submission_ids.csv");
     Data data;
     EXPECT_THROW(parser.parseDocument(data), std::invalid_argument);
 }
 
 TEST(CsvParserTest, throwsOnDuplicateReviewerIds) {
-    CSVParser parser("../test/duplicate_reviewer_ids.csv");
+    CSVParser parser("test/duplicate_reviewer_ids.csv");
     Data data;
     EXPECT_THROW(parser.parseDocument(data), std::invalid_argument);
 }
@@ -78,7 +78,7 @@ TEST(CsvParserTest, throwsOnDuplicateReviewerIds) {
 // ===== Parameter Parsing Tests via parseIndividualParameter =====
 
 TEST(CsvParserTest, parseValidParameters) {
-    CSVParser parser("../test/testing.csv");
+    CSVParser parser("test/testing.csv");
     Data data;
     parser.parseDocument(data);
 
@@ -88,14 +88,14 @@ TEST(CsvParserTest, parseValidParameters) {
 
 TEST(CsvParserTest, throwsOnInvalidMinReviewsPerSubmission) {
     // MinReviewsPerSubmission = 0 should throw (must be positive)
-    CSVParser parser("../test/invalid_min_reviews.csv");
+    CSVParser parser("test/invalid_min_reviews.csv");
     Data data;
     EXPECT_THROW(parser.parseDocument(data), std::domain_error);
 }
 
 TEST(CsvParserTest, throwsOnInvalidMaxReviewsPerReviewer) {
     // MaxReviewsPerReviewer = -1 should throw (must be positive)
-    CSVParser parser("../test/invalid_max_reviews_param.csv");
+    CSVParser parser("test/invalid_max_reviews_param.csv");
     Data data;
     EXPECT_THROW(parser.parseDocument(data), std::domain_error);
 }
@@ -103,7 +103,7 @@ TEST(CsvParserTest, throwsOnInvalidMaxReviewsPerReviewer) {
 // ===== Control Parameter Parsing Tests via parseIndividualControlParameter =====
 
 TEST(CsvParserTest, parseValidControlParameters) {
-    CSVParser parser("../test/testing.csv");
+    CSVParser parser("test/testing.csv");
     Data data;
     parser.parseDocument(data);
 
@@ -114,14 +114,14 @@ TEST(CsvParserTest, parseValidControlParameters) {
 
 TEST(CsvParserTest, throwsOnInvalidGenerateAssignments) {
     // GenerateAssignments = 4 (invalid, must be 0-3)
-    CSVParser parser("../test/invalid_generate_assignments.csv");
+    CSVParser parser("test/invalid_generate_assignments.csv");
     Data data;
     EXPECT_THROW(parser.parseDocument(data), std::domain_error);
 }
 
 TEST(CsvParserTest, throwsOnInvalidRiskAnalysis) {
     // RiskAnalysis = 3 (invalid, must be 0-2)
-    CSVParser parser("../test/invalid_risk_analysis.csv");
+    CSVParser parser("test/invalid_risk_analysis.csv");
     Data data;
     EXPECT_THROW(parser.parseDocument(data), std::domain_error);
 }
@@ -130,7 +130,7 @@ TEST(CsvParserTest, throwsOnInvalidRiskAnalysis) {
 
 TEST(CsvParserTest, generateAssignmentsBoundaryZeroIsValid) {
     // GenerateAssignments = 0 is valid (lower boundary)
-    CSVParser parser("../test/testing.csv");
+    CSVParser parser("test/testing.csv");
     Data data;
     parser.parseDocument(data);
     EXPECT_GE(data.control.GenerateAssignments, 0);
@@ -139,7 +139,7 @@ TEST(CsvParserTest, generateAssignmentsBoundaryZeroIsValid) {
 
 TEST(CsvParserTest, generateAssignmentsBoundaryThreeIsValid) {
     // GenerateAssignments = 3 is valid (upper boundary)
-    CSVParser parser("../test/testing.csv");
+    CSVParser parser("test/testing.csv");
     Data data;
     parser.parseDocument(data);
     EXPECT_LE(data.control.GenerateAssignments, 3);
@@ -147,7 +147,7 @@ TEST(CsvParserTest, generateAssignmentsBoundaryThreeIsValid) {
 
 TEST(CsvParserTest, riskAnalysisBoundaryZeroIsValid) {
     // RiskAnalysis = 0 is valid (lower boundary)
-    CSVParser parser("../test/testing.csv");
+    CSVParser parser("test/testing.csv");
     Data data;
     parser.parseDocument(data);
     EXPECT_GE(data.control.RiskAnalysis, 0);
@@ -156,7 +156,7 @@ TEST(CsvParserTest, riskAnalysisBoundaryZeroIsValid) {
 
 TEST(CsvParserTest, riskAnalysisBoundaryTwoIsValid) {
     // RiskAnalysis = 2 is valid (upper boundary)
-    CSVParser parser("../test/testing.csv");
+    CSVParser parser("test/testing.csv");
     Data data;
     parser.parseDocument(data);
     EXPECT_LE(data.control.RiskAnalysis, 2);
@@ -164,7 +164,7 @@ TEST(CsvParserTest, riskAnalysisBoundaryTwoIsValid) {
 
 TEST(CsvParserTest, minReviewsPerSubmissionBoundaryOneIsValid) {
     // MinReviewsPerSubmission = 1 is valid (positive boundary)
-    CSVParser parser("../test/testing.csv");
+    CSVParser parser("test/testing.csv");
     Data data;
     parser.parseDocument(data);
     EXPECT_GT(data.parameters.MinReviewsPerSubmission, 0);
@@ -172,7 +172,7 @@ TEST(CsvParserTest, minReviewsPerSubmissionBoundaryOneIsValid) {
 
 TEST(CsvParserTest, maxReviewsPerReviewerBoundaryOneIsValid) {
     // MaxReviewsPerReviewer = 1 is valid (positive boundary)
-    CSVParser parser("../test/testing.csv");
+    CSVParser parser("test/testing.csv");
     Data data;
     parser.parseDocument(data);
     EXPECT_GT(data.parameters.MaxReviewsPerReviewer, 0);
