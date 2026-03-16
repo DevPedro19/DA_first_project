@@ -61,7 +61,11 @@ private:
      * @param parseLine The function to be called for each specific type of object.
      */
     template<typename T, typename ParseFunction>
-    void genericParser(std::ifstream&file, std::vector<T>& items, ParseFunction parseLine);
+    void genericObjectParser(std::ifstream&file, std::vector<T>& items, ParseFunction parseLine);
+
+
+    template <typename ParseFunction>
+    static void genericParameterParser(std::ifstream& file, Data& data, ParseFunction parseLine);
 
     /**
      * @brief This function is responsible for parsing a single line of the CSV file
@@ -113,18 +117,9 @@ private:
      */
     static void isUniqueId(int id, const std::string& fieldName, std::set<int>& existingIds);
 
-    /**
-     * @brief Parses the parameters from the CSV file and populates the structure
-     * @param file The input file stream from which to read the data.
-     * @param data Structure where the parsed data will be stored.
-     */
-    static void parseParameters(std::ifstream&file, Data& data);
+    static void parseIndividualParameter(const std::string& line, Data& data);
 
-    static void parseIndividualParameter(std::istringstream& ss, Data& data);
-
-    static void parseControlParameters(std::ifstream& file, Data& data);
-
-    static void parseIndividualControlParameter(std::istringstream& ss, Data& data);
+    static void parseIndividualControlParameter(const std::string& line, Data& data);
 
     static void validateGenerateAssignments(int generateAssignments);
 

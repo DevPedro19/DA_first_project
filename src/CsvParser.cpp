@@ -23,24 +23,32 @@ void CSVParser::parseDocument(Data &data) {
     std::ifstream file(filename, std::ios::binary);
     std::string line;
     while (std::getline(file, line)) {
+        // No genericObject parser precisamos de passar this nos capture arguments uma vez que
+        // funções internas necessitam de aceder ao set de ID's para verificar se estes são únicos.
         if (line.find("#Submissions") != std::string::npos) {
-            genericParser(file, data.submissions, [this](const std::string& l, Submission& s) {
+            genericObjectParser(file, data.submissions, [this](const std::string& l, Submission& s) {
                 parseIndividualSubmission(l, s);
             });
             printf("Finished parsing submissions.\n");
         }
         else if (line.find("#Reviewers") != std::string::npos) {
-            genericParser(file, data.reviewers, [this](const std::string& l, Reviewer& r) {
+            genericObjectParser(file, data.reviewers, [this](const std::string& l, Reviewer& r) {
                 parseIndividualReviewer(l, r);
             });
             printf("Finished parsing reviewers.\n");
         }
+        // Nos parsers dos parâmetros já não é necessário fazê-lo uma vez que estes não necessitam de aceder a
+        // nenhum field do CSV parser: as funções são static
         else if (line.find("#Parameters") != std::string::npos) {
-            parseParameters(file, data);
+            genericParameterParser(file, data, [](const std::string& l, Data& d) {
+                parseIndividualParameter(l, d);
+            });
             printf("Finished parsing parameters.\n");
         }
         else if (line.find("#Control") != std::string::npos) {
-            parseControlParameters(file, data);
+            genericParameterParser(file, data, [](const std::string& l, Data& d) {
+                parseIndividualControlParameter(l, d);
+            });
             printf("Finished parsing control parameters.\n");
         }
     }
@@ -124,7 +132,7 @@ bool CSVParser::isRepeatedId(std::set<int> &ids,const int &newId) {
 
 
 template<typename T, typename ParseFunction>
-void CSVParser::genericParser(std::ifstream &file, std::vector<T>& items, ParseFunction parseLine) {
+void CSVParser::genericObjectParser(std::ifstream &file, std::vector<T>& items, ParseFunction parseLine) {
     std::string line;
     // Skip header line
     std::string dummyLine;
@@ -141,6 +149,22 @@ void CSVParser::genericParser(std::ifstream &file, std::vector<T>& items, ParseF
         T item;
         parseLine(line, item);
         items.push_back(item);
+    }
+}
+
+template<typename ParseFunction>
+void CSVParser::genericParameterParser(std::ifstream &file, Data &data, ParseFunction parseLine) {
+    std::string line;
+    while (true) {
+        const std::streampos currentPos = file.tellg();
+        if (!std::getline(file, line)) {
+            break; // End of file
+        }
+        if (line[0] == '#') {
+            file.seekg(currentPos);
+            break;
+        }
+        parseLine(line, data);
     }
 }
 
@@ -165,26 +189,12 @@ void CSVParser::isUniqueId(const int id, const std::string &fieldName, std::set<
         const std::string errorMessage = fieldName + " must be unique. Duplicate value: " + std::to_string(id);
         throw std::invalid_argument(errorMessage);
     }
+    // Update the existing id's with a new unique id since a duplicate was not found
     existingIds.insert(id);
 }
 
-void CSVParser::parseParameters(std::ifstream &file, Data &data) {
-    std::string line;
-    while (true) {
-        const std::streampos currentPos = file.tellg();
-        if (!std::getline(file, line)) {
-            break; // End of file
-        }
-        if (line[0] == '#') {
-            file.seekg(currentPos);
-            break;
-        }
-        std::istringstream iss(line);
-        parseIndividualParameter(iss, data);
-    }
-}
-
-void CSVParser::parseIndividualParameter(std::istringstream &ss, Data &data) {
+void CSVParser::parseIndividualParameter(const std::string& line, Data &data) {
+    std::istringstream ss(line);
     std::string parameterName;
     while (std::getline(ss, parameterName, ',')) {
         std::string dataStr;
@@ -206,24 +216,8 @@ void CSVParser::parseIndividualParameter(std::istringstream &ss, Data &data) {
     }
 }
 
-
-void CSVParser::parseControlParameters(std::ifstream &file, Data &data) {
-    std::string line;
-    while (true) {
-        const std::streampos currentPos = file.tellg();
-        if (!std::getline(file, line)) {
-            break; // End of file
-        }
-        if (line[0] == '#') {
-            file.seekg(currentPos);
-            break;
-        }
-        std::istringstream iss(line);
-        parseIndividualControlParameter(iss, data);
-    }
-}
-
-void CSVParser::parseIndividualControlParameter(std::istringstream &ss, Data &data) {
+void CSVParser::parseIndividualControlParameter(const std::string& line, Data &data) {
+    std::istringstream ss(line);
     std::string parameterName;
     while (std::getline(ss, parameterName, ',')) {
         std::string dataStr;
