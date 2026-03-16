@@ -49,7 +49,11 @@ void CLI::processArgs(const std::vector<std::string> &args) {
         if (args.size() == 4) setOutputRisk(args[3]);
         // otherwise, the risk output will be written in the same output file as the rest
 
-    } else setInputFileName(askInputFilePath()); // interactive mode
+    } else {
+        std::string inputFileName = askInputFilePath();
+        checkValidInputFile(inputFileName);
+        setInputFileName(inputFileName); // interactive mode
+    }
 }
 
 

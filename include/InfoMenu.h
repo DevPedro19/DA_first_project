@@ -15,6 +15,7 @@ public:
 
 private:
     static void displayOptions();
+    static void printNonDefinedField(const int& field);
     void displaySubmissions() const;
     void displayReviewers() const;
     void displayParameters() const;

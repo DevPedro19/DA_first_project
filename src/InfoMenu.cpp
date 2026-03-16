@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <limits>
+#include <random>
 
 InfoMenu::InfoMenu(Data &data) : data_(data) {}
 
@@ -38,7 +39,8 @@ void InfoMenu::displayReviewers() const {
 
     for (const Reviewer& reviewer : data_.reviewers) {
         std::cout << reviewer.getId() << " | " << reviewer.getName() << " | " << reviewer.getEmail() << " | " <<
-            reviewer.getPrimaryField() << " | " << reviewer.getSecondaryField() << std::endl;
+            reviewer.getPrimaryField() << " | ";
+        printNonDefinedField(reviewer.getSecondaryField());
     }
 }
 
@@ -49,7 +51,8 @@ void InfoMenu::displaySubmissions() const {
 
     for (const Submission& submission : data_.submissions) {
         std::cout << submission.getId() << " | " << submission.getTitle() << " | " << submission.getAuthor() << " | " <<
-            submission.getEmail() << " | " << submission.getPrimaryField() << " | " << submission.getSecondaryField() << std::endl;
+            submission.getEmail() << " | " << submission.getPrimaryField() << " | ";
+        printNonDefinedField(submission.getSecondaryField());
     }
 }
 
@@ -101,4 +104,13 @@ int InfoMenu::display() const {
         }
     }
     return retV; // 1 -> run max flow algorithm; 0 -> exit
+}
+
+void InfoMenu::printNonDefinedField(const int& field) {
+    if (!field) {
+        std::cout << "Not defined" << std::endl;
+    }
+    else {
+        std::cout << field << std::endl;
+    }
 }
