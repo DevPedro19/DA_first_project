@@ -12,7 +12,7 @@ set( CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE_TMP} )
 add_executable(main
         src/main.cpp
         src/CLI.cpp
-        src/edmondsKarp.cpp
+        src/MaxFlowSolver.cpp
         src/Reviewer.cpp
         src/Submission.cpp
         src/CsvParser.cpp

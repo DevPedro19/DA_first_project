@@ -4,8 +4,8 @@
 #ifndef DA_TP_CLASSES_GRAPH
 #define DA_TP_CLASSES_GRAPH
 
-#include <iostream>
 #include <vector>
+#include <queue>
 
 #include "../headers/Reviewer.h"
 #include "../headers/Submission.h"
@@ -18,6 +18,9 @@ class Edge;
 
 // Used to differentiate edges between submissions and reviewers, as they have different priorities when generating the assignments
 enum MatchType { PRIMARY, SECONDARY };
+
+// Offset to avoid reviewers and submissions with the same id
+const int REVIEWER_OFFSET = 1000000;
 
 /************************* Vertex  **************************/
 
@@ -87,6 +90,7 @@ protected:
 template <class T>
 class Graph {
 public:
+    Graph(Data &data);
     /*
     * Auxiliary function to find a vertex with a given the content.
     */
@@ -111,9 +115,10 @@ public:
 
     std::vector<Vertex<T> *> getVertexSet() const;
 
-    void build(std::vector<Submission> submissions, std::vector<Reviewer> reviewers, struct parameters);
+    void build(Data &data);
 
     void runMaxFlowAlgorithm();
+
 
 protected:
     std::vector<Vertex<T> *> vertexSet;    // vertex set
@@ -228,7 +233,7 @@ void Vertex<T>::deleteEdge(Edge<T> *edge) {
     // Remove the corresponding edge from the incoming list
     auto it = dest->incoming.begin();
     while (it != dest->incoming.end()) {
-        if ((*it)->getOrig()->getInfo() == id) {
+        if ((*it)->getOrig()->getId() == id) {
             it = dest->incoming.erase(it);
         }
         else {
@@ -301,7 +306,7 @@ std::vector<Vertex<T> *> Graph<T>::getVertexSet() const {
 template <class T>
 Vertex<T> * Graph<T>::findVertex(const T &in) const {
     for (auto v : vertexSet)
-        if (v->getInfo() == in)
+        if (v->getId() == in)
             return v;
     return nullptr;
 }
@@ -312,7 +317,7 @@ Vertex<T> * Graph<T>::findVertex(const T &in) const {
 template <class T>
 int Graph<T>::findVertexIdx(const T &in) const {
     for (unsigned i = 0; i < vertexSet.size(); i++)
-        if (vertexSet[i]->getInfo() == in)
+        if (vertexSet[i]->getId() == in)
             return static_cast<int>(i);
     return -1;
 }
@@ -336,11 +341,11 @@ bool Graph<T>::addVertex(const T &in) {
 template <class T>
 bool Graph<T>::removeVertex(const T &in) {
     for (auto it = vertexSet.begin(); it != vertexSet.end(); it++) {
-        if ((*it)->getInfo() == in) {
+        if ((*it)->getId() == in) {
             auto v = *it;
             v->removeOutgoingEdges();
             for (auto u : vertexSet) {
-                u->removeEdge(v->getInfo());
+                u->removeEdge(v->getId());
             }
             vertexSet.erase(it);
             delete v;
@@ -393,56 +398,66 @@ bool Graph<T>::addBidirectionalEdge(const T &sourc, const T &dest, double w) {
 }
 
 template<class T>
-void Graph<T>::build(Data data) {
+// Class Constructor that builds the bipartite Graph
+Graph<T>::Graph(Data &data) {
 
-    std::vector<Submission> submissions = data.submissions;
-    std::vector<Reviewer> reviewers = data.reviewers;
+    std::vector<Submission> &submissions = data.submissions;
+    std::vector<Reviewer> &reviewers = data.reviewers;
+    const Parameters &p = data.parameters;
+    const Control &c = data.control;
 
                                 /* CREATE THE NODES */
     // Create the source node ID => 0
     this->addVertex(0);
     // Create the sink node ID => -1
     this->addVertex(-1);
+
     // Create submission nodes
-    for (const Submission& s : submissions) {
+    for (const Submission &s : submissions) {
         this->addVertex(s.getId());
     }
-    // Create review nodes
-    for (const Reviewer& r : reviewers) {
-        this->addVertex(r.getId());
+    // Create review nodes R
+    for (const Reviewer &r : reviewers) {
+        this->addVertex(r.getId() + REVIEWER_OFFSET);
     }
-
-                        /* CREATE THE EDGES*/
+                                /* CREATE THE EDGES*/
     // Create edge from the source node to submission with capacity MinReviewsPerSubmission
     for (const Submission& s : submissions) {
-        this->addEdge(0, s.getId(), data.parameters.MinReviewsPerSubmission, PRIMARY);
+        this->addEdge(0, s.getId(), p.MinReviewsPerSubmission, PRIMARY);
     }
+
     // Create edges between submisions and reviewers
-    for (const Submission& s : submissions) {
-        for (const Reviewer& r : reviewers) {
-            switch (data.control.GenerateAssignments) {
+    for (const Submission &s : submissions) {
+        for (const Reviewer &r : reviewers) {
+            int reviewerId = r.getId() + REVIEWER_OFFSET;
+
+            switch (c.GenerateAssignments) {
                 case 0:
                 case 1:
                     // Create only primary edges
                     if (s.getPrimaryField() == r.getPrimaryField()) {
-                        this->addEdge(s.getId(), r.getId(), 1, PRIMARY);
+                        this->addEdge(s.getId(), reviewerId, 1, PRIMARY);
                     }
-
                     break;
+
                 case 2:
-                    // Create primary edges
-                    if (s.getPrimaryField() == r.getPrimaryField()) {
-                        this->addEdge(s.getId(), r.getId(), 1), PRIMARY;
-                    }
-                    // Create secondary edges
+                    // primary + secondary submissions, primary reviewers only
+                    if (s.getPrimaryField() == r.getPrimaryField())
+                        this->addEdge(s.getId(), reviewerId, 1, PRIMARY);
 
-                    // Check if both have a secundary field, else continue
-                    if (s.getSecondaryField() == 0 && r.getSecondaryField() == 0) continue;
+                    // secondary only if both fields exist
+                    if (s.getSecondaryField() != 0 && r.getPrimaryField() == s.getSecondaryField())
+                        this->addEdge(s.getId(), reviewerId, 1, SECONDARY);
+                    break;
 
-                    if (s.getSecondaryField() == r.getSecondaryField()) {
-                        this->addEdge(s.getId(), r.getId(), 1, SECONDARY);
-                    }
+                case 3:
+                    // general case: all primary and secondary
+                    if (s.getPrimaryField() == r.getPrimaryField())
+                        this->addEdge(s.getId(), reviewerId, 1, PRIMARY);
 
+                    if (s.getSecondaryField() != 0 && r.getSecondaryField() != 0 &&
+                        s.getSecondaryField() == r.getSecondaryField())
+                        this->addEdge(s.getId(), reviewerId, 1, SECONDARY);
                     break;
                 default: ;
             }
@@ -451,8 +466,8 @@ void Graph<T>::build(Data data) {
 
     // Create edges to sink with capacity equal to the MaxReviewsPerReviewer
     for (const Reviewer& r : reviewers) {
-        this->addEdge(r.getId(), -1, data.parameters.MaxReviewsPerReviewer,PRIMARY);
+        this->addEdge(r.getId() + REVIEWER_OFFSET, -1, p.MaxReviewsPerReviewer,PRIMARY);
     }
 }
 
-#endif /* DA_TP_CLASSES_GRAPH */
+#endif DA_TP_CLASSES_GRAPH
