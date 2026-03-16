@@ -16,6 +16,8 @@ add_executable(main
         src/Reviewer.cpp
         src/Submission.cpp
         src/CsvParser.cpp
+        src/InfoMenu.cpp
+        src/OutputWriter.cpp
 )
 
 add_executable(Test

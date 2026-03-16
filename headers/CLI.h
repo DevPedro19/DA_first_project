@@ -10,29 +10,30 @@
 #include <string>
 #include <vector>
 
+#include "Result.h"
+
 /**
  * @brief This class is the CLI of the program, that exposes all implemented functionalities in a user-friendly manner.
  */
 class CLI {
 public:
 
+    CLI();
+
     static void printTitle();
     static void checkValidInputFile(const std::string& inputFile);
     static std::string askInputFilePath();
-
-    void readInput(const std::string& string, Data& data);
+    static void readInput(const std::string& inputFileName, Data& data);
 
     void execute(const std::vector<std::string>& args);
+    void writeOutput(const Result& result, unsigned riskAnalysis) const;
+    void processArgs(const std::vector<std::string> & args);
 
     void setInputFileName(const std::string& inputFileName);
-    std::string getInputFileName() const;
     void setOutputFileName(const std::string& outputFileName);
-    std::string getOutputFileName() const;
     void setOutputRisk(const std::string& outputRisk);
-    std::string getOutputRisk() const;
 
 private:
-
     std::string inputFileName_;
     std::string outputFileName_;
     std::string outputRisk_;
