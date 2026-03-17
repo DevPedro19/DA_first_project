@@ -36,9 +36,7 @@ void CLI::setOutputRisk(const std::string &outputRisk) {
 
 
 void CLI::printTitle() {
-    std::cout << "\n========================================\n"
-              << "      CONFERENCE ORGANIZATION TOOL      \n"
-              << "========================================\n" << std::endl;
+    std::cout << "## Scientific Conference Organization Tool ##" << std::endl;
 }
 
 
@@ -49,11 +47,7 @@ void CLI::processArgs(const std::vector<std::string> &args) {
         if (args.size() == 4) setOutputRisk(args[3]);
         // otherwise, the risk output will be written in the same output file as the rest
 
-    } else {
-        std::string inputFileName = askInputFilePath();
-        checkValidInputFile(inputFileName);
-        setInputFileName(inputFileName); // interactive mode
-    }
+    } else setInputFileName(askInputFilePath()); // interactive mode
 }
 
 
@@ -99,7 +93,7 @@ void CLI::execute(const std::vector<std::string>& args) {
 
     InfoMenu infoMenu(data);
     if (infoMenu.display()) {
-        Graph flowNetwork(data);
+        Graph<nodeInfo> flowNetwork(data);
 
         MaxFlowSolver solver(&flowNetwork);
         solver.execute();
@@ -109,7 +103,7 @@ void CLI::execute(const std::vector<std::string>& args) {
         }*/
         for (auto v : flowNetwork.getVertexSet()) {
             for (auto e : v->getAdj()) {
-                std::cout << v->getName() << " -> " << e->getDest()->getName() << " (" << e->getFlow() << "," << e->getCapacity() << ")" << std::endl;
+                std::cout << v->getInfo().type << " " << v->getInfo().id << " -> " << e->getDest()->getInfo().type << " " << e->getDest()->getInfo().id << " (" << e->getFlow() << "," << e->getCapacity() << ")" << std::endl;
             }
         }
     }
