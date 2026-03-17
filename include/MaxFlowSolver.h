@@ -1,16 +1,18 @@
 #ifndef MaxFlow_hpp
 #define MaxFlow_hpp
 
-#include <queue>
 #include "Graph.h"
+#include "Result.h"
+
+#include <queue>
 #include <string>
 
 typedef std::string string;
-
 class MaxFlowSolver {
 public:
-    explicit MaxFlowSolver(Graph* g);
+    explicit MaxFlowSolver(Graph<T>* g);
     void execute();
+    void checkResults(Result& result);
 private:
     bool findAugmentingPath();
     double findMinResidualAlongPath();
@@ -19,8 +21,8 @@ private:
 
     static void testAndVisit(std::queue<Vertex*> &q, Edge *e, Vertex *w, double residual);
 
-    Vertex* source, * target;
-    Graph* flowNetwork;
+    Vertex<T>* source, * target;
+    Graph<T>* flowNetwork;
 };
 
 #endif /* MaxFlow_hpp */

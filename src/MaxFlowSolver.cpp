@@ -4,7 +4,7 @@
 #include <algorithm>
 #include "Graph.h"
 
-MaxFlowSolver::MaxFlowSolver(Graph* g) {
+MaxFlowSolver::MaxFlowSolver(Graph<T>* g) {
     source = g->findVertex("Source");
     target = g->findVertex("Sink");
     flowNetwork = g;
@@ -110,4 +110,24 @@ void MaxFlowSolver::edmondsKarp() {
 
 void MaxFlowSolver::execute() {
     edmondsKarp();
+}
+
+void MaxFlowSolver::checkResults(Result &result) {
+    // Check matching submissions and reviewers
+    for (auto v : flowNetwork->getVertexSet()) {
+        if (v->getInfo().type == SUBMISSION) {
+            for (auto e : v->getAdj()) {
+                if (e->getCapacity() - e->getFlow() == 0) {
+                    result.matches.push_back(v->getInfo().id, e->getDest()->getInfo().id, e->getDomain());
+                }
+            }
+        }
+    }
+    // Check if submissions have missing Reviews
+    for (auto e : source->getAdj()) {
+        int missingReviews = e->getCapacity() - e->getFlow();
+        if (missingReviews > 0) {
+            result.misses.push_back(e->getDest()->getInfo().id, e->getDomain(), missingReviews);
+        }
+    }
 }

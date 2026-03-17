@@ -6,7 +6,6 @@
 #define ORGANIZATIONAL_TOOL_SUBMISSION_H
 
 #include <string>
-#include <sstream>
 
 class Submission {
 public:
