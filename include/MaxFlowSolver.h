@@ -4,13 +4,13 @@
 #include "Graph.h"
 #include "Result.h"
 
-#include <queue>
 #include <string>
+#include <queue>
 
 typedef std::string string;
 class MaxFlowSolver {
 public:
-    explicit MaxFlowSolver(Graph<T>* g);
+    explicit MaxFlowSolver(Graph<nodeInfo>* g);
     void execute();
     void checkResults(Result& result);
 private:
@@ -19,10 +19,10 @@ private:
     void augmentFlowAlongPath(double f);
     void edmondsKarp();
 
-    static void testAndVisit(std::queue<Vertex*> &q, Edge *e, Vertex *w, double residual);
+    static void testAndVisit(std::queue<Vertex<nodeInfo>*> &q, Edge<nodeInfo> *e, Vertex<nodeInfo> *w, double residual);
 
-    Vertex<T>* source, * target;
-    Graph<T>* flowNetwork;
+    Vertex<nodeInfo>* source, * target;
+    Graph<nodeInfo>* flowNetwork;
 };
 
 #endif /* MaxFlow_hpp */

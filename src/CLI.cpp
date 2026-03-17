@@ -99,7 +99,7 @@ void CLI::execute(const std::vector<std::string>& args) {
 
     InfoMenu infoMenu(data);
     if (infoMenu.display()) {
-        Graph<T> flowNetwork(data);
+        Graph<nodeInfo> flowNetwork(data);
 
         MaxFlowSolver solver(&flowNetwork);
         solver.execute();
@@ -107,6 +107,11 @@ void CLI::execute(const std::vector<std::string>& args) {
         solver.checkResults(result);
         if (data.control.GenerateAssignments) {
             writeOutput(result, data.control.RiskAnalysis);
+        }
+        for (auto v : flowNetwork.getVertexSet()) {
+            for (auto e : v->getAdj()) {
+                std::cout << v->getInfo().type << " " << v->getInfo().id << " -> " << e->getDest()->getInfo().type << " " << e->getDest()->getInfo().id << " (" << e->getFlow() << "," << e->getCapacity() << ")" << std::endl;
+            }
         }
     }
 }
