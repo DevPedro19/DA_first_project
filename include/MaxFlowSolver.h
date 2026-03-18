@@ -1,13 +1,18 @@
 #ifndef MaxFlow_hpp
 #define MaxFlow_hpp
 
-#include <queue>
 #include "Graph.h"
+#include "Result.h"
 
+#include <string>
+#include <queue>
+
+typedef std::string string;
 class MaxFlowSolver {
 public:
     explicit MaxFlowSolver(Graph<nodeInfo>* g);
     void execute();
+    void checkResults(Result& result);
 private:
     bool findAugmentingPath();
     double findMinResidualAlongPath();

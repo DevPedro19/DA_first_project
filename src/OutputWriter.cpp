@@ -8,8 +8,8 @@
 
 #include "OutputWriter.h"
 
-OutputWriter::OutputWriter(std::string outputFileName, std::string outputRisk) :
-outputFileName_(std::move(outputFileName)), outputRisk_(std::move(outputRisk)) {}
+OutputWriter::OutputWriter(std::string outputFileName) :
+outputFileName_(std::move(outputFileName)) {}
 
 void OutputWriter::writeMatches(std::ofstream& ofs, std::vector<Match> matches) {
 
@@ -30,6 +30,10 @@ void OutputWriter::writeMatches(std::ofstream& ofs, std::vector<Match> matches) 
     for (const Match& match : matches) {
         ofs << match.reviewerId << ", " << match.submissionId << ", " << match.domain << '\n';
     }
+    // #Total section
+    if (!matches.empty()) {
+        ofs << "#Total: " << matches.size() << "\n";
+    }
 }
 
 
@@ -45,33 +49,25 @@ void OutputWriter::writeMisses(std::ofstream& ofs, std::vector<Miss> misses) {
 }
 
 
-void OutputWriter::writeRiskAnalysis(std::ofstream& ofs, std::vector<unsigned int> riskyReviewers, unsigned riskAnalysis) const {
+void OutputWriter::writeRiskAnalysis(std::ofstream& ofs, std::vector<int> riskyReviewers, int riskAnalysis) const {
     std::sort(riskyReviewers.begin(), riskyReviewers.end());
-    std::ofstream riskFile;
-
-    if (!this->outputRisk_.empty()) // if a risk analysis output file was specified
-        riskFile.open(this->outputRisk_);
-
-    // allows for redirecting the output either to riskFile, if a risk analysis
-    // output file was specified, or to the previous and still the same outputFile
-    std::ofstream& riskOut = riskFile.is_open()? riskFile : ofs;
-
-    riskOut << "#Risk Analysis: " << riskAnalysis << std::endl;
+    ofs << "#Risk Analysis: " << riskAnalysis << std::endl;
 
     if (!riskyReviewers.empty()) {
-        riskOut << riskyReviewers[0];
+        ofs << riskyReviewers[0];
         for (unsigned i = 1; i < riskyReviewers.size(); i++) {
             ofs << ", " << riskyReviewers[i];
         }
-        riskOut << '\n';
+        ofs << '\n';
 
-    } else riskOut << "No risky reviewers\n";
+    } else ofs << "No risky reviewers\n";
 }
 
 
-void OutputWriter::writeOutput(const Result &result, unsigned riskAnalysis) const {
+void OutputWriter::writeOutput(const Result &result, int riskAnalysis) const {
     std::ofstream ofs(this->outputFileName_);
     writeMatches(ofs, result.matches);
     writeMisses(ofs, result.misses);
+    // Risk analysis is written directly in ofs
     if (riskAnalysis) writeRiskAnalysis(ofs, result.riskyReviewers, riskAnalysis);
 }
