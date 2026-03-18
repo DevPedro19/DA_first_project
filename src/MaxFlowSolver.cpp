@@ -118,7 +118,7 @@ void MaxFlowSolver::checkResults(Result &result) {
         if (v->getInfo().type == SUBMISSION) {
             for (auto e : v->getAdj()) {
                 if (e->getCapacity() - e->getFlow() == 0) {
-                    result.matches.push_back(v->getInfo().id, e->getDest()->getInfo().id, e->getDomain());
+                    result.matches.push_back({v->getInfo().id, e->getDest()->getInfo().id, e->getDomain()});
                 }
             }
         }
@@ -127,7 +127,7 @@ void MaxFlowSolver::checkResults(Result &result) {
     for (auto e : source->getAdj()) {
         int missingReviews = e->getCapacity() - e->getFlow();
         if (missingReviews > 0) {
-            result.misses.push_back(e->getDest()->getInfo().id, e->getDomain(), missingReviews);
+            result.misses.push_back({e->getDest()->getInfo().id, e->getDomain(), missingReviews});
         }
     }
 }

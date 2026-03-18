@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 
+#include "OutputWriter.h"
 #include "Result.h"
 
 /**
@@ -26,16 +27,16 @@ public:
     static void readInput(const std::string& inputFileName, Data& data);
 
     void execute(const std::vector<std::string>& args);
-    void writeOutput(const Result& result, unsigned riskAnalysis) const;
+    void writeOutput(const Result& result, unsigned riskAnalysis, std::string& outputFileName);
     void processArgs(const std::vector<std::string> & args);
 
     void setInputFileName(const std::string& inputFileName);
     void setOutputFileName(const std::string& outputFileName);
-    void setOutputRisk(const std::string& outputRisk);
+    void setIsValidInputFileName(bool value);
 
 private:
     std::string inputFileName_;
     std::string outputFileName_;
-    std::string outputRisk_;
+    bool isValidInputFileName_ = false; // Initially false
 };
 #endif //FIRST_PROJECT_CLI_H

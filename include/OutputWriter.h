@@ -11,15 +11,14 @@
 class OutputWriter {
 public:
 
-    OutputWriter(std::string outputFileName, std::string outputRisk);
-    void writeOutput(const Result& result, unsigned riskAnalysis) const;
+    OutputWriter(std::string outputFileName);
+    void writeOutput(const Result& result, int riskAnalysis) const;
 
 private:
     static void writeMatches(std::ofstream& ofs, std::vector<Match> matches);
     static void writeMisses(std::ofstream& ofs, std::vector<Miss> misses);
-    void writeRiskAnalysis(std::ofstream& ofs, std::vector<unsigned> riskyReviewers, unsigned riskAnalysis) const;
+    void writeRiskAnalysis(std::ofstream& ofs, std::vector<int> riskyReviewers, int riskAnalysis) const;
 
     std::string outputFileName_;
-    std::string outputRisk_;
 };
 #endif //ORGANIZATIONALTOOL_OUTPUTWRITER_H

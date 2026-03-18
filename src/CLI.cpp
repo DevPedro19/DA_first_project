@@ -29,9 +29,8 @@ void CLI::setOutputFileName(const std::string &outputFileName) {
     this->outputFileName_ = outputFileName;
 }
 
-
-void CLI::setOutputRisk(const std::string &outputRisk) {
-    this->outputRisk_ = outputRisk;
+void CLI::setIsValidInputFileName(bool value) {
+    this->isValidInputFileName_ = value;
 }
 
 
@@ -46,7 +45,10 @@ void CLI::processArgs(const std::vector<std::string> &args) {
     if (args.size() >= 2 && args[1] == "-b") { // batch mode
         checkValidInputFile(args[2]);
         setInputFileName(args[2]);
-        if (args.size() == 4) setOutputRisk(args[3]);
+        if (args.size() == 4) {
+            setOutputFileName(args[3]);
+            setIsValidInputFileName(true); // Batch mode output specified - will be considered over the filepath inside the input csv
+        }
         // otherwise, the risk output will be written in the same output file as the rest
 
     } else {
@@ -84,8 +86,12 @@ void CLI::readInput(const std::string &inputFileName, Data &data) {
     csvParser.parseDocument(data);
 }
 
-void CLI::writeOutput(const Result& result, unsigned riskAnalysis) const {
-    OutputWriter output_writer = OutputWriter(outputFileName_, outputRisk_);
+void CLI::writeOutput(const Result& result, unsigned riskAnalysis,std::string& outputFileName) {
+    if (!isValidInputFileName_) { // As we are not in batch mode the output is only present inside .csv or use the default filepath
+        setOutputFileName(outputFileName);
+        setIsValidInputFileName(true);
+    }
+    OutputWriter output_writer = OutputWriter(outputFileName_);
     output_writer.writeOutput(result, riskAnalysis);
 }
 
@@ -106,7 +112,7 @@ void CLI::execute(const std::vector<std::string>& args) {
         Result result;
         solver.checkResults(result);
         if (data.control.GenerateAssignments) {
-            writeOutput(result, data.control.RiskAnalysis);
+            writeOutput(result, data.control.RiskAnalysis, data.control.OutputFileName);
         }
         for (auto v : flowNetwork.getVertexSet()) {
             for (auto e : v->getAdj()) {

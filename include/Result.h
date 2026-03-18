@@ -8,17 +8,17 @@
 #include <vector>
 
 struct Match {
-    unsigned submissionId, reviewerId, domain;
+    int submissionId, reviewerId, domain;
 };
 
 struct Miss {
-    unsigned submissionId, domain, missingReviews;
+    int submissionId, domain, missingReviews;
 };
 
 struct Result {
     std::vector<Match> matches;
     std::vector<Miss> misses;
-    std::vector<unsigned> riskyReviewers;
+    std::vector<int> riskyReviewers;
 };
 
 #endif //ORGANIZATIONALTOOL_RESULT_H
