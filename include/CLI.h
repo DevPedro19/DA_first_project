@@ -50,7 +50,7 @@ public:
      * @param riskAnalysis Either 0 (no risk analysis), 1 (risk analysis for 1 missing reviewer) or k > 1 (risk analysis for k missing reviewers - not implemented).
      * @param outputFileName Name of the output file to be written.
      */
-    void writeOutput(const Result& result, unsigned riskAnalysis, std::string& outputFileName);
+    void writeOutput(const Result& result, unsigned riskAnalysis, const std::string& outputFileName);
 
     /**
      * @brief Processes the command line arguments and determines if the execution is in batch or interactive modes and behaves accordingly to check the validity of the input file's extension and set the input and output file paths.
@@ -87,6 +87,10 @@ private:
      * @brief Name of the output file to be written.
      */
     std::string outputFileName_;
+
+    /**
+     * @brief Boolean value indicating whether the output file name comes from batch mode (true) or not (false). This is used to determine if the output file name provided in batch mode should be considered over the output file name specified in the input csv file.
+     */
     bool isValidInputFileName_ = false; // Initially false
 };
 #endif //FIRST_PROJECT_CLI_H
