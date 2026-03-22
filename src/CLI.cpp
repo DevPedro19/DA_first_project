@@ -24,7 +24,6 @@ void CLI::setInputFileName(const std::string &inputFileName) {
     this->inputFileName_ = inputFileName;
 }
 
-
 void CLI::setOutputFileName(const std::string &outputFileName) {
     this->outputFileName_ = outputFileName;
 }
@@ -51,10 +50,10 @@ void CLI::processArgs(const std::vector<std::string> &args) {
         }
         // otherwise, the risk output will be written in the same output file as the rest
 
-    } else {
+    } else { // interactive mode
         std::string inputFileName = askInputFilePath();
         checkValidInputFile(inputFileName);
-        setInputFileName(inputFileName); // interactive mode
+        setInputFileName(inputFileName);
     }
 }
 

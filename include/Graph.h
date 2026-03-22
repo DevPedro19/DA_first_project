@@ -16,7 +16,7 @@ enum type {
 };
 
 struct nodeInfo {
-    type type;
+    enum type type;
     int id;
 };
 
