@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <utility>
+#include <fstream>
 
 CSVParser::CSVParser(std::string filename) : filename(std::move(filename)) {}
 
@@ -116,6 +117,19 @@ void CSVParser::parseControl(const std::vector<std::string>& lines, Data& data) 
     }
 }
 
+void CSVParser::processTitle(std::istringstream& iss, std::string& data) {
+    size_t openingQuotes = data.find('\"');
+    if (data.find('\"', openingQuotes + 1) == std::string::npos) { // did not find closing quotes, so the title has commas
+        const std::string prev = data;
+        std::getline(iss, data, '\"'); // reads up until the end of the title/until finding closing quotes, however these are not included in the data variable
+        data = prev + "," + data + '\"'; // build up the entire title with the first comma, read initially and the closing quotes
+
+        std::string temp;
+        std::getline(iss, temp, ','); // move the input string stream forward to the next comma after the closing quotes
+    }
+    removeTrailingCharacter(data, " "); // applies to titles with or without commas
+}
+
 void CSVParser::parseIndividualSubmission(const std::string& line, Submission& s) {
     std::istringstream iss(line);
     std::string data;
@@ -128,7 +142,7 @@ void CSVParser::parseIndividualSubmission(const std::string& line, Submission& s
                 isUniqueId(id, "Submission ID ", submissionIds);
                 s.setId(id);
                 break;
-            case 1: removeTrailingCharacter(data, " "); s.setTitle(data); break;
+            case 1: processTitle(iss, data); s.setTitle(data); break;
             case 2: removeTrailingCharacter(data, " "); s.setAuthor(data); break;
             case 3: removeTrailingCharacter(data, " "); s.setEmail(data); break;
             case 4:
