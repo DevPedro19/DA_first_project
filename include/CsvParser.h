@@ -8,7 +8,7 @@
 #include "Reviewer.h"
 #include "Submission.h"
 
-#include <fstream>
+
 #include <set>
 #include <string>
 #include <vector>
@@ -66,7 +66,12 @@ private:
      */
     static void removeTrailingCharacter(std::string& str, const std::string& s);
 
-
+    /**
+     * @brief Ensures that the title is correctly parsed, even if it contains commas, preventing it from interfering with the parsing of an individual submission.
+     * @param iss The input string stream that is being used to parse the line of the CSV file.
+     * @param data The string variable that will hold the entire title of the submission.
+     */
+    static void processTitle(std::istringstream& iss, std::string& data);
 
     /**
      * @brief This function is responsible for parsing a single line of the CSV file
