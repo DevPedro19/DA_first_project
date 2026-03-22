@@ -26,7 +26,7 @@ inline std::string enumToString(const type t) {
 }
 
 struct nodeInfo {
-    type type;
+    enum type type;
     int id;
 };
 
