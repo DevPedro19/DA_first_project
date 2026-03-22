@@ -24,7 +24,6 @@ void CLI::setInputFileName(const std::string &inputFileName) {
     this->inputFileName_ = inputFileName;
 }
 
-
 void CLI::setOutputFileName(const std::string &outputFileName) {
     this->outputFileName_ = outputFileName;
 }
@@ -51,10 +50,10 @@ void CLI::processArgs(const std::vector<std::string> &args) {
         }
         // otherwise, the risk output will be written in the same output file as the rest
 
-    } else {
+    } else { // interactive mode
         std::string inputFileName = askInputFilePath();
         checkValidInputFile(inputFileName);
-        setInputFileName(inputFileName); // interactive mode
+        setInputFileName(inputFileName);
     }
 }
 
@@ -86,7 +85,7 @@ void CLI::readInput(const std::string &inputFileName, Data &data) {
     csvParser.parseDocument(data);
 }
 
-void CLI::writeOutput(const Result& result, unsigned riskAnalysis,std::string& outputFileName) {
+void CLI::writeOutput(const Result& result, unsigned riskAnalysis, const std::string& outputFileName) {
     if (!isValidInputFileName_) { // As we are not in batch mode the output is only present inside .csv or use the default filepath
         setOutputFileName(outputFileName);
         setIsValidInputFileName(true);
