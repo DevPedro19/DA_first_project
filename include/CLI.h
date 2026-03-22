@@ -27,16 +27,16 @@ public:
     static void readInput(const std::string& inputFileName, Data& data);
 
     void execute(const std::vector<std::string>& args);
-    void writeOutput(const Result& result, unsigned riskAnalysis, std::string& outputFileName);
+    void writeOutput(const Result& result, int riskAnalysis, std::string& outputFileName);
     void processArgs(const std::vector<std::string> & args);
 
     void setInputFileName(const std::string& inputFileName);
     void setOutputFileName(const std::string& outputFileName);
-    void setIsValidInputFileName(bool value);
+    void setIsValidOutputFileName(bool value);
 
 private:
     std::string inputFileName_;
     std::string outputFileName_;
-    bool isValidInputFileName_ = false; // Initially false
+    bool isValidOutputFileName_ = false; // Initially false
 };
 #endif //FIRST_PROJECT_CLI_H

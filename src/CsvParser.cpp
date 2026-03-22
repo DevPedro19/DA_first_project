@@ -59,21 +59,25 @@ void CSVParser::parseDocument(Data &data) {
     // Parses different existing sections (now part of the map of sections)
     // Only allows parsing of existing sections inside the csv
     if (fileSections.find("#Submissions") != fileSections.end()) {
+        std::cout << "Started parsing submissions." << std::endl;
         parseSubmissions(fileSections["#Submissions"], data.submissions);
         std::cout << "Finished parsing submissions." << std::endl;
     }
 
     if (fileSections.find("#Reviewers") != fileSections.end()) {
+        std::cout << "Started parsing reviewers." << std::endl;
         parseReviewers(fileSections["#Reviewers"], data.reviewers);
         std::cout << "Finished parsing reviewers." << std::endl;
     }
 
     if (fileSections.find("#Parameters") != fileSections.end()) {
+        std::cout << "Started parsing parameters" << std::endl;
         parseParameters(fileSections["#Parameters"], data);
         std::cout << "Finished parsing parameters." << std::endl;
     }
 
     if (fileSections.find("#Control") != fileSections.end()) {
+        std::cout << "Started parsing control parameters" << std::endl;
         parseControl(fileSections["#Control"], data);
         std::cout << "Finished parsing control parameters." << std::endl;
     }

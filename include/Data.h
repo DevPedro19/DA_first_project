@@ -10,7 +10,7 @@
 #include <vector>
 
 struct Parameters {
-    unsigned MinReviewsPerSubmission    = 0,
+    int MinReviewsPerSubmission    = 0,
     MaxReviewsPerReviewer               = 0,
     PrimaryReviewerExpertise            = 0,
     SecondaryReviewerExpertise          = 0,
@@ -19,7 +19,7 @@ struct Parameters {
 };
 
 struct Control {
-    unsigned GenerateAssignments    = 0,
+    int GenerateAssignments    = 0,
     RiskAnalysis                    = 0;
 
     std::string OutputFileName      = "output.csv";

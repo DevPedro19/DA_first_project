@@ -15,6 +15,16 @@ enum type {
     REVIEWER
 };
 
+inline std::string enumToString(const type t) {
+    switch (t) {
+        case SOURCE: return "SOURCE";
+        case SINK: return "SINK";
+        case SUBMISSION: return "SUBMISSION";
+        case REVIEWER: return "REVIEWER";
+    }
+    return "";
+}
+
 struct nodeInfo {
     type type;
     int id;
@@ -402,10 +412,11 @@ Graph<T>::Graph(Data &data) {
                                 /* CREATE THE EDGES*/
     // Create edge from the source node to submission with capacity MinReviewsPerSubmission
     for (const Submission& s : submissions) {
-        this->addEdge(source, {SUBMISSION, s.getId()}, p.MinReviewsPerSubmission);
+        // When checking the outputs the domain of this edge is always the primary Field
+        this->addEdge(source, {SUBMISSION, s.getId()}, p.MinReviewsPerSubmission, s.getPrimaryField());
     }
 
-    // Create edges between submisions and reviewers
+    // Create edges between submissions and reviewers
     for (const Submission &s : submissions) {
         for (const Reviewer &r : reviewers) {
             nodeInfo submission = {SUBMISSION, s.getId()};
