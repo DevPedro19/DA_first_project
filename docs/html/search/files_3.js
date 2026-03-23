@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['maxflow_2eh_0',['MaxFlowSolver.h',['../MaxFlow_8h.html',1,'']]],
-  ['msttestaux_2eh_1',['MSTTestAux.h',['../MSTTestAux_8h.html',1,'']]],
-  ['mutablepriorityqueue_2eh_2',['MutablePriorityQueue.h',['../MutablePriorityQueue_8h.html',1,'']]]
+  ['infomenu_2ecpp_0',['InfoMenu.cpp',['../_info_menu_8cpp.html',1,'']]],
+  ['infomenu_2eh_1',['InfoMenu.h',['../_info_menu_8h.html',1,'']]]
 ];

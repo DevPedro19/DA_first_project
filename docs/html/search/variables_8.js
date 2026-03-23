@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['orig_0',['orig',['../classEdge.html#a4510c31e0479f9d25f6e35d086887192',1,'Edge']]]
+  ['name_0',['name',['../class_reviewer.html#af9ab4025cd39328e9ce594ef165e9e9c',1,'Reviewer']]]
 ];
