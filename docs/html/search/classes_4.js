@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reviewer_0',['Reviewer',['../classReviewer.html',1,'']]]
+  ['infomenu_0',['InfoMenu',['../class_info_menu.html',1,'']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['filename_0',['filename',['../classCSVParser.html#adeac14aa5f4cf638f69c033beb2a2ccb',1,'CSVParser']]],
-  ['flow_1',['flow',['../classEdge.html#a30808601fa37f509147eabf9cc5f9ed6',1,'Edge']]]
+  ['email_0',['email',['../class_reviewer.html#a5ae05709e98e328427aed3ead8912fd8',1,'Reviewer::email'],['../class_submission.html#ab524f4484bf346c7ba0d94b0a7dd114c',1,'Submission::email']]]
 ];

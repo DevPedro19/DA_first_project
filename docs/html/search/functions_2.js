@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['decreasekey_0',['decreaseKey',['../classMutablePriorityQueue.html#a0878839cc1d2dba2b8ab2e589ecc6405',1,'MutablePriorityQueue']]],
-  ['deleteedge_1',['deleteEdge',['../classVertex.html#a622503fe44ef12d5c39bd1043d47865c',1,'Vertex']]],
-  ['deletematrix_2',['deletematrix',['../Graph_8h.html#ad56527992afe31a371065e795da57d25',1,'deleteMatrix(int **m, int n):&#160;Graph.h'],['../Graph_8h.html#af077bc8682a1a1d97e30b08eb1131b19',1,'deleteMatrix(double **m, int n):&#160;Graph.h']]]
+  ['deleteedge_0',['deleteEdge',['../class_vertex.html#a622503fe44ef12d5c39bd1043d47865c',1,'Vertex']]],
+  ['display_1',['display',['../class_info_menu.html#ac13572979768ee1871d468de66891842',1,'InfoMenu']]],
+  ['displaycontrol_2',['displayControl',['../class_info_menu.html#a34297b37ecbed702dbff804204121e4e',1,'InfoMenu']]],
+  ['displayoptions_3',['displayOptions',['../class_info_menu.html#af774e9fd992ca7684ca77b60c7a8c211',1,'InfoMenu']]],
+  ['displayparameters_4',['displayParameters',['../class_info_menu.html#a1672f8aaa06b808e5e7ccb9db58e329e',1,'InfoMenu']]],
+  ['displayreviewers_5',['displayReviewers',['../class_info_menu.html#a47e0262feb6b09cf27e6b48b6d97cac0',1,'InfoMenu']]],
+  ['displaysubmissions_6',['displaySubmissions',['../class_info_menu.html#a9e9687fefdd1888b4ddfa6ea31a1bd7e',1,'InfoMenu']]]
 ];

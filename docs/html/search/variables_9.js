@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['path_0',['path',['../classVertex.html#abfc6d8f64308c47901c72d5ebceda80e',1,'Vertex::path'],['../classUFDS.html#af77dd98a4e13936452f132a49b36e95a',1,'UFDS::path']]],
-  ['pathmatrix_1',['pathMatrix',['../classGraph.html#afb9524726f8f3cda3115a0d03e3f6e09',1,'Graph']]],
-  ['primaryfield_2',['primaryfield',['../classVertex.html#a990144b070c2668a7a47544527286f77',1,'Vertex::primaryField'],['../classReviewer.html#afc4bb71c8d05a54358e0fdce7de4b1d2',1,'Reviewer::primaryField'],['../classSubmission.html#a013aaf716e23549da249a18e5fd8b94f',1,'Submission::primaryField']]],
-  ['processing_3',['processing',['../classVertex.html#ae575d4b9a6b1ada3f9626c458c060f54',1,'Vertex']]]
+  ['orig_0',['orig',['../class_edge.html#a4510c31e0479f9d25f6e35d086887192',1,'Edge']]],
+  ['outputfilename_1',['OutputFileName',['../struct_control.html#a771613d1a047790bfd84513d263bbcfc',1,'Control']]],
+  ['outputfilename_5f_2',['outputFileName_',['../class_c_l_i.html#a9a1fa77b57c69e0f68a7a55fcd258450',1,'CLI::outputFileName_'],['../class_output_writer.html#a5038f37e3389bb060d92b81f5beb0a89',1,'OutputWriter::outputFileName_']]]
 ];

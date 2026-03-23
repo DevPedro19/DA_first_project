@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['rank_0',['rank',['../classUFDS.html#afd7eb102f101a1c6f441a8e47aa5a399',1,'UFDS']]],
-  ['reverse_1',['reverse',['../classEdge.html#a6c1e5191f85afbd20cf6198815c9b079',1,'Edge']]],
-  ['reviewers_2',['reviewers',['../classCSVParser.html#ab42173c7fc4f247a7efd8533e6123757',1,'CSVParser']]]
+  ['reviewerid_0',['reviewerId',['../struct_match.html#a56cde0a46194c68909db77632c1d0a45',1,'Match']]],
+  ['reviewerids_1',['reviewerIds',['../class_c_s_v_parser.html#a85785f66ff018fe8667b5a3cdf7f16f3',1,'CSVParser']]],
+  ['reviewers_2',['reviewers',['../struct_data.html#adfab6816cb3ddbe0cf8ddd634379fe2a',1,'Data']]],
+  ['riskanalysis_3',['RiskAnalysis',['../struct_control.html#aad94ababea8b4fe69a276086da9ffcd0',1,'Control']]],
+  ['riskyreviewers_4',['riskyReviewers',['../struct_result.html#abd5a7db4af62d396f7e3641fe112103e',1,'Result']]]
 ];

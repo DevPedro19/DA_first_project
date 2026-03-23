@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['ufds_2ecpp_0',['UFDS.cpp',['../UFDS_8cpp.html',1,'']]],
-  ['ufds_2eh_1',['UFDS.h',['../UFDS_8h.html',1,'']]]
+  ['result_2eh_0',['Result.h',['../_result_8h.html',1,'']]],
+  ['reviewer_2ecpp_1',['Reviewer.cpp',['../_reviewer_8cpp.html',1,'']]],
+  ['reviewer_2eh_2',['Reviewer.h',['../_reviewer_8h.html',1,'']]]
 ];
