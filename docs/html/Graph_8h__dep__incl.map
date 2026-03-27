@@ -1,14 +1,17 @@
 <map id="include/Graph.h" name="include/Graph.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="209,6,333,31"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="325,3,349,6,357,11,360,19,355,28,344,33,312,34,311,29,343,28,352,24,355,19,353,15,347,11,325,8"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="196,6,320,31"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="312,3,336,6,344,11,347,19,342,28,331,33,298,34,298,29,329,28,338,24,341,19,339,15,334,11,311,8"/>
 <area shape="rect" id="Node000002" href="$MSTTestAux_8h.html" title=" " alt="" coords="5,79,169,105"/>
-<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="230,39,118,82,116,77,228,34"/>
-<area shape="rect" id="Node000003" href="$MaxFlowSolver_8h.html" title=" " alt="" coords="245,79,429,105"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="293,40,328,78,324,81,289,44"/>
-<area shape="rect" id="Node000004" href="$CLI_8cpp.html" title=" " alt="" coords="212,153,304,178"/>
-<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="255,44,243,61,235,80,233,100,237,119,253,152,248,154,232,121,228,100,230,79,239,59,250,41"/>
-<area shape="rect" id="Node000005" href="$MaxFlowSolver_8cpp.html" title=" " alt="" coords="354,153,525,178"/>
-<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="348,25,400,42,424,58,443,78,451,97,453,118,446,153,441,152,447,117,446,98,438,81,420,62,398,47,346,30"/>
-<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="316,116,273,155,269,151,312,112"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="366,110,424,150,421,155,363,115"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="219,39,116,82,114,77,217,34"/>
+<area shape="rect" id="Node000003" href="$MaxFlowSolver_8h.html" title=" " alt="" coords="295,79,479,105"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="292,36,367,77,365,82,290,41"/>
+<area shape="rect" id="Node000004" href="$CLI_8cpp.html" title=" " alt="" coords="155,153,247,178"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="251,46,208,154,203,152,246,44"/>
+<area shape="rect" id="Node000005" href="$MaxFlowSolver_8cpp.html" title=" " alt="" coords="271,153,442,178"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="264,45,272,74,286,103,311,130,338,150,335,155,307,134,281,106,267,76,259,46"/>
+<area shape="rect" id="Node000006" href="$runTests_8cpp.html" title=" " alt="" coords="467,153,599,178"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="334,21,374,27,415,37,456,54,493,77,509,95,520,115,533,151,528,153,515,117,504,98,490,82,454,59,414,43,373,32,334,26"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="346,112,232,155,230,150,344,107"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="379,119,364,154,359,152,374,116"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="424,108,510,150,508,155,422,113"/>
 </map>

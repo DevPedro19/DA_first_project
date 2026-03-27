@@ -1,7 +1,0 @@
-#SubmissionId,ReviewerId,Match
-87, 1, 1
-#ReviewerId,SubmissionId,Match
-1, 87, 1
-#Total: 1
-#SubmissionId,Domain,MissingReviews
-31, 3, 1
