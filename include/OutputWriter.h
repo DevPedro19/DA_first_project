@@ -11,13 +11,13 @@
 class OutputWriter {
 public:
 
-    OutputWriter(std::string outputFileName);
+    OutputWriter(const std::string& outputFileName);
     void writeOutput(const Result& result, int riskAnalysis) const;
 
 private:
     static void writeMatches(std::ofstream& ofs, std::vector<Match> matches);
     static void writeMisses(std::ofstream& ofs, std::vector<Miss> misses);
-    void writeRiskAnalysis(std::ofstream& ofs, std::vector<int> riskyReviewers, int riskAnalysis) const;
+    static void writeRiskAnalysis(std::ofstream& ofs, std::vector<int> riskyReviewers, int riskAnalysis);
 
     std::string outputFileName_;
 };

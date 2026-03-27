@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OrganizationalTool: headers/MSTTestAux.h Source File</title>
+<title>OrganizationalTool: include/MSTTestAux.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -75,7 +75,7 @@ $(document).ready(function() { init_codefold(0); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_7f57b1e41c5acd0e859ae5f3a2b075a9.html">headers</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -86,7 +86,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define TEST_AUX_H_</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#endif </span><span class="comment">//TEST_AUX_H_</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;../data_structures/Graph.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="Graph_8h.html">Graph.h</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;random&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;map&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;set&gt;</span></div>
@@ -101,18 +101,18 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 1; i &lt;= 7; i++)</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        myGraph.<a class="code hl_function" href="classGraph.html#a00be284ea2be3b3d0f0d2e493b70245b">addVertex</a>(i);</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    myGraph.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(1, 2, 2);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    myGraph.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(1, 4, 7);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    myGraph.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(2, 4, 3);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    myGraph.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(2, 5, 5);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    myGraph.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(3, 1, 2);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    myGraph.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(3, 6, 5);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    myGraph.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(4, 3, 1);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    myGraph.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(4, 5, 1);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    myGraph.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(4, 7, 4);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    myGraph.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(5, 7, 2);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    myGraph.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(6, 4, 3);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    myGraph.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(7, 6, 4);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    myGraph.addBidirectionalEdge(1, 2, 2);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    myGraph.addBidirectionalEdge(1, 4, 7);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    myGraph.addBidirectionalEdge(2, 4, 3);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    myGraph.addBidirectionalEdge(2, 5, 5);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    myGraph.addBidirectionalEdge(3, 1, 2);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    myGraph.addBidirectionalEdge(3, 6, 5);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    myGraph.addBidirectionalEdge(4, 3, 1);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    myGraph.addBidirectionalEdge(4, 5, 1);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    myGraph.addBidirectionalEdge(4, 7, 4);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    myGraph.addBidirectionalEdge(5, 7, 2);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    myGraph.addBidirectionalEdge(6, 4, 3);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    myGraph.addBidirectionalEdge(7, 6, 4);</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">return</span> myGraph;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
@@ -191,23 +191,23 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++)</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; n; j++) {</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            <span class="keywordflow">if</span> (i &lt; n-1)</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                g.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(i*n + j, (i+1)*n + j, dis(gen));</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                g.addBidirectionalEdge(i*n + j, (i+1)*n + j, dis(gen));</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            <span class="keywordflow">if</span> (j &lt; n-1)</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                g.<a class="code hl_function" href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">addBidirectionalEdge</a>(i*n + j, i*n + (j+1), dis(gen));</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                g.addBidirectionalEdge(i*n + j, i*n + (j+1), dis(gen));</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        }</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>}</div>
 </div>
+<div class="ttc" id="aGraph_8h_html"><div class="ttname"><a href="Graph_8h.html">Graph.h</a></div></div>
 <div class="ttc" id="aMSTTestAux_8h_html_a433a8e033df41363e90aa2d4869992e5"><div class="ttname"><a href="MSTTestAux_8h.html#a433a8e033df41363e90aa2d4869992e5">spanningTreeCost</a></div><div class="ttdeci">double spanningTreeCost(const std::vector&lt; Vertex&lt; T &gt; * &gt; &amp;res)</div><div class="ttdef"><b>Definition</b> MSTTestAux.h:73</div></div>
 <div class="ttc" id="aMSTTestAux_8h_html_a7b4fe9682aa52e71bf31aa8bb1a82bfa"><div class="ttname"><a href="MSTTestAux_8h.html#a7b4fe9682aa52e71bf31aa8bb1a82bfa">generateRandomGridGraph</a></div><div class="ttdeci">void generateRandomGridGraph(int n, Graph&lt; T &gt; &amp;g)</div><div class="ttdef"><b>Definition</b> MSTTestAux.h:91</div></div>
 <div class="ttc" id="aMSTTestAux_8h_html_aa57acd3173d0fcf1448329333e30a49b"><div class="ttname"><a href="MSTTestAux_8h.html#aa57acd3173d0fcf1448329333e30a49b">createMSTTestGraph</a></div><div class="ttdeci">Graph&lt; T &gt; createMSTTestGraph()</div><div class="ttdef"><b>Definition</b> MSTTestAux.h:13</div></div>
 <div class="ttc" id="aMSTTestAux_8h_html_ac9b623e496878e3b41c521713ad01d02"><div class="ttname"><a href="MSTTestAux_8h.html#ac9b623e496878e3b41c521713ad01d02">isSpanningTree</a></div><div class="ttdeci">bool isSpanningTree(const std::vector&lt; Vertex&lt; T &gt; * &gt; &amp;res)</div><div class="ttdef"><b>Definition</b> MSTTestAux.h:35</div></div>
-<div class="ttc" id="aclassGraph_html"><div class="ttname"><a href="classGraph.html">Graph</a></div><div class="ttdef"><b>Definition</b> Graph.h:109</div></div>
-<div class="ttc" id="aclassGraph_html_a00be284ea2be3b3d0f0d2e493b70245b"><div class="ttname"><a href="classGraph.html#a00be284ea2be3b3d0f0d2e493b70245b">Graph::addVertex</a></div><div class="ttdeci">bool addVertex(const T &amp;in)</div><div class="ttdef"><b>Definition</b> Graph.h:409</div></div>
-<div class="ttc" id="aclassGraph_html_aeb94a42983b1612ddbeade1a2a0132ea"><div class="ttname"><a href="classGraph.html#aeb94a42983b1612ddbeade1a2a0132ea">Graph::addBidirectionalEdge</a></div><div class="ttdeci">bool addBidirectionalEdge(const T &amp;sourc, const T &amp;dest, double w)</div><div class="ttdef"><b>Definition</b> Graph.h:468</div></div>
-<div class="ttc" id="aclassVertex_html"><div class="ttname"><a href="classVertex.html">Vertex</a></div><div class="ttdef"><b>Definition</b> Graph.h:22</div></div>
-<div class="ttc" id="aclassVertex_html_a0010a7d0b7db1bb81dd2ebb1ffae650a"><div class="ttname"><a href="classVertex.html#a0010a7d0b7db1bb81dd2ebb1ffae650a">Vertex::getAdj</a></div><div class="ttdeci">std::vector&lt; Edge&lt; T &gt; * &gt; getAdj() const</div><div class="ttdef"><b>Definition</b> Graph.h:241</div></div>
-<div class="ttc" id="aclassVertex_html_a15e4ff95fba2bb5970a6551137ceb950"><div class="ttname"><a href="classVertex.html#a15e4ff95fba2bb5970a6551137ceb950">Vertex::getPath</a></div><div class="ttdeci">Edge&lt; T &gt; * getPath() const</div><div class="ttdef"><b>Definition</b> Graph.h:266</div></div>
-<div class="ttc" id="aclassVertex_html_a48eae2f7af2362634adab02b7b2dbec6"><div class="ttname"><a href="classVertex.html#a48eae2f7af2362634adab02b7b2dbec6">Vertex::getInfo</a></div><div class="ttdeci">T getInfo() const</div><div class="ttdef"><b>Definition</b> Graph.h:216</div></div>
+<div class="ttc" id="aclassGraph_html"><div class="ttname"><a href="classGraph.html">Graph</a></div><div class="ttdef"><b>Definition</b> Graph.h:107</div></div>
+<div class="ttc" id="aclassGraph_html_a00be284ea2be3b3d0f0d2e493b70245b"><div class="ttname"><a href="classGraph.html#a00be284ea2be3b3d0f0d2e493b70245b">Graph::addVertex</a></div><div class="ttdeci">bool addVertex(const T &amp;in)</div><div class="ttdef"><b>Definition</b> Graph.h:328</div></div>
+<div class="ttc" id="aclassVertex_html"><div class="ttname"><a href="classVertex.html">Vertex</a></div><div class="ttdef"><b>Definition</b> Graph.h:43</div></div>
+<div class="ttc" id="aclassVertex_html_a0010a7d0b7db1bb81dd2ebb1ffae650a"><div class="ttname"><a href="classVertex.html#a0010a7d0b7db1bb81dd2ebb1ffae650a">Vertex::getAdj</a></div><div class="ttdeci">std::vector&lt; Edge&lt; T &gt; * &gt; getAdj() const</div><div class="ttdef"><b>Definition</b> Graph.h:204</div></div>
+<div class="ttc" id="aclassVertex_html_a15e4ff95fba2bb5970a6551137ceb950"><div class="ttname"><a href="classVertex.html#a15e4ff95fba2bb5970a6551137ceb950">Vertex::getPath</a></div><div class="ttdeci">Edge&lt; T &gt; * getPath() const</div><div class="ttdef"><b>Definition</b> Graph.h:214</div></div>
+<div class="ttc" id="aclassVertex_html_a48eae2f7af2362634adab02b7b2dbec6"><div class="ttname"><a href="classVertex.html#a48eae2f7af2362634adab02b7b2dbec6">Vertex::getInfo</a></div><div class="ttdeci">T getInfo() const</div><div class="ttdef"><b>Definition</b> Graph.h:199</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

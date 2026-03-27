@@ -1,0 +1,16 @@
+<map id="include/InfoMenu.h" name="include/InfoMenu.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="113,5,260,31"/>
+<area shape="rect" id="Node000002" href="$Data_8h.html" title=" " alt="" coords="154,79,219,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,31,189,65,184,65,184,31"/>
+<area shape="rect" id="Node000003" href="$Reviewer_8h.html" title=" " alt="" coords="139,152,234,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="189,104,189,138,184,138,184,104"/>
+<area shape="rect" id="Node000006" href="$Submission_8h.html" title=" " alt="" coords="5,152,115,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="168,106,94,147,91,143,165,102"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="258,152,321,177"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="205,102,263,142,260,146,202,106"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="49,225,108,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="171,180,109,220,106,215,168,175"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="149,225,224,251"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="189,178,189,212,184,212,184,178"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="66,177,75,212,70,213,61,178"/>
+</map>
