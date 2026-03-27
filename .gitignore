@@ -42,3 +42,4 @@ cmake-build-debug
 
 # debug information files
 *.dwo
+.csv

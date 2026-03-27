@@ -30,6 +30,7 @@ void CSVParser::loadAndSplitFile() {
     std::string currentSection; // String that identifies the section
     while (std::getline(file, line)) {
         removeCarriageReturn(line); // Remove carriage return if on Windows
+        removeTrailingCharacter(line, " ");
         if (line.empty() || line == "#") continue; // Ignore weird # line with no fields
         // Create new section inside the map (maps each section with a vector with associated lines) for each new section in the file
         if (line.find("#Submissions") != std::string::npos) {
@@ -156,6 +157,7 @@ void CSVParser::parseIndividualSubmission(const std::string& line, Submission& s
                 std::getline(iss, data);
                 // Remove carriage return char (if present - for example if the code is run on Windows)
                 removeCarriageReturn(data);
+                removeTrailingCharacter(data, " ");
                 if (!data.empty()) {
                     secondaryField = getInteger(data);
                     isValidIntField(secondaryField, "Secondary field ");
@@ -190,6 +192,7 @@ void CSVParser::parseIndividualReviewer(const std::string& line, Reviewer& r) {
                 std::getline(iss, data);
                 // Remove carriage return char (if present - for example if the code is run on Windows)
                 removeCarriageReturn(data);
+                removeTrailingCharacter(data, " ");
                 if (!data.empty()) {
                     secondaryField = getInteger(data);
                     isValidIntField(secondaryField, "Secondary field ");
@@ -246,6 +249,7 @@ void CSVParser::parseIndividualParameter(const std::string& line, Data &data) {
         if (parameterName.find("MinReviewsPerSubmission") != std::string::npos) {
             std::getline(ss, dataStr);
             removeCarriageReturn(dataStr);
+            removeTrailingCharacter(dataStr, " ");
             const int minReviewsPerSubmission = getInteger(dataStr);
             isValidIntField(minReviewsPerSubmission, "Minimum reviews per submission ");
             data.parameters.MinReviewsPerSubmission = minReviewsPerSubmission;
@@ -253,6 +257,7 @@ void CSVParser::parseIndividualParameter(const std::string& line, Data &data) {
         else if (parameterName.find("MaxReviewsPerReviewer") != std::string::npos) {
             std::getline(ss, dataStr);
             removeCarriageReturn(dataStr);
+            removeTrailingCharacter(dataStr, " ");
             const int maxReviewsPerReviewer = getInteger(dataStr);
             isValidIntField(maxReviewsPerReviewer, "Maximum reviews per reviewer ");
             data.parameters.MaxReviewsPerReviewer = maxReviewsPerReviewer;
@@ -268,6 +273,7 @@ void CSVParser::parseIndividualControlParameter(const std::string& line, Data &d
         if (parameterName.find("GenerateAssignments") != std::string::npos) {
             std::getline(ss, dataStr);
             removeCarriageReturn(dataStr);
+            removeTrailingCharacter(dataStr, " ");
             int generateAssignments = getInteger(dataStr);
             validateGenerateAssignments(generateAssignments);
             data.control.GenerateAssignments = generateAssignments;
@@ -275,6 +281,7 @@ void CSVParser::parseIndividualControlParameter(const std::string& line, Data &d
         else if (parameterName.find("RiskAnalysis") != std::string::npos) {
             std::getline(ss, dataStr);
             removeCarriageReturn(dataStr);
+            removeTrailingCharacter(dataStr, " ");
             int riskAnalysis = getInteger(dataStr);
             validateRiskAnalysis(riskAnalysis);
             data.control.RiskAnalysis = riskAnalysis;

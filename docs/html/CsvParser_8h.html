@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OrganizationalTool: headers/CsvParser.h File Reference</title>
+<title>OrganizationalTool: include/CsvParser.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,7 +70,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_7f57b1e41c5acd0e859ae5f3a2b075a9.html">headers</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -79,47 +79,56 @@ $(function() {
   <div class="headertitle"><div class="title">CsvParser.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;fstream&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="Reviewer_8h_source.html">Reviewer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Submission_8h_source.html">Submission.h</a>&quot;</code><br />
 <code>#include &lt;set&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &quot;<a class="el" href="Reviewer_8h_source.html">Reviewer.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Submission_8h_source.html">Submission.h</a>&quot;</code><br />
+<code>#include &lt;map&gt;</code><br />
+<code>#include &quot;<a class="el" href="Data_8h_source.html">Data.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for CsvParser.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="CsvParser_8h__incl.png" border="0" usemap="#aheaders_2CsvParser_8h" alt=""/></div>
-<map name="aheaders_2CsvParser_8h" id="aheaders_2CsvParser_8h">
-<area shape="rect" title=" " alt="" coords="149,5,303,31"/>
-<area shape="rect" title=" " alt="" coords="5,79,79,104"/>
-<area shape="poly" title=" " alt="" coords="197,33,86,76,84,71,195,28"/>
-<area shape="rect" title=" " alt="" coords="103,79,146,104"/>
-<area shape="poly" title=" " alt="" coords="211,33,154,73,151,68,208,28"/>
-<area shape="rect" title=" " alt="" coords="239,152,298,177"/>
-<area shape="poly" title=" " alt="" coords="222,32,210,65,207,84,211,103,224,124,242,141,238,145,220,127,206,105,202,84,204,64,217,30"/>
-<area shape="rect" title=" " alt="" coords="475,79,537,104"/>
-<area shape="poly" title=" " alt="" coords="272,28,462,76,460,81,271,33"/>
-<area shape="rect" href="Reviewer_8h.html" title=" " alt="" coords="221,79,316,104"/>
-<area shape="poly" title=" " alt="" coords="235,30,257,66,253,68,231,32"/>
-<area shape="rect" href="Submission_8h.html" title=" " alt="" coords="341,79,450,104"/>
-<area shape="poly" title=" " alt="" coords="254,28,356,71,354,76,252,33"/>
-<area shape="poly" title=" " alt="" coords="271,104,271,138,266,138,266,104"/>
-<area shape="rect" title=" " alt="" coords="339,152,414,177"/>
-<area shape="poly" title=" " alt="" coords="287,102,349,142,346,147,285,106"/>
-<area shape="poly" title=" " alt="" coords="376,106,303,147,300,143,374,102"/>
-<area shape="poly" title=" " alt="" coords="395,105,386,140,381,138,390,104"/>
+<div class="center"><img src="CsvParser_8h__incl.png" border="0" usemap="#ainclude_2CsvParser_8h" alt=""/></div>
+<map name="ainclude_2CsvParser_8h" id="ainclude_2CsvParser_8h">
+<area shape="rect" title=" " alt="" coords="142,5,290,31"/>
+<area shape="rect" href="Reviewer_8h.html" title=" " alt="" coords="154,152,249,177"/>
+<area shape="poly" title=" " alt="" coords="218,31,207,139,202,138,213,31"/>
+<area shape="rect" title=" " alt="" coords="46,225,104,251"/>
+<area shape="poly" title=" " alt="" coords="174,33,131,49,83,74,41,108,24,129,11,153,9,170,16,187,29,202,45,216,42,220,25,206,12,190,4,171,6,151,19,126,37,105,81,70,129,45,173,28"/>
+<area shape="rect" href="Submission_8h.html" title=" " alt="" coords="20,152,130,177"/>
+<area shape="poly" title=" " alt="" coords="177,33,138,52,119,65,103,80,87,109,80,139,75,137,82,107,98,77,115,61,135,47,175,28"/>
+<area shape="rect" title=" " alt="" coords="304,79,347,104"/>
+<area shape="poly" title=" " alt="" coords="235,28,298,69,295,73,233,33"/>
+<area shape="rect" title=" " alt="" coords="273,152,336,177"/>
+<area shape="poly" title=" " alt="" coords="226,30,293,139,288,142,221,33"/>
+<area shape="rect" title=" " alt="" coords="371,79,422,104"/>
+<area shape="poly" title=" " alt="" coords="246,28,360,73,358,78,244,33"/>
+<area shape="rect" href="Data_8h.html" title=" " alt="" coords="113,79,178,104"/>
+<area shape="poly" title=" " alt="" coords="207,33,169,71,165,67,203,29"/>
+<area shape="poly" title=" " alt="" coords="183,180,109,221,107,216,180,175"/>
+<area shape="rect" title=" " alt="" coords="164,225,239,251"/>
+<area shape="poly" title=" " alt="" coords="204,178,204,212,199,212,199,178"/>
+<area shape="poly" title=" " alt="" coords="78,178,78,212,72,212,72,178"/>
+<area shape="poly" title=" " alt="" coords="157,103,186,140,182,143,153,106"/>
+<area shape="poly" title=" " alt="" coords="136,106,98,144,94,140,132,102"/>
+<area shape="poly" title=" " alt="" coords="172,102,267,144,265,149,170,106"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="CsvParser_8h__dep__incl.png" border="0" usemap="#aheaders_2CsvParser_8hdep" alt=""/></div>
-<map name="aheaders_2CsvParser_8hdep" id="aheaders_2CsvParser_8hdep">
-<area shape="rect" title=" " alt="" coords="84,5,237,31"/>
-<area shape="rect" href="CsvParser_8cpp.html" title=" " alt="" coords="5,79,140,104"/>
-<area shape="poly" title=" " alt="" coords="138,41,89,81,85,76,134,37"/>
-<area shape="rect" href="CsvparserTest_8cpp.html" title=" " alt="" coords="164,79,333,104"/>
-<area shape="poly" title=" " alt="" coords="187,37,236,76,233,81,184,41"/>
+<div class="center"><img src="CsvParser_8h__dep__incl.png" border="0" usemap="#ainclude_2CsvParser_8hdep" alt=""/></div>
+<map name="ainclude_2CsvParser_8hdep" id="ainclude_2CsvParser_8hdep">
+<area shape="rect" title=" " alt="" coords="187,5,335,31"/>
+<area shape="rect" href="CLI_8cpp.html" title=" " alt="" coords="5,79,97,104"/>
+<area shape="poly" title=" " alt="" coords="215,38,86,81,84,76,213,33"/>
+<area shape="rect" href="CsvParser_8cpp.html" title=" " alt="" coords="121,79,256,104"/>
+<area shape="poly" title=" " alt="" coords="241,43,202,80,198,77,237,39"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="280,79,385,104"/>
+<area shape="poly" title=" " alt="" coords="284,39,323,77,319,80,281,43"/>
+<area shape="rect" href="CsvparserTest_8cpp.html" title=" " alt="" coords="409,79,579,104"/>
+<area shape="poly" title=" " alt="" coords="312,32,457,76,455,81,310,37"/>
 </map>
 </div>
 </div>

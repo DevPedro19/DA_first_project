@@ -47,17 +47,42 @@ private:
     std::set<int> reviewerIds;
     std::map<std::string, std::vector<std::string>> fileSections;
 
+
     /**
-     * @brief Reads the entire file and splits it into sections.
+     * @brief This function loads the .csv file and splits it into different sections (submissions, reviewers, parameters, control)
+     * based on each section header, storing the lines associated with each section in a map of line vectors
+     * with the section header as the key.
      */
     void loadAndSplitFile();
 
+    /** @brief This function is responsible for parsing the lines associated with the submissions section of the .csv file
+     * and populating a vector of Submission objects with the data from the lines.
+     * @param lines Vector of strings containing the lines associated with the submissions section of the .csv file.
+     * @param submissions Vector of Submission objects that will be populated with the data from the lines.
+     */
     void parseSubmissions(const std::vector<std::string>& lines, std::vector<Submission>& submissions);
 
+    /** @brief This function is responsible for parsing the lines associated with the reviewers section of the .csv file
+     * and populating a vector of Reviewer objects with the data from the lines.
+     * @param lines Vector of strings containing the lines associated with the reviewers section of the .csv file.
+     * @param reviewers Vector of Reviewer objects that will be populated with the data from the lines.
+     */
     void parseReviewers(const std::vector<std::string>& lines, std::vector<Reviewer>& reviewers);
 
+
+    /** @brief This function is responsible for parsing the lines associated with the parameters section of the .csv file
+     * and populating the parameters field of the Data object with the data from the lines.
+     * @param lines Vector of strings containing the lines associated with the parameters section of the .csv file.
+     * @param data Data struct that will have its parameters field populated with the data from these lines.
+     */
     static void parseParameters(const std::vector<std::string>& lines, Data& data);
 
+
+    /** @brief This function is responsible for parsing the lines associated with the control section of the .csv file
+    * and populating the control field of the Data object with the data from the lines.
+    * @param lines Vector of strings containing the lines associated with the control section of the .csv file.
+    * @param data Data object that will have its control field populated with the data from these lines.
+    */
     static void parseControl(const std::vector<std::string>& lines, Data& data);
 
     /**
@@ -123,13 +148,43 @@ private:
      */
     static void isUniqueId(int id, const std::string& fieldName, std::set<int>& existingIds);
 
+    /**
+     * @brief Function that individually parses a line from the parameters section of the CSV file
+     * and updates the parameters field of the Data object accordingly.
+     * @param line Line from the parameters section of the CSV file to be parsed.
+     * @param data Data object whose parameters field will be updated with the data from the line.
+     */
     static void parseIndividualParameter(const std::string& line, Data& data);
 
+
+    /**
+     * @brief Function that individually parses a line from the control section of the CSV file
+     * and updates the control field of the Data object accordingly.
+     * @param line Line from the control section of the CSV file to be parsed.
+     * @param data Data object whose control field will be updated with the data from the line.
+     */
     static void parseIndividualControlParameter(const std::string& line, Data& data);
 
+    /**
+     * @brief Validates the value of the GenerateAssignments parameter, ensuring it is either 0, 1 or 2.
+     * Throws a domain_error if the value is not valid.
+     * @param generateAssignments Value of the GenerateAssignments control parameter to be validated.
+     */
     static void validateGenerateAssignments(int generateAssignments);
 
+    /**
+     * @brief Validates the value of the RiskAnalysis parameter, ensuring it is either 0 or 1.
+     * Throws a domain_error if the value is not valid.
+     * @param riskAnalysis Value of the RiskAnalysis control parameter to be validated.
+     */
     static void validateRiskAnalysis(int riskAnalysis);
+
+
+    /** @brief Helper function to remove carriage return characters from a string,
+     * which may be present in the data read from the CSV file and can interfere with parsing (for example if the code is
+     * executed on Windows)
+     * @param str String from which to remove carriage return characters.
+     */
 
     static void removeCarriageReturn(std::string& str);
 

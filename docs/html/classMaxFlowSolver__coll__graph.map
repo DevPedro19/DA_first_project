@@ -1,0 +1,18 @@
+<map id="MaxFlowSolver" name="MaxFlowSolver">
+<area shape="rect" id="Node000001" title=" " alt="" coords="981,45,1104,70"/>
+<area shape="rect" id="Node000002" href="$classVertex.html" title=" " alt="" coords="169,153,320,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="270,142,340,95,385,73,433,57,508,44,586,36,739,31,877,37,981,47,981,52,876,43,739,37,586,41,509,50,434,63,387,78,343,100,273,146"/>
+<area shape="rect" id="Node000005" href="$classEdge.html" title=" " alt="" coords="437,214,578,239"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="264,187,298,225,320,243,345,256,381,263,418,259,453,249,481,237,483,242,454,254,419,265,381,268,343,261,317,247,295,229,260,191"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="433,72,581,112"/>
+<area shape="poly" id="edge9_Node000007_Node000002" title=" " alt="" coords="304,146,434,110,436,115,305,151"/>
+<area shape="rect" id="Node000003" href="$structnodeInfo.html" title=" " alt="" coords="5,153,84,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="98,163,169,163,169,168,98,168"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="697,169,847,209"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="684,187,673,187,320,171,320,166,673,181,684,182"/>
+<area shape="poly" id="edge6_Node000002_Node000005" title=" " alt="" coords="422,218,343,201,278,181,280,176,345,196,424,212"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="591,212,697,197,698,202,592,218"/>
+<area shape="rect" id="Node000006" href="$classGraph.html" title=" " alt="" coords="698,75,846,101"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="859,76,957,65,981,62,982,68,958,71,860,82"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="595,88,698,86,698,92,595,93"/>
+</map>
