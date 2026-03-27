@@ -4,6 +4,7 @@
 #ifndef DA_TP_CLASSES_GRAPH
 #define DA_TP_CLASSES_GRAPH
 
+#include <iostream>
 #include <vector>
 #include <queue>
 #include "Data.h"
@@ -707,6 +708,14 @@ Graph<T>::Graph(Data &data) {
     // Create edges to sink with capacity equal to the MaxReviewsPerReviewer
     for (const Reviewer& r : reviewers) {
         this->addEdge({REVIEWER, r.getId()}, sink, p.MaxReviewsPerReviewer);
+    }
+
+    for (auto v: vertexSet) {
+        for (auto e : v->getAdj()) {
+            std::cout << enumToString(v->getInfo().type) << " " << v->getInfo().id << " -- "
+                      << e->getCapacity() << " --> " << enumToString(e->getDest()->getInfo().type)
+                      << " " << e->getDest()->getInfo().id << std::endl;
+        }
     }
 }
 

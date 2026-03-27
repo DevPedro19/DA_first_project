@@ -7,14 +7,29 @@
 
 #include <vector>
 
+/**
+ * @brief Represents a match between a submission and a reviewer for a specific domain.
+ */
 struct Match {
-    int submissionId, reviewerId, domain;
+    int submissionId;
+    int reviewerId;
+    int domain;
 };
 
+/**
+ * @brief Represents a miss where a certain submission was not reviewed enough by the required number of reviewers
+ * and counts how many reviews are still missing for that submission.
+ */
 struct Miss {
-    int submissionId, domain, missingReviews;
+    int submissionId;
+    int domain;
+    int missingReviews;
 };
 
+/**
+ * @brief Stores the outputs of the MaxFlowSolver: matches, misses and riskyReviewers
+ * in case of a risk analysis
+ */
 struct Result {
     std::vector<Match> matches;
     std::vector<Miss> misses;

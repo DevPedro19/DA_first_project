@@ -7,20 +7,89 @@
 #include <string>
 #include <sstream>
 
+/**
+ * @brief Represents a reviewer who can assess submissions.
+ */
 class Reviewer {
 public:
+    /**
+     * @brief Default constructs an empty reviewer.
+     */
     Reviewer();
+
+    /**
+     * @brief Constructs a reviewer with the provided metadata.
+     * @param id Unique identifier for the reviewer.
+     * @param name Reviewer name.
+     * @param email Contact email for the reviewer.
+     * @param primaryField Primary field of expertise.
+     */
     Reviewer(int id, const std::string& name, const std::string& email, int primaryField);
+
+    /**
+     * @brief Returns the reviewer identifier.
+     * @return Reviewer id.
+     */
     int getId() const;
+
+    /**
+     * @brief Returns the reviewer name.
+     * @return Name string.
+     */
     std::string getName() const;
+
+    /**
+     * @brief Returns the reviewer contact email.
+     * @return Email string.
+     */
     std::string getEmail() const;
+
+    /**
+     * @brief Returns the primary field identifier for the reviewer.
+     * @return Primary field as an integer.
+     */
     int getPrimaryField() const;
+
+    /**
+     * @brief Updates the reviewer identifier.
+     * @param newId New id value.
+     */
     void setId(int newId);
+
+    /**
+     * @brief Updates the reviewer name.
+     * @param newName New name string.
+     */
     void setName(const std::string& newName);
+
+    /**
+     * @brief Updates the reviewer contact email.
+     * @param newEmail New email string.
+     */
     void setEmail(const std::string& newEmail);
+
+    /**
+     * @brief Updates the primary field.
+     * @param newPrimaryField New primary field id.
+     */
     void setPrimaryField(int newPrimaryField);
+
+    /**
+     * @brief Returns the secondary field identifier for the reviewer.
+     * @return Secondary field as an integer.
+     */
     int getSecondaryField() const;
+
+    /**
+     * @brief Updates the secondary field identifier.
+     * @param newSecondaryField New secondary field id.
+     */
     void setSecondaryField(int newSecondaryField);
+
+    /**
+     * @brief Formats the reviewer data as a string.
+     * @return Human-readable reviewer summary.
+     */
     std::string toString() const;
 private:
     int id;
