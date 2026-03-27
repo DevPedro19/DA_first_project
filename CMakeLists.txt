@@ -51,7 +51,8 @@ add_executable(main src/main.cpp)
 set_target_properties(main PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 # Use a descriptive target name to avoid PowerShell/CMake conflicts
-add_executable(OrgToolTests test/CsvparserTest.cpp)
+add_executable(OrgToolTests test/CsvparserTest.cpp
+        test/runTests.cpp)
 
 # Output OrgToolTests.exe to the project root
 set_target_properties(OrgToolTests PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
