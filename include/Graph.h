@@ -29,6 +29,8 @@ inline std::string enumToString(const type t) {
     return "";
 }
 
+constexpr int NO_FIELD = 0;
+
 /**
  * @brief This struct is responsible for representing the information of a node in the graph, which consists of its type and id.
  */
@@ -629,49 +631,73 @@ Graph<T>::Graph(Data &data) {
         this->addEdge(source, {SUBMISSION, s.getId()}, p.MinReviewsPerSubmission, s.getPrimaryField());
     }
 
+    // Considerando submision para reviewer
+    bool primaryPrimary = (data.parameters.PrimarySubmissionDomain && data.parameters.PrimaryReviewerExpertise);
+    bool primarySecondary = (data.parameters.PrimarySubmissionDomain && data.parameters.SecondaryReviewerExpertise);
+    bool secondaryPrimary = (data.parameters.SecondarySubmissionDomain && data.parameters.PrimaryReviewerExpertise);
+    bool secondarySecondary = (data.parameters.SecondarySubmissionDomain && data.parameters.SecondaryReviewerExpertise);
+
+
     // Create edges between submissions and reviewers
     for (const Submission &s : submissions) {
         for (const Reviewer &r : reviewers) {
             nodeInfo submission = {SUBMISSION, s.getId()};
             nodeInfo reviewer = {REVIEWER, r.getId()};
 
+            // helper lambda function that reduces code repetition
+            auto add = [&](int field) {
+                this->addEdge(submission, reviewer, 1, field);
+            };
+
             switch (c.GenerateAssignments) {
                 case 0:
                 case 1:
                     // Create only primary edges
-                    if (s.getPrimaryField() == r.getPrimaryField()) {
-                        this->addEdge(submission, reviewer, 1, r.getPrimaryField());
+                    if (primaryPrimary &&
+                        s.getPrimaryField() == r.getPrimaryField()) {
+                        add(r.getPrimaryField());
                     }
                     break;
 
                 case 2:
                     // primary + secondary submissions, primary reviewers only
-                    if (s.getPrimaryField() == r.getPrimaryField())
-                        this->addEdge(submission, reviewer, 1, r.getSecondaryField());
+                    if (primaryPrimary &&
+                        s.getPrimaryField() == r.getPrimaryField())
+                       add(r.getPrimaryField());
 
                     // secondary only if both fields exist
-                    if (s.getSecondaryField() != 0 && r.getPrimaryField() == s.getSecondaryField())
-                        this->addEdge(submission, reviewer, 1, r.getPrimaryField());
+                    if (secondaryPrimary &&
+                        s.getSecondaryField() != NO_FIELD &&
+                        s.getSecondaryField() == r.getPrimaryField())
+                        add(r.getPrimaryField());
                     break;
 
                 case 3:
                     // general case: all primary and secondary
 
                     // primary only if both fields exist
-                    if (s.getPrimaryField() == r.getPrimaryField())
-                        this->addEdge(submission, reviewer, 1, r.getPrimaryField());
+                    if (primaryPrimary &&
+                        s.getPrimaryField() == r.getPrimaryField())
+                        add(r.getPrimaryField());
 
                     // primary with secondary only if both fields exist
-                    if (r.getSecondaryField() != 0 && s.getPrimaryField() == r.getSecondaryField())
-                        this->addEdge(submission, reviewer, 1, r.getSecondaryField());
+                    if (primarySecondary &&
+                        r.getSecondaryField() != NO_FIELD &&
+                        s.getPrimaryField() == r.getSecondaryField())
+                        add(r.getSecondaryField());
 
                     // secondary with primary only if both fields exist
-                    if (s.getSecondaryField() != 0 && s.getSecondaryField() == s.getPrimaryField())
-                        this->addEdge(submission, reviewer, 1, r.getPrimaryField());
+                    if (secondaryPrimary &&
+                        s.getSecondaryField() != NO_FIELD &&
+                        s.getSecondaryField() == r.getPrimaryField())
+                        add(r.getPrimaryField());
 
                     // secondary with secondary only if both fields exist
-                    if (s.getSecondaryField() != 0 && r.getSecondaryField() != 0 && s.getSecondaryField() == r.getSecondaryField())
-                        this->addEdge(submission, reviewer, 1, r.getSecondaryField());
+                    if (secondarySecondary &&
+                        s.getSecondaryField() != NO_FIELD &&
+                        r.getSecondaryField() != NO_FIELD &&
+                        s.getSecondaryField() == r.getSecondaryField())
+                        add(r.getSecondaryField());
                     break;
                 default: ;
             }

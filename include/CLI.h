@@ -50,7 +50,7 @@ public:
      * @param riskAnalysis Either 0 (no risk analysis), 1 (risk analysis for 1 missing reviewer) or k > 1 (risk analysis for k missing reviewers - not implemented).
      * @param outputFileName Name of the output file to be written.
      */
-    void writeOutput(const Result& result, int riskAnalysis, std::string& outputFileName);
+    void writeOutput(const Result& result, int riskAnalysis, const std::string& outputFileName);
 
     /**
      * @brief Processes the command line arguments and determines if the execution is in batch or interactive modes and behaves accordingly to check the validity of the input file's extension and set the input and output file paths.

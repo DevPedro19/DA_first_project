@@ -85,12 +85,12 @@ void CLI::readInput(const std::string &inputFileName, Data &data) {
     csvParser.parseDocument(data);
 }
 
-void CLI::writeOutput(const Result& result, int riskAnalysis,std::string& outputFileName) {
+void CLI::writeOutput(const Result& result, int riskAnalysis, const std::string& outputFileName) {
     if (!isValidOutputFileName_) { // As we are not in batch mode the output is only present inside .csv or use the default filepath
         setOutputFileName(outputFileName);
         setIsValidOutputFileName(true);
     }
-    OutputWriter output_writer = OutputWriter(outputFileName_);
+    const OutputWriter& output_writer = OutputWriter(outputFileName_);
     output_writer.writeOutput(result, riskAnalysis);
 }
 

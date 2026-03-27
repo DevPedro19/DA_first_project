@@ -88,8 +88,9 @@ private:
     /**
      * @brief Helper function to remove leading and trailing spaces from a string.
      * @param str String from which to remove leading and trailing spaces.
+     * @param s Sequence to remove at the beginning or at the end of the string str.
      */
-    static void removeTrailingCharacter(std::string& str, const std::string& s);
+    static void removeTrailingSequence(std::string& str, const std::string& s);
 
     /**
      * @brief Ensures that the title is correctly parsed, even if it contains commas, preventing it from interfering with the parsing of an individual submission.
@@ -99,7 +100,7 @@ private:
     static void processTitle(std::istringstream& iss, std::string& data);
 
     /**
-     * @brief This function is responsible for parsing a single line of the CSV file
+     * @brief This function is responsible for parsing a single submission line of the CSV file
      * and populating a Submission object
      * @param line The line from the CSV file that contains the data for a single submission.
      * @param s The submission object itself that will be populated with the data from the line.
@@ -108,12 +109,21 @@ private:
 
 
     /**
-     * @brief This function is responsible for parsing a single line of the CSV file
+     * @brief This function is responsible for parsing a single reviewer line of the CSV file
      * and populating a Reviewer object
      * @param line The line from the CSV file that contains the data for a single reviewer.
      * @param r The reviewer object itself that will be populated with the data from the line.
      */
     void parseIndividualReviewer(const std::string& line, Reviewer& r);
+
+
+    /**
+     * @brief This function is responsible for parsing a single parameter line of the CSV file
+     * and populating the parameters field of the data object
+     * @param line The line from the CSV file that contains the data for a single parameter.
+     * @param data The data object that will have its parameters field populated with the parameter from the line.
+     */
+    static void parseIndividualParameter(const std::string& line, Data& data);
 
 
     /**
@@ -136,8 +146,9 @@ private:
      * throws a domain_error if the field is not valid.
      * @param fieldValue Value of the field to be validated.
      * @param fieldName Name of the field where the violation occurs
+     * @param min The minimum valid value to fieldValue
      */
-    static void isValidIntField(int fieldValue, const std::string& fieldName);
+    static void isValidIntField(int fieldValue, const std::string& fieldName, int min);
 
     /**
      * @brief Checks if the given ID is unique among the existing IDs
@@ -148,21 +159,6 @@ private:
      */
     static void isUniqueId(int id, const std::string& fieldName, std::set<int>& existingIds);
 
-    /**
-     * @brief Function that individually parses a line from the parameters section of the CSV file
-     * and updates the parameters field of the Data object accordingly.
-     * @param line Line from the parameters section of the CSV file to be parsed.
-     * @param data Data object whose parameters field will be updated with the data from the line.
-     */
-    static void parseIndividualParameter(const std::string& line, Data& data);
-
-
-    /**
-     * @brief Function that individually parses a line from the control section of the CSV file
-     * and updates the control field of the Data object accordingly.
-     * @param line Line from the control section of the CSV file to be parsed.
-     * @param data Data object whose control field will be updated with the data from the line.
-     */
     static void parseIndividualControlParameter(const std::string& line, Data& data);
 
     /**
@@ -185,7 +181,6 @@ private:
      * executed on Windows)
      * @param str String from which to remove carriage return characters.
      */
-
     static void removeCarriageReturn(std::string& str);
 
 };
