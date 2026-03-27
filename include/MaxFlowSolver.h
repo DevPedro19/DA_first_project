@@ -12,12 +12,14 @@ class MaxFlowSolver {
 public:
     explicit MaxFlowSolver(Graph<nodeInfo>* g);
     void execute();
-    void checkResults(Result& result);
+    void checkResults(Result& result, int riskAnalysis, int r, int maxRpR);
 private:
     bool findAugmentingPath();
     double findMinResidualAlongPath();
     void augmentFlowAlongPath(double f);
     void edmondsKarp();
+    double getFlow();
+    void resetAllFlow();
 
     static void testAndVisit(std::queue<Vertex<nodeInfo>*> &q, Edge<nodeInfo> *e, Vertex<nodeInfo> *w, double residual);
 
