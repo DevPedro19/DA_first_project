@@ -631,11 +631,6 @@ Graph<T>::Graph(Data &data) {
         this->addEdge(source, {SUBMISSION, s.getId()}, p.MinReviewsPerSubmission, s.getPrimaryField());
     }
 
-    if(data.parameters.PrimarySubmissionDomain == 0 && data.parameters.PrimaryReviewerExpertise == 0){
-        // é necessário os 2 serem um
-        return;
-    }
-
     // Considerando submision para reviewer
     bool primaryPrimary = (data.parameters.PrimarySubmissionDomain && data.parameters.PrimaryReviewerExpertise);
     bool primarySecondary = (data.parameters.PrimarySubmissionDomain && data.parameters.SecondaryReviewerExpertise);
