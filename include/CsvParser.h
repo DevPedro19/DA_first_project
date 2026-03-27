@@ -181,7 +181,6 @@ private:
      * executed on Windows)
      * @param str String from which to remove carriage return characters.
      */
-
     static void removeCarriageReturn(std::string& str);
 
 };

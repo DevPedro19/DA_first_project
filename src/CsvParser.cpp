@@ -30,7 +30,7 @@ void CSVParser::loadAndSplitFile() {
     std::string currentSection; // String that identifies the section
     while (std::getline(file, line)) {
         removeCarriageReturn(line); // Remove carriage return if on Windows
-        removeTrailingCharacter(line, " ");
+        removeTrailingSequence(line, " ");
         if (line.empty() || line == "#") continue; // Ignore weird # line with no fields
         // Create new section inside the map (maps each section with a vector with associated lines) for each new section in the file
         if (line.find("#Submissions") != std::string::npos) {
@@ -157,7 +157,7 @@ void CSVParser::parseIndividualSubmission(const std::string& line, Submission& s
                 std::getline(iss, data);
                 // Remove carriage return char (if present - for example if the code is run on Windows)
                 removeCarriageReturn(data);
-                removeTrailingCharacter(data, " ");
+                removeTrailingSequence(data, " ");
                 if (!data.empty()) {
                     secondaryField = getInteger(data);
                     isValidIntField(secondaryField, "Secondary field ", 0);
@@ -192,7 +192,7 @@ void CSVParser::parseIndividualReviewer(const std::string& line, Reviewer& r) {
                 std::getline(iss, data);
                 // Remove carriage return char (if present - for example if the code is run on Windows)
                 removeCarriageReturn(data);
-                removeTrailingCharacter(data, " ");
+                removeTrailingSequence(data, " ");
                 if (!data.empty()) {
                     secondaryField = getInteger(data);
                     isValidIntField(secondaryField, "Secondary field ", 0);
