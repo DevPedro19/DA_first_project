@@ -60,7 +60,6 @@ set_target_properties(OrgToolTests PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_S
 # =========================================================================
 # 4. TARGET PROPERTIES & LINKING
 # =========================================================================
-add_definitions(-D_ITERATOR_DEBUG_LEVEL=0)
 
 # Link both libraries and headers to the new OrgToolTests target
 target_link_libraries(main PRIVATE core)

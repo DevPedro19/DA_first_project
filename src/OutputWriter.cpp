@@ -7,8 +7,14 @@
 
 #include "OutputWriter.h"
 
+#include <filesystem>
+
 OutputWriter::OutputWriter(const std::string& outputFileName) :
-outputFileName_("output/" + outputFileName) {}
+outputFileName_("output/" + outputFileName) {
+    std::string outputDirectoryName = "output";
+    // Create directory
+    std::filesystem::create_directory(outputDirectoryName);
+}
 
 void OutputWriter::writeMatches(std::ofstream& ofs, std::vector<Match> matches) {
 
