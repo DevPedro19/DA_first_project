@@ -112,7 +112,21 @@ void MaxFlowSolver::execute() {
     edmondsKarp();
 }
 
-void MaxFlowSolver::checkResults(Result &result) {
+double MaxFlowSolver::getFlow() {
+    double flow = 0;
+    for (const auto e : source->getAdj()) {
+        flow += e->getFlow();
+    }
+    return flow;
+}
+
+void MaxFlowSolver::resetAllFlow() {
+    for (auto v : flowNetwork->getVertexSet())
+        for (auto e : v->getAdj())
+            e->setFlow(0);
+}
+
+void MaxFlowSolver::checkResults(Result &result, int riskAnalysis, int r, int maxRpR) {
     // Check matching submissions and reviewers
     for (auto v : flowNetwork->getVertexSet()) {
         if (v->getInfo().type == SUBMISSION) {
@@ -129,5 +143,32 @@ void MaxFlowSolver::checkResults(Result &result) {
         if (missingReviews > 0) {
             result.misses.push_back({e->getDest()->getInfo().id, e->getDomain(), missingReviews});
         }
+    }
+    if (riskAnalysis == 0) return;
+
+    double flow = getFlow();
+
+    //Only values 0 or 1 will be exercised in this project.
+
+    for (int i = 1; i <= r; i++) {
+        // Resets all flows to 0
+        resetAllFlow();
+
+        // Searchs the reviewer to be removed
+        auto v = flowNetwork->findVertex({REVIEWER, i});
+        // Updates the flow from that reviewer to the sink to 0, as if it was eliminated
+        v->getAdj()[0]->setCapacity(0);
+
+        // Runs the maxFlow algorithm in the new updated graph
+        execute();
+
+        // Compares if it changed the maxFlow
+        if (flow != getFlow()) {
+            // If it changed the max flow, then it's a critical edge
+            result.riskyReviewers.push_back(i);
+        }
+
+        // reset the edge to the normal capacity
+        v->getAdj()[0]->setCapacity(maxRpR);
     }
 }
