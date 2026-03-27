@@ -24,13 +24,7 @@ public:
      * @brief Executes the Edmonds-Karp algorithm to compute maximum flow.
      */
     void execute();
-
-    /**
-     * @brief Extracts algorithm results into matches, misses, and risky reviewers.
-     * @param result Result object to populate with matches and misses.
-     */
-    void checkResults(Result& result);
-
+    void checkResults(Result& result, int riskAnalysis, int r, int maxRpR);
 private:
     /**
      * @brief Finds an augmenting path from source to sink using breadth-first search (BFS).
@@ -56,6 +50,8 @@ private:
      * until no more augmenting paths exist, at which point the maximum flow of the network is achieved.
      */
     void edmondsKarp();
+    double getFlow();
+    void resetAllFlow();
 
     /**
      * @brief Marks a vertex as visited and enqueues it if unvisited and residual capacity exists.

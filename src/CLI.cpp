@@ -108,8 +108,9 @@ void CLI::execute(const std::vector<std::string>& args) {
 
         MaxFlowSolver solver(&flowNetwork);
         solver.execute();
+
         Result result;
-        solver.checkResults(result);
+        solver.checkResults(result, data.control.RiskAnalysis, data.reviewers.size(), data.parameters.MaxReviewsPerReviewer);
         if (data.control.GenerateAssignments) {
             writeOutput(result, data.control.RiskAnalysis, data.control.OutputFileName);
         }
