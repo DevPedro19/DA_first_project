@@ -102,8 +102,6 @@ void CLI::execute(const std::vector<std::string>& args) {
     Data data;
     readInput(this->inputFileName_, data);
 
-    std::cout << data.parameters.MaxReviewsPerReviewer << ' ' << data.parameters.MinReviewsPerSubmission << ' ' << data.parameters.PrimaryReviewerExpertise << ' ' << data.parameters.SecondaryReviewerExpertise << ' ' << data.parameters.PrimarySubmissionDomain << ' ' << data.parameters.SecondarySubmissionDomain << std::endl;
-
     InfoMenu infoMenu(data);
     if (infoMenu.display()) {
         Graph<nodeInfo> flowNetwork(data);
