@@ -10,7 +10,7 @@
 CSVParser::CSVParser(std::string filename) : filename(std::move(filename)) {}
 
 
-void CSVParser::removeTrailingCharacter(std::string &str, const std::string& s) {
+void CSVParser::removeTrailingSequence(std::string &str, const std::string& s) {
     const size_t start = str.find_first_not_of(s);
     const size_t end = str.find_last_not_of(s);
     if (start == std::string::npos || end == std::string::npos) {
@@ -131,7 +131,7 @@ void CSVParser::processTitle(std::istringstream& iss, std::string& data) {
         std::string temp;
         std::getline(iss, temp, ','); // move the input string stream forward to the next comma after the closing quotes
     }
-    removeTrailingCharacter(data, " "); // applies to titles with or without commas
+    removeTrailingSequence(data, " "); // applies to titles with or without commas
 }
 
 void CSVParser::parseIndividualSubmission(const std::string& line, Submission& s) {
@@ -142,23 +142,23 @@ void CSVParser::parseIndividualSubmission(const std::string& line, Submission& s
         switch (counter) {
             case 0:
                 id = getInteger(data);
-                isValidIntField(id, "Submission ID ");
+                isValidIntField(id, "Submission ID ", 1);
                 isUniqueId(id, "Submission ID ", submissionIds);
                 s.setId(id);
                 break;
             case 1: processTitle(iss, data); s.setTitle(data); break;
-            case 2: removeTrailingCharacter(data, " "); s.setAuthor(data); break;
-            case 3: removeTrailingCharacter(data, " "); s.setEmail(data); break;
+            case 2: removeTrailingSequence(data, " "); s.setAuthor(data); break;
+            case 3: removeTrailingSequence(data, " "); s.setEmail(data); break;
             case 4:
                 primaryField = getInteger(data);
-                isValidIntField(primaryField, "Primary field ");
+                isValidIntField(primaryField, "Primary field ", 0);
                 s.setPrimaryField(primaryField);
                 std::getline(iss, data);
                 // Remove carriage return char (if present - for example if the code is run on Windows)
                 removeCarriageReturn(data);
                 if (!data.empty()) {
                     secondaryField = getInteger(data);
-                    isValidIntField(secondaryField, "Secondary field ");
+                    isValidIntField(secondaryField, "Secondary field ", 0);
                     s.setSecondaryField(secondaryField);
                 }
                 break;
@@ -177,22 +177,22 @@ void CSVParser::parseIndividualReviewer(const std::string& line, Reviewer& r) {
         switch (counter) {
             case 0:
                 id = getInteger(data);
-                isValidIntField(id, "Reviewer ID ");
+                isValidIntField(id, "Reviewer ID ", 0);
                 isUniqueId(id, "Reviewer ID ", reviewerIds);
                 r.setId(id);
                 break;
-            case 1: removeTrailingCharacter(data, " "); r.setName(data); break;
-            case 2: removeTrailingCharacter(data, " "); r.setEmail(data); break;
+            case 1: removeTrailingSequence(data, " "); r.setName(data); break;
+            case 2: removeTrailingSequence(data, " "); r.setEmail(data); break;
             case 3:
                 primaryField = getInteger(data);
-                isValidIntField(primaryField, "Primary field ");
+                isValidIntField(primaryField, "Primary field ", 0);
                 r.setPrimaryField(primaryField);
                 std::getline(iss, data);
                 // Remove carriage return char (if present - for example if the code is run on Windows)
                 removeCarriageReturn(data);
                 if (!data.empty()) {
                     secondaryField = getInteger(data);
-                    isValidIntField(secondaryField, "Secondary field ");
+                    isValidIntField(secondaryField, "Secondary field ", 0);
                     r.setSecondaryField(secondaryField);
                 }
                 break;
@@ -213,15 +213,15 @@ bool CSVParser::isRepeatedId(std::set<int> &ids,const int &newId) {
 
 
 int CSVParser::getInteger(std::string &str) {
-    removeTrailingCharacter(str, " ");
+    removeTrailingSequence(str, " ");
     const int id = std::stoi(str);
     return id;
 }
 
-void CSVParser::isValidIntField(const int fieldValue, const std::string& fieldName) {
+void CSVParser::isValidIntField(const int fieldValue, const std::string& fieldName, const int min) {
     // Check if the field value is a positive integer
-    if (fieldValue <= 0) {
-        const std::string errorMessage = fieldName + "must be a positive integer.";
+    if (fieldValue < min) {
+        const std::string errorMessage = fieldName + " must be greater or equal than " + std::to_string(min);
         throw std::domain_error(errorMessage);
     }
 }
@@ -240,23 +240,50 @@ void CSVParser::isUniqueId(const int id, const std::string &fieldName, std::set<
 void CSVParser::parseIndividualParameter(const std::string& line, Data &data) {
     std::istringstream ss(line);
     std::string parameterName;
-    while (std::getline(ss, parameterName, ',')) {
-        std::string dataStr;
-        // parameter name
-        if (parameterName.find("MinReviewsPerSubmission") != std::string::npos) {
-            std::getline(ss, dataStr);
-            removeCarriageReturn(dataStr);
-            const int minReviewsPerSubmission = getInteger(dataStr);
-            isValidIntField(minReviewsPerSubmission, "Minimum reviews per submission ");
-            data.parameters.MinReviewsPerSubmission = minReviewsPerSubmission;
-        }
-        else if (parameterName.find("MaxReviewsPerReviewer") != std::string::npos) {
-            std::getline(ss, dataStr);
-            removeCarriageReturn(dataStr);
-            const int maxReviewsPerReviewer = getInteger(dataStr);
-            isValidIntField(maxReviewsPerReviewer, "Maximum reviews per reviewer ");
-            data.parameters.MaxReviewsPerReviewer = maxReviewsPerReviewer;
-        }
+    std::getline(ss, parameterName, ','); // put the ss stream after the only comma of the line, so the next getline will read the value of the parameter
+    std::string dataStr;
+    // parameter name
+    if (parameterName.find("MinReviewsPerSubmission") != std::string::npos) {
+        std::getline(ss, dataStr);
+        removeCarriageReturn(dataStr);
+        const int minReviewsPerSubmission = getInteger(dataStr);
+        isValidIntField(minReviewsPerSubmission, "Minimum reviews per submission", 1);
+        data.parameters.MinReviewsPerSubmission = minReviewsPerSubmission;
+    }
+    else if (parameterName.find("MaxReviewsPerReviewer") != std::string::npos) {
+        std::getline(ss, dataStr);
+        removeCarriageReturn(dataStr);
+        const int maxReviewsPerReviewer = getInteger(dataStr);
+        isValidIntField(maxReviewsPerReviewer, "Maximum reviews per reviewer", 1);
+        data.parameters.MaxReviewsPerReviewer = maxReviewsPerReviewer;
+    }
+    else if (parameterName.find("PrimaryReviewerExpertise") != std::string::npos) {
+        std::getline(ss, dataStr);
+        removeCarriageReturn(dataStr);
+        const int primaryReviewerExpertise = getInteger(dataStr);
+        isValidIntField(primaryReviewerExpertise, "Primary Reviewer Expertise", 0);
+        data.parameters.PrimaryReviewerExpertise = primaryReviewerExpertise;
+    }
+    else if (parameterName.find("SecondaryReviewerExpertise") != std::string::npos) {
+        std::getline(ss, dataStr);
+        removeCarriageReturn(dataStr);
+        const int secondaryReviewerExpertise = getInteger(dataStr);
+        isValidIntField(secondaryReviewerExpertise, "Secondary Reviewer Expertise", 0);
+        data.parameters.SecondaryReviewerExpertise = secondaryReviewerExpertise;
+    }
+    else if (parameterName.find("PrimarySubmissionDomain") != std::string::npos) {
+        std::getline(ss, dataStr);
+        removeCarriageReturn(dataStr);
+        const int primarySubmissionDomain = getInteger(dataStr);
+        isValidIntField(primarySubmissionDomain, "Primary Submission Domain", 0);
+        data.parameters.PrimarySubmissionDomain = primarySubmissionDomain;
+    }
+    else if (parameterName.find("SecondarySubmissionDomain") != std::string::npos) {
+        std::getline(ss, dataStr);
+        removeCarriageReturn(dataStr);
+        const int secondarySubmissionDomain = getInteger(dataStr);
+        isValidIntField(secondarySubmissionDomain, "Secondary Submission Domain", 0);
+        data.parameters.SecondarySubmissionDomain = secondarySubmissionDomain;
     }
 }
 
@@ -268,22 +295,22 @@ void CSVParser::parseIndividualControlParameter(const std::string& line, Data &d
         if (parameterName.find("GenerateAssignments") != std::string::npos) {
             std::getline(ss, dataStr);
             removeCarriageReturn(dataStr);
-            int generateAssignments = getInteger(dataStr);
+            const int generateAssignments = getInteger(dataStr);
             validateGenerateAssignments(generateAssignments);
             data.control.GenerateAssignments = generateAssignments;
         }
         else if (parameterName.find("RiskAnalysis") != std::string::npos) {
             std::getline(ss, dataStr);
             removeCarriageReturn(dataStr);
-            int riskAnalysis = getInteger(dataStr);
+            const int riskAnalysis = getInteger(dataStr);
             validateRiskAnalysis(riskAnalysis);
             data.control.RiskAnalysis = riskAnalysis;
         }
         else if (parameterName.find("OutputFileName") != std::string::npos) {
             std::getline(ss, dataStr);
             removeCarriageReturn(dataStr);
-            removeTrailingCharacter(dataStr, " ");
-            removeTrailingCharacter(dataStr, "\"");
+            removeTrailingSequence(dataStr, " ");
+            removeTrailingSequence(dataStr, "\"");
             if (!dataStr.empty()) {
                 data.control.OutputFileName = dataStr;
             }
