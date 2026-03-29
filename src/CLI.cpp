@@ -114,8 +114,7 @@ void CLI::execute(const std::vector<std::string>& args) {
         if (data.control.GenerateAssignments) {
             writeOutput(result, data.control.RiskAnalysis, data.control.OutputFileName);
         }
-
-
+        // Pretty print the output
         for (auto v : flowNetwork.getVertexSet()) {
             for (auto e : v->getAdj()) {
                 std::cout << enumToString(v->getInfo().type) << " " << v->getInfo().id << " -- "
