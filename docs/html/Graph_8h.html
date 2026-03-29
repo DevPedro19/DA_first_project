@@ -78,12 +78,13 @@ $(function() {
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">Graph.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;queue&gt;</code><br />
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="Data_8h_source.html">Data.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Graph_8h_source.html">Graph.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -91,24 +92,22 @@ Include dependency graph for Graph.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="Graph_8h__incl.png" border="0" usemap="#ainclude_2Graph_8h" alt=""/></div>
 <map name="ainclude_2Graph_8h" id="ainclude_2Graph_8h">
-<area shape="rect" title=" " alt="" coords="21,7,145,32"/>
-<area shape="poly" title=" " alt="" coords="124,4,156,5,167,10,172,19,169,27,161,32,137,36,137,30,159,27,165,24,167,20,164,14,155,10,123,9"/>
-<area shape="rect" title=" " alt="" coords="5,153,68,179"/>
-<area shape="poly" title=" " alt="" coords="73,34,56,55,42,81,36,111,36,140,31,140,31,111,37,79,52,52,69,30"/>
-<area shape="rect" title=" " alt="" coords="52,80,115,105"/>
-<area shape="poly" title=" " alt="" coords="86,32,86,67,81,67,81,32"/>
-<area shape="rect" href="Data_8h.html" title=" " alt="" coords="139,80,204,105"/>
-<area shape="poly" title=" " alt="" coords="99,30,148,69,145,73,96,34"/>
-<area shape="poly" title=" " alt="" coords="151,108,72,149,70,144,148,103"/>
-<area shape="rect" href="Reviewer_8h.html" title=" " alt="" coords="239,153,333,179"/>
-<area shape="poly" title=" " alt="" coords="191,103,257,144,254,148,188,108"/>
-<area shape="rect" href="Submission_8h.html" title=" " alt="" coords="105,153,214,179"/>
-<area shape="poly" title=" " alt="" coords="172,106,166,140,161,139,167,105"/>
-<area shape="rect" title=" " alt="" coords="149,227,207,252"/>
-<area shape="poly" title=" " alt="" coords="270,181,209,221,206,217,267,177"/>
-<area shape="rect" title=" " alt="" coords="249,227,323,252"/>
-<area shape="poly" title=" " alt="" coords="289,179,289,213,283,213,283,179"/>
-<area shape="poly" title=" " alt="" coords="165,178,174,213,169,214,160,180"/>
+<area shape="rect" title=" " alt="" coords="61,7,185,32"/>
+<area shape="poly" title=" " alt="" coords="163,4,195,5,207,10,211,19,208,27,200,32,177,36,176,30,198,27,204,24,206,20,203,14,194,10,163,9"/>
+<area shape="rect" title=" " alt="" coords="5,80,85,105"/>
+<area shape="poly" title=" " alt="" coords="112,34,70,73,66,69,108,30"/>
+<area shape="rect" title=" " alt="" coords="83,153,146,179"/>
+<area shape="poly" title=" " alt="" coords="125,33,119,140,113,140,119,32"/>
+<area shape="rect" href="Data_8h.html" title=" " alt="" coords="177,80,242,105"/>
+<area shape="poly" title=" " alt="" coords="138,30,186,69,183,73,135,34"/>
+<area shape="poly" title=" " alt="" coords="196,108,143,147,140,143,193,103"/>
+<area shape="rect" href="Reviewer_8h.html" title=" " alt="" coords="170,153,265,179"/>
+<area shape="poly" title=" " alt="" coords="213,105,217,140,212,140,208,106"/>
+<area shape="rect" href="Submission_8h.html" title=" " alt="" coords="289,153,399,179"/>
+<area shape="poly" title=" " alt="" coords="232,103,311,144,309,149,230,108"/>
+<area shape="rect" title=" " alt="" coords="251,227,309,252"/>
+<area shape="poly" title=" " alt="" coords="230,177,263,214,259,218,226,181"/>
+<area shape="poly" title=" " alt="" coords="335,181,301,218,297,215,331,177"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -116,21 +115,19 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="Graph_8h__dep__incl.png" border="0" usemap="#ainclude_2Graph_8hdep" alt=""/></div>
 <map name="ainclude_2Graph_8hdep" id="ainclude_2Graph_8hdep">
-<area shape="rect" title=" " alt="" coords="196,6,320,31"/>
-<area shape="poly" title=" " alt="" coords="312,3,336,6,344,11,347,19,342,28,331,33,298,34,298,29,329,28,338,24,341,19,339,15,334,11,311,8"/>
-<area shape="rect" href="MSTTestAux_8h.html" title=" " alt="" coords="5,79,169,105"/>
-<area shape="poly" title=" " alt="" coords="219,39,116,82,114,77,217,34"/>
-<area shape="rect" href="MaxFlowSolver_8h.html" title=" " alt="" coords="295,79,479,105"/>
-<area shape="poly" title=" " alt="" coords="292,36,367,77,365,82,290,41"/>
-<area shape="rect" href="CLI_8cpp.html" title=" " alt="" coords="155,153,247,178"/>
-<area shape="poly" title=" " alt="" coords="251,46,208,154,203,152,246,44"/>
-<area shape="rect" href="MaxFlowSolver_8cpp.html" title=" " alt="" coords="271,153,442,178"/>
-<area shape="poly" title=" " alt="" coords="264,45,272,74,286,103,311,130,338,150,335,155,307,134,281,106,267,76,259,46"/>
-<area shape="rect" href="runTests_8cpp.html" title=" " alt="" coords="467,153,599,178"/>
-<area shape="poly" title=" " alt="" coords="334,21,374,27,415,37,456,54,493,77,509,95,520,115,533,151,528,153,515,117,504,98,490,82,454,59,414,43,373,32,334,26"/>
-<area shape="poly" title=" " alt="" coords="346,112,232,155,230,150,344,107"/>
-<area shape="poly" title=" " alt="" coords="379,119,364,154,359,152,374,116"/>
-<area shape="poly" title=" " alt="" coords="424,108,510,150,508,155,422,113"/>
+<area shape="rect" title=" " alt="" coords="199,6,323,31"/>
+<area shape="poly" title=" " alt="" coords="315,3,338,6,346,11,349,19,345,28,333,33,301,34,301,29,332,28,341,24,344,19,342,15,336,11,314,8"/>
+<area shape="rect" href="MaxFlowSolver_8h.html" title=" " alt="" coords="105,79,289,105"/>
+<area shape="poly" title=" " alt="" coords="243,44,209,81,205,78,239,40"/>
+<area shape="rect" href="CLI_8cpp.html" title=" " alt="" coords="5,153,97,178"/>
+<area shape="poly" title=" " alt="" coords="186,36,138,54,115,66,94,81,80,98,69,118,56,153,51,152,64,116,76,95,91,78,112,62,136,49,184,31"/>
+<area shape="rect" href="MaxFlowSolver_8cpp.html" title=" " alt="" coords="122,153,293,178"/>
+<area shape="poly" title=" " alt="" coords="285,41,304,71,307,89,303,106,291,123,275,136,242,155,239,150,272,132,287,119,298,104,302,89,299,73,281,44"/>
+<area shape="rect" href="runTests_8cpp.html" title=" " alt="" coords="317,153,449,178"/>
+<area shape="poly" title=" " alt="" coords="285,39,323,78,378,151,374,154,319,81,282,43"/>
+<area shape="poly" title=" " alt="" coords="162,113,76,155,74,150,160,108"/>
+<area shape="poly" title=" " alt="" coords="203,118,208,152,203,153,198,119"/>
+<area shape="poly" title=" " alt="" coords="240,107,354,150,352,155,238,112"/>
 </map>
 </div>
 </div>
@@ -173,6 +170,11 @@ Functions</h2></td></tr>
 <tr class="memitem:aae388fc1f561d6de0cc76e975d037248" id="r_aae388fc1f561d6de0cc76e975d037248"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Graph_8h.html#aae388fc1f561d6de0cc76e975d037248">operator==</a> (const <a class="el" href="structnodeInfo.html">nodeInfo</a> &amp;n1, const <a class="el" href="structnodeInfo.html">nodeInfo</a> &amp;n2)</td></tr>
 <tr class="memdesc:aae388fc1f561d6de0cc76e975d037248"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality operator for <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a> struct, which is used to compare the content of the vertices in the graph. Two <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a> are considered equal if they have the same type and id.  <br /></td></tr>
 <tr class="separator:aae388fc1f561d6de0cc76e975d037248"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a2d95683c7bfa57fbcc3dfb1fb9a2e35c" id="r_a2d95683c7bfa57fbcc3dfb1fb9a2e35c"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Graph_8h.html#a2d95683c7bfa57fbcc3dfb1fb9a2e35c">NO_FIELD</a> = 0</td></tr>
+<tr class="separator:a2d95683c7bfa57fbcc3dfb1fb9a2e35c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a12c2040f25d8e3a7b9e1c2024c618cb6" name="a12c2040f25d8e3a7b9e1c2024c618cb6"></a>
@@ -276,11 +278,35 @@ Functions</h2></td></tr>
 <p>Equality operator for <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a> struct, which is used to compare the content of the vertices in the graph. Two <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a> are considered equal if they have the same type and id. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">n1</td><td>The first <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a> to be compared. param n2 The second <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a> to be compared. </td></tr>
+    <tr><td class="paramname">n1</td><td>The first <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a> to be compared. </td></tr>
+    <tr><td class="paramname">n2</td><td>The second <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a> to be compared. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether the two <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a> are equal or not. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a2d95683c7bfa57fbcc3dfb1fb9a2e35c" name="a2d95683c7bfa57fbcc3dfb1fb9a2e35c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d95683c7bfa57fbcc3dfb1fb9a2e35c">&#9670;&#160;</a></span>NO_FIELD</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int NO_FIELD = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

@@ -22,7 +22,7 @@ void MaxFlowSolver::testAndVisit(std::queue<Vertex<nodeInfo>*> &q, Edge<nodeInfo
 }
 
 // Function to find an augmenting path using Breadth-First Search
-bool MaxFlowSolver::findAugmentingPath() {
+bool MaxFlowSolver::findAugmentingPath() const {
     // Mark all vertices as not visited
     for (auto v : flowNetwork->getVertexSet()) {
         v->setVisited(false);
@@ -34,7 +34,7 @@ bool MaxFlowSolver::findAugmentingPath() {
     source->setVisited(true);
 
     while (!q.empty()) {
-        Vertex<nodeInfo>* front = q.front(); q.pop();
+        const Vertex<nodeInfo>* front = q.front(); q.pop();
 
         // Forward edges
         for (auto e : front->getAdj())
@@ -49,12 +49,12 @@ bool MaxFlowSolver::findAugmentingPath() {
 
 
 // Function to find the minimum residual capacity along the augmenting path
-double MaxFlowSolver::findMinResidualAlongPath() {
+double MaxFlowSolver::findMinResidualAlongPath() const {
     double f = INF;
-    Vertex<nodeInfo>* curr = target;
+    const Vertex<nodeInfo>* curr = target;
     while (curr != source) {
         // Check if it's a forward or back edge
-        Edge<nodeInfo>* e = curr->getPath();
+        const Edge<nodeInfo>* e = curr->getPath();
 
         // It's a forward edge if the destination of that edge is the same as curr
         if (e->getDest() == curr) {
@@ -75,8 +75,8 @@ double MaxFlowSolver::findMinResidualAlongPath() {
 }
 
 // Function to augment flow along the augmenting path with the given flow value
-void MaxFlowSolver::augmentFlowAlongPath(double f) {
-    Vertex<nodeInfo>* curr = target;
+void MaxFlowSolver::augmentFlowAlongPath(double f) const {
+    const Vertex<nodeInfo>* curr = target;
 
     while (curr != source) {
         Edge<nodeInfo>* e = curr->getPath();
@@ -97,7 +97,7 @@ void MaxFlowSolver::augmentFlowAlongPath(double f) {
 }
 
 // Main function implementing the Edmonds-Karp algorithm
-void MaxFlowSolver::edmondsKarp() {
+void MaxFlowSolver::edmondsKarp() const {
     for (auto v : flowNetwork->getVertexSet())
         for (auto e : v->getAdj())
             e->setFlow(0);
@@ -108,11 +108,11 @@ void MaxFlowSolver::edmondsKarp() {
     }
 }
 
-void MaxFlowSolver::execute() {
+void MaxFlowSolver::execute() const {
     edmondsKarp();
 }
 
-double MaxFlowSolver::getFlow() {
+double MaxFlowSolver::getFlow() const {
     double flow = 0;
     for (const auto e : source->getAdj()) {
         flow += e->getFlow();
@@ -120,13 +120,13 @@ double MaxFlowSolver::getFlow() {
     return flow;
 }
 
-void MaxFlowSolver::resetAllFlow() {
+void MaxFlowSolver::resetAllFlow() const {
     for (auto v : flowNetwork->getVertexSet())
         for (auto e : v->getAdj())
             e->setFlow(0);
 }
 
-void MaxFlowSolver::checkResults(Result &result, int riskAnalysis, int r, int maxRpR) {
+void MaxFlowSolver::checkResults(Result &result, int riskAnalysis, int r, int maxRpR) const {
     // Check matching submissions and reviewers
     for (auto v : flowNetwork->getVertexSet()) {
         if (v->getInfo().type == SUBMISSION) {
@@ -139,7 +139,7 @@ void MaxFlowSolver::checkResults(Result &result, int riskAnalysis, int r, int ma
     }
     // Check if submissions have missing Reviews
     for (auto e : source->getAdj()) {
-        int missingReviews = e->getCapacity() - e->getFlow();
+        auto missingReviews = static_cast<int>(e->getCapacity() - e->getFlow());
         if (missingReviews > 0) {
             result.misses.push_back({e->getDest()->getInfo().id, e->getDomain(), missingReviews});
         }

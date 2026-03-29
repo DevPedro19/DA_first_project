@@ -59,7 +59,7 @@ void OutputWriter::writeRiskAnalysis(std::ofstream& ofs, std::vector<int> riskyR
 
     if (!riskyReviewers.empty()) {
         ofs << riskyReviewers[0];
-        for (unsigned i = 1; i < riskyReviewers.size(); i++) {
+        for (size_t i = 1; i < riskyReviewers.size(); ++i) {
             ofs << ", " << riskyReviewers[i];
         }
         ofs << '\n';

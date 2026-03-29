@@ -119,49 +119,48 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a31789fb32209696ddf90df97737d06e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function loads the .csv file and splits it into different sections (submissions, reviewers, parameters, control) based on each section header, storing the lines associated with each section in a map of line vectors with the section header as the key.  <br /></td></tr>
 <tr class="separator:a31789fb32209696ddf90df97737d06e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9317167678e4697cbd89cbe283b3dcfd" id="r_a9317167678e4697cbd89cbe283b3dcfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a9317167678e4697cbd89cbe283b3dcfd">parseSubmissions</a> (const std::vector&lt; std::string &gt; &amp;lines, std::vector&lt; <a class="el" href="classSubmission.html">Submission</a> &gt; &amp;submissions)</td></tr>
-<tr class="memdesc:a9317167678e4697cbd89cbe283b3dcfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing the lines associated with the submissions section of the .csv file and populating a vector of <a class="el" href="classSubmission.html">Submission</a> objects with the data from the lines.  <br /></td></tr>
+<tr class="memdesc:a9317167678e4697cbd89cbe283b3dcfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing the lines associated with the submissions section of the .csv file and populating a vector of <a class="el" href="classSubmission.html" title="Represents a submission that can be assigned to reviewers.">Submission</a> objects with the data from the lines.  <br /></td></tr>
 <tr class="separator:a9317167678e4697cbd89cbe283b3dcfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d256705a146a0601a1623648443c372" id="r_a9d256705a146a0601a1623648443c372"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a9d256705a146a0601a1623648443c372">parseReviewers</a> (const std::vector&lt; std::string &gt; &amp;lines, std::vector&lt; <a class="el" href="classReviewer.html">Reviewer</a> &gt; &amp;reviewers)</td></tr>
-<tr class="memdesc:a9d256705a146a0601a1623648443c372"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing the lines associated with the reviewers section of the .csv file and populating a vector of <a class="el" href="classReviewer.html">Reviewer</a> objects with the data from the lines.  <br /></td></tr>
+<tr class="memdesc:a9d256705a146a0601a1623648443c372"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing the lines associated with the reviewers section of the .csv file and populating a vector of <a class="el" href="classReviewer.html" title="Represents a reviewer who can assess submissions.">Reviewer</a> objects with the data from the lines.  <br /></td></tr>
 <tr class="separator:a9d256705a146a0601a1623648443c372"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3bd59dd03e1df07cca67aa7321c45cfc" id="r_a3bd59dd03e1df07cca67aa7321c45cfc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a3bd59dd03e1df07cca67aa7321c45cfc">parseIndividualSubmission</a> (const std::string &amp;line, <a class="el" href="classSubmission.html">Submission</a> &amp;s)</td></tr>
-<tr class="memdesc:a3bd59dd03e1df07cca67aa7321c45cfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing a single line of the CSV file and populating a <a class="el" href="classSubmission.html">Submission</a> object.  <br /></td></tr>
+<tr class="memdesc:a3bd59dd03e1df07cca67aa7321c45cfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing a single submission line of the CSV file and populating a <a class="el" href="classSubmission.html" title="Represents a submission that can be assigned to reviewers.">Submission</a> object.  <br /></td></tr>
 <tr class="separator:a3bd59dd03e1df07cca67aa7321c45cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a708d71e14b010365b911adb67724acc2" id="r_a708d71e14b010365b911adb67724acc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a708d71e14b010365b911adb67724acc2">parseIndividualReviewer</a> (const std::string &amp;line, <a class="el" href="classReviewer.html">Reviewer</a> &amp;r)</td></tr>
-<tr class="memdesc:a708d71e14b010365b911adb67724acc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing a single line of the CSV file and populating a <a class="el" href="classReviewer.html">Reviewer</a> object.  <br /></td></tr>
+<tr class="memdesc:a708d71e14b010365b911adb67724acc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing a single reviewer line of the CSV file and populating a <a class="el" href="classReviewer.html" title="Represents a reviewer who can assess submissions.">Reviewer</a> object.  <br /></td></tr>
 <tr class="separator:a708d71e14b010365b911adb67724acc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
 <tr class="memitem:ad806deb3eee50ac885a10c062019edb2" id="r_ad806deb3eee50ac885a10c062019edb2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#ad806deb3eee50ac885a10c062019edb2">parseParameters</a> (const std::vector&lt; std::string &gt; &amp;lines, <a class="el" href="structData.html">Data</a> &amp;data)</td></tr>
-<tr class="memdesc:ad806deb3eee50ac885a10c062019edb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing the lines associated with the parameters section of the .csv file and populating the parameters field of the <a class="el" href="structData.html">Data</a> object with the data from the lines.  <br /></td></tr>
+<tr class="memdesc:ad806deb3eee50ac885a10c062019edb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing the lines associated with the parameters section of the .csv file and populating the parameters field of the <a class="el" href="structData.html" title="Aggregates all data including submissions, reviewers, parameters, and control settings.">Data</a> object with the data from the lines.  <br /></td></tr>
 <tr class="separator:ad806deb3eee50ac885a10c062019edb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04bd1c5890afe64f8e818cc993224352" id="r_a04bd1c5890afe64f8e818cc993224352"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a04bd1c5890afe64f8e818cc993224352">parseControl</a> (const std::vector&lt; std::string &gt; &amp;lines, <a class="el" href="structData.html">Data</a> &amp;data)</td></tr>
-<tr class="memdesc:a04bd1c5890afe64f8e818cc993224352"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing the lines associated with the control section of the .csv file and populating the control field of the <a class="el" href="structData.html">Data</a> object with the data from the lines.  <br /></td></tr>
+<tr class="memdesc:a04bd1c5890afe64f8e818cc993224352"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing the lines associated with the control section of the .csv file and populating the control field of the <a class="el" href="structData.html" title="Aggregates all data including submissions, reviewers, parameters, and control settings.">Data</a> object with the data from the lines.  <br /></td></tr>
 <tr class="separator:a04bd1c5890afe64f8e818cc993224352"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a826e8f01c1484f7e99956122b2027f2f" id="r_a826e8f01c1484f7e99956122b2027f2f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a826e8f01c1484f7e99956122b2027f2f">removeTrailingCharacter</a> (std::string &amp;str, const std::string &amp;s)</td></tr>
-<tr class="memdesc:a826e8f01c1484f7e99956122b2027f2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to remove leading and trailing spaces from a string.  <br /></td></tr>
-<tr class="separator:a826e8f01c1484f7e99956122b2027f2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f2c1f0297f4ea661acdb27b52781aa0" id="r_a4f2c1f0297f4ea661acdb27b52781aa0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a4f2c1f0297f4ea661acdb27b52781aa0">removeTrailingSequence</a> (std::string &amp;str, const std::string &amp;s)</td></tr>
+<tr class="memdesc:a4f2c1f0297f4ea661acdb27b52781aa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to remove leading and trailing spaces from a string.  <br /></td></tr>
+<tr class="separator:a4f2c1f0297f4ea661acdb27b52781aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14f4c81c89d3aa7e5a45dd1a6769afbe" id="r_a14f4c81c89d3aa7e5a45dd1a6769afbe"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a14f4c81c89d3aa7e5a45dd1a6769afbe">processTitle</a> (std::istringstream &amp;iss, std::string &amp;data)</td></tr>
 <tr class="memdesc:a14f4c81c89d3aa7e5a45dd1a6769afbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensures that the title is correctly parsed, even if it contains commas, preventing it from interfering with the parsing of an individual submission.  <br /></td></tr>
 <tr class="separator:a14f4c81c89d3aa7e5a45dd1a6769afbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ddb176c96ae53e981814a6eefd5b5c8" id="r_a3ddb176c96ae53e981814a6eefd5b5c8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a3ddb176c96ae53e981814a6eefd5b5c8">parseIndividualParameter</a> (const std::string &amp;line, <a class="el" href="structData.html">Data</a> &amp;data)</td></tr>
+<tr class="memdesc:a3ddb176c96ae53e981814a6eefd5b5c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing a single parameter line of the CSV file and populating the parameters field of the data object.  <br /></td></tr>
+<tr class="separator:a3ddb176c96ae53e981814a6eefd5b5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab422ce6ce3177e5e090fe8259c22fc38" id="r_ab422ce6ce3177e5e090fe8259c22fc38"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#ab422ce6ce3177e5e090fe8259c22fc38">isRepeatedId</a> (std::set&lt; int &gt; &amp;ids, const int &amp;newId)</td></tr>
 <tr class="memdesc:ab422ce6ce3177e5e090fe8259c22fc38"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if the given ID has already been processed.  <br /></td></tr>
 <tr class="separator:ab422ce6ce3177e5e090fe8259c22fc38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78763bc21506df4310eff014bfab1436" id="r_a78763bc21506df4310eff014bfab1436"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a78763bc21506df4310eff014bfab1436">getInteger</a> (std::string &amp;str)</td></tr>
 <tr class="memdesc:a78763bc21506df4310eff014bfab1436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convertes a string to an integer.  <br /></td></tr>
 <tr class="separator:a78763bc21506df4310eff014bfab1436"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1e5f3e49159adb76e672c1c8fe9c5f5" id="r_ad1e5f3e49159adb76e672c1c8fe9c5f5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#ad1e5f3e49159adb76e672c1c8fe9c5f5">isValidIntField</a> (int fieldValue, const std::string &amp;fieldName)</td></tr>
-<tr class="memdesc:ad1e5f3e49159adb76e672c1c8fe9c5f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given integer field is valid (positive integer) throws a domain_error if the field is not valid.  <br /></td></tr>
-<tr class="separator:ad1e5f3e49159adb76e672c1c8fe9c5f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae56d207a16b49f2756ba717796715c25" id="r_ae56d207a16b49f2756ba717796715c25"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#ae56d207a16b49f2756ba717796715c25">isValidIntField</a> (int fieldValue, const std::string &amp;fieldName, int min)</td></tr>
+<tr class="memdesc:ae56d207a16b49f2756ba717796715c25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given integer field is valid (positive integer) throws a domain_error if the field is not valid.  <br /></td></tr>
+<tr class="separator:ae56d207a16b49f2756ba717796715c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83425697d7043904d97bc34cbde3a80e" id="r_a83425697d7043904d97bc34cbde3a80e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a83425697d7043904d97bc34cbde3a80e">isUniqueId</a> (int id, const std::string &amp;fieldName, std::set&lt; int &gt; &amp;existingIds)</td></tr>
 <tr class="memdesc:a83425697d7043904d97bc34cbde3a80e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given ID is unique among the existing IDs throws an invalid_argument if the ID is not unique.  <br /></td></tr>
 <tr class="separator:a83425697d7043904d97bc34cbde3a80e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ddb176c96ae53e981814a6eefd5b5c8" id="r_a3ddb176c96ae53e981814a6eefd5b5c8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a3ddb176c96ae53e981814a6eefd5b5c8">parseIndividualParameter</a> (const std::string &amp;line, <a class="el" href="structData.html">Data</a> &amp;data)</td></tr>
-<tr class="memdesc:a3ddb176c96ae53e981814a6eefd5b5c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that individually parses a line from the parameters section of the CSV file and updates the parameters field of the <a class="el" href="structData.html">Data</a> object accordingly.  <br /></td></tr>
-<tr class="separator:a3ddb176c96ae53e981814a6eefd5b5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cf21e8eb3bea709216274f6aab6a0ca" id="r_a6cf21e8eb3bea709216274f6aab6a0ca"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a6cf21e8eb3bea709216274f6aab6a0ca">parseIndividualControlParameter</a> (const std::string &amp;line, <a class="el" href="structData.html">Data</a> &amp;data)</td></tr>
-<tr class="memdesc:a6cf21e8eb3bea709216274f6aab6a0ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that individually parses a line from the control section of the CSV file and updates the control field of the <a class="el" href="structData.html">Data</a> object accordingly.  <br /></td></tr>
 <tr class="separator:a6cf21e8eb3bea709216274f6aab6a0ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fabd36485d57bd1164d31eb6e9e0194" id="r_a0fabd36485d57bd1164d31eb6e9e0194"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a0fabd36485d57bd1164d31eb6e9e0194">validateGenerateAssignments</a> (int generateAssignments)</td></tr>
 <tr class="memdesc:a0fabd36485d57bd1164d31eb6e9e0194"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates the value of the GenerateAssignments parameter, ensuring it is either 0, 1 or 2. Throws a domain_error if the value is not valid.  <br /></td></tr>
@@ -352,8 +351,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ad1e5f3e49159adb76e672c1c8fe9c5f5" name="ad1e5f3e49159adb76e672c1c8fe9c5f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1e5f3e49159adb76e672c1c8fe9c5f5">&#9670;&#160;</a></span>isValidIntField()</h2>
+<a id="ae56d207a16b49f2756ba717796715c25" name="ae56d207a16b49f2756ba717796715c25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae56d207a16b49f2756ba717796715c25">&#9670;&#160;</a></span>isValidIntField()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -371,7 +370,13 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>fieldName</em>&#160;</td>
+          <td class="paramname"><em>fieldName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>min</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -391,6 +396,7 @@ Private Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">fieldValue</td><td>Value of the field to be validated. </td></tr>
     <tr><td class="paramname">fieldName</td><td>Name of the field where the violation occurs </td></tr>
+    <tr><td class="paramname">min</td><td>The minimum valid value to fieldValue </td></tr>
   </table>
   </dd>
 </dl>
@@ -458,11 +464,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This function is responsible for parsing the lines associated with the control section of the .csv file and populating the control field of the <a class="el" href="structData.html">Data</a> object with the data from the lines. </p>
+<p>This function is responsible for parsing the lines associated with the control section of the .csv file and populating the control field of the <a class="el" href="structData.html" title="Aggregates all data including submissions, reviewers, parameters, and control settings.">Data</a> object with the data from the lines. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lines</td><td>Vector of strings containing the lines associated with the control section of the .csv file. </td></tr>
-    <tr><td class="paramname">data</td><td><a class="el" href="structData.html">Data</a> object that will have its control field populated with the data from these lines. </td></tr>
+    <tr><td class="paramname">data</td><td><a class="el" href="structData.html" title="Aggregates all data including submissions, reviewers, parameters, and control settings.">Data</a> object that will have its control field populated with the data from these lines. </td></tr>
   </table>
   </dd>
 </dl>
@@ -523,15 +529,6 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Function that individually parses a line from the control section of the CSV file and updates the control field of the <a class="el" href="structData.html">Data</a> object accordingly. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">line</td><td>Line from the control section of the CSV file to be parsed. </td></tr>
-    <tr><td class="paramname">data</td><td><a class="el" href="structData.html">Data</a> object whose control field will be updated with the data from the line. </td></tr>
-  </table>
-  </dd>
-</dl>
-
 </div>
 </div>
 <a id="a3ddb176c96ae53e981814a6eefd5b5c8" name="a3ddb176c96ae53e981814a6eefd5b5c8"></a>
@@ -568,11 +565,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Function that individually parses a line from the parameters section of the CSV file and updates the parameters field of the <a class="el" href="structData.html">Data</a> object accordingly. </p>
+<p>This function is responsible for parsing a single parameter line of the CSV file and populating the parameters field of the data object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">line</td><td>Line from the parameters section of the CSV file to be parsed. </td></tr>
-    <tr><td class="paramname">data</td><td><a class="el" href="structData.html">Data</a> object whose parameters field will be updated with the data from the line. </td></tr>
+    <tr><td class="paramname">line</td><td>The line from the CSV file that contains the data for a single parameter. </td></tr>
+    <tr><td class="paramname">data</td><td>The data object that will have its parameters field populated with the parameter from the line. </td></tr>
   </table>
   </dd>
 </dl>
@@ -613,7 +610,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This function is responsible for parsing a single line of the CSV file and populating a <a class="el" href="classReviewer.html">Reviewer</a> object. </p>
+<p>This function is responsible for parsing a single reviewer line of the CSV file and populating a <a class="el" href="classReviewer.html" title="Represents a reviewer who can assess submissions.">Reviewer</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">line</td><td>The line from the CSV file that contains the data for a single reviewer. </td></tr>
@@ -658,7 +655,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This function is responsible for parsing a single line of the CSV file and populating a <a class="el" href="classSubmission.html">Submission</a> object. </p>
+<p>This function is responsible for parsing a single submission line of the CSV file and populating a <a class="el" href="classSubmission.html" title="Represents a submission that can be assigned to reviewers.">Submission</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">line</td><td>The line from the CSV file that contains the data for a single submission. </td></tr>
@@ -703,11 +700,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This function is responsible for parsing the lines associated with the parameters section of the .csv file and populating the parameters field of the <a class="el" href="structData.html">Data</a> object with the data from the lines. </p>
+<p>This function is responsible for parsing the lines associated with the parameters section of the .csv file and populating the parameters field of the <a class="el" href="structData.html" title="Aggregates all data including submissions, reviewers, parameters, and control settings.">Data</a> object with the data from the lines. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lines</td><td>Vector of strings containing the lines associated with the parameters section of the .csv file. </td></tr>
-    <tr><td class="paramname">data</td><td><a class="el" href="structData.html">Data</a> struct that will have its parameters field populated with the data from these lines. </td></tr>
+    <tr><td class="paramname">data</td><td><a class="el" href="structData.html" title="Aggregates all data including submissions, reviewers, parameters, and control settings.">Data</a> struct that will have its parameters field populated with the data from these lines. </td></tr>
   </table>
   </dd>
 </dl>
@@ -748,11 +745,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This function is responsible for parsing the lines associated with the reviewers section of the .csv file and populating a vector of <a class="el" href="classReviewer.html">Reviewer</a> objects with the data from the lines. </p>
+<p>This function is responsible for parsing the lines associated with the reviewers section of the .csv file and populating a vector of <a class="el" href="classReviewer.html" title="Represents a reviewer who can assess submissions.">Reviewer</a> objects with the data from the lines. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lines</td><td>Vector of strings containing the lines associated with the reviewers section of the .csv file. </td></tr>
-    <tr><td class="paramname">reviewers</td><td>Vector of <a class="el" href="classReviewer.html">Reviewer</a> objects that will be populated with the data from the lines. </td></tr>
+    <tr><td class="paramname">reviewers</td><td>Vector of <a class="el" href="classReviewer.html" title="Represents a reviewer who can assess submissions.">Reviewer</a> objects that will be populated with the data from the lines. </td></tr>
   </table>
   </dd>
 </dl>
@@ -793,11 +790,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This function is responsible for parsing the lines associated with the submissions section of the .csv file and populating a vector of <a class="el" href="classSubmission.html">Submission</a> objects with the data from the lines. </p>
+<p>This function is responsible for parsing the lines associated with the submissions section of the .csv file and populating a vector of <a class="el" href="classSubmission.html" title="Represents a submission that can be assigned to reviewers.">Submission</a> objects with the data from the lines. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lines</td><td>Vector of strings containing the lines associated with the submissions section of the .csv file. </td></tr>
-    <tr><td class="paramname">submissions</td><td>Vector of <a class="el" href="classSubmission.html">Submission</a> objects that will be populated with the data from the lines. </td></tr>
+    <tr><td class="paramname">submissions</td><td>Vector of <a class="el" href="classSubmission.html" title="Represents a submission that can be assigned to reviewers.">Submission</a> objects that will be populated with the data from the lines. </td></tr>
   </table>
   </dd>
 </dl>
@@ -883,8 +880,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a826e8f01c1484f7e99956122b2027f2f" name="a826e8f01c1484f7e99956122b2027f2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a826e8f01c1484f7e99956122b2027f2f">&#9670;&#160;</a></span>removeTrailingCharacter()</h2>
+<a id="a4f2c1f0297f4ea661acdb27b52781aa0" name="a4f2c1f0297f4ea661acdb27b52781aa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f2c1f0297f4ea661acdb27b52781aa0">&#9670;&#160;</a></span>removeTrailingSequence()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -893,7 +890,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CSVParser::removeTrailingCharacter </td>
+          <td class="memname">void CSVParser::removeTrailingSequence </td>
           <td>(</td>
           <td class="paramtype">std::string &amp;&#160;</td>
           <td class="paramname"><em>str</em>, </td>
@@ -921,6 +918,7 @@ Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">str</td><td>String from which to remove leading and trailing spaces. </td></tr>
+    <tr><td class="paramname">s</td><td>Sequence to remove at the beginning or at the end of the string str. </td></tr>
   </table>
   </dd>
 </dl>

@@ -79,7 +79,8 @@ $(function() {
   <div class="headertitle"><div class="title">runTests.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="CsvParser_8h_source.html">CsvParser.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;filesystem&gt;</code><br />
+<code>#include &quot;<a class="el" href="CsvParser_8h_source.html">CsvParser.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Graph_8h_source.html">Graph.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="MaxFlowSolver_8h_source.html">MaxFlowSolver.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="OutputWriter_8h_source.html">OutputWriter.h</a>&quot;</code><br />
@@ -91,59 +92,61 @@ Include dependency graph for runTests.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="runTests_8cpp__incl.png" border="0" usemap="#atest_2runTests_8cpp" alt=""/></div>
 <map name="atest_2runTests_8cpp" id="atest_2runTests_8cpp">
-<area shape="rect" title=" " alt="" coords="498,5,630,31"/>
-<area shape="rect" href="CsvParser_8h.html" title=" " alt="" coords="225,152,322,177"/>
-<area shape="poly" title=" " alt="" coords="542,33,310,148,307,143,540,28"/>
-<area shape="rect" title=" " alt="" coords="361,372,420,397"/>
-<area shape="poly" title=" " alt="" coords="498,25,359,37,277,47,197,61,123,79,63,103,40,116,22,131,12,146,8,164,8,239,18,252,46,269,140,307,253,342,349,369,347,375,251,347,138,312,44,274,14,256,3,240,3,163,7,144,18,127,37,112,60,98,121,74,195,56,276,42,358,31,497,20"/>
-<area shape="rect" href="Graph_8h.html" title=" " alt="" coords="429,152,502,177"/>
-<area shape="poly" title=" " alt="" coords="543,33,513,53,488,80,475,109,469,139,464,138,470,108,483,77,510,49,540,29"/>
-<area shape="rect" href="MaxFlowSolver_8h.html" title=" " alt="" coords="497,79,631,104"/>
-<area shape="poly" title=" " alt="" coords="567,31,567,65,561,65,561,31"/>
-<area shape="rect" href="OutputWriter_8h.html" title=" " alt="" coords="655,79,772,104"/>
-<area shape="poly" title=" " alt="" coords="589,28,678,70,675,75,587,33"/>
-<area shape="rect" title=" " alt="" coords="796,79,900,104"/>
-<area shape="poly" title=" " alt="" coords="610,28,790,73,788,78,609,33"/>
-<area shape="rect" title=" " alt="" coords="925,79,998,104"/>
-<area shape="poly" title=" " alt="" coords="631,27,911,76,910,81,630,32"/>
-<area shape="rect" href="Reviewer_8h.html" title=" " alt="" coords="235,299,330,324"/>
-<area shape="poly" title=" " alt="" coords="277,178,284,285,278,285,271,178"/>
-<area shape="poly" title=" " alt="" coords="266,179,245,207,224,244,217,265,214,285,216,304,225,322,244,337,275,350,349,372,347,377,273,355,241,341,221,326,211,306,209,285,212,263,219,242,240,204,261,176"/>
-<area shape="rect" href="Submission_8h.html" title=" " alt="" coords="355,299,464,324"/>
-<area shape="poly" title=" " alt="" coords="281,176,298,211,326,249,351,271,378,289,375,294,348,275,322,252,294,213,276,179"/>
-<area shape="rect" title=" " alt="" coords="43,225,85,251"/>
-<area shape="poly" title=" " alt="" coords="240,180,99,228,98,222,239,175"/>
-<area shape="rect" title=" " alt="" coords="489,299,551,324"/>
-<area shape="poly" title=" " alt="" coords="308,175,360,195,415,223,461,255,499,287,496,291,458,259,412,228,357,200,306,180"/>
-<area shape="rect" title=" " alt="" coords="109,225,160,251"/>
-<area shape="poly" title=" " alt="" coords="252,180,171,221,168,217,250,175"/>
-<area shape="rect" href="Data_8h.html" title=" " alt="" coords="337,225,402,251"/>
-<area shape="poly" title=" " alt="" coords="290,175,344,215,341,219,287,180"/>
-<area shape="poly" title=" " alt="" coords="301,322,363,362,360,367,299,326"/>
-<area shape="rect" title=" " alt="" coords="245,372,320,397"/>
-<area shape="poly" title=" " alt="" coords="285,324,285,358,280,358,280,324"/>
-<area shape="poly" title=" " alt="" coords="409,325,400,360,395,358,404,324"/>
-<area shape="poly" title=" " alt="" coords="357,253,309,292,306,288,354,249"/>
-<area shape="poly" title=" " alt="" coords="378,250,398,285,394,288,374,252"/>
-<area shape="poly" title=" " alt="" coords="395,248,484,290,482,295,392,253"/>
-<area shape="poly" title=" " alt="" coords="472,177,513,285,508,287,467,179"/>
-<area shape="poly" title=" " alt="" coords="451,180,398,219,395,215,448,175"/>
-<area shape="poly" title=" " alt="" coords="494,149,517,151,525,156,529,165,522,176,508,181,507,175,519,172,523,164,521,159,515,156,494,155"/>
-<area shape="rect" title=" " alt="" coords="529,225,591,251"/>
-<area shape="poly" title=" " alt="" coords="482,175,535,215,532,219,479,179"/>
-<area shape="poly" title=" " alt="" coords="571,103,590,155,607,225,608,256,603,282,589,304,566,326,534,347,500,363,434,380,433,375,498,358,532,342,562,322,584,301,598,280,603,256,601,226,585,157,566,105"/>
-<area shape="poly" title=" " alt="" coords="550,106,494,146,491,142,547,102"/>
-<area shape="poly" title=" " alt="" coords="566,105,563,212,558,212,561,104"/>
-<area shape="rect" href="Result_8h.html" title=" " alt="" coords="657,152,732,177"/>
-<area shape="poly" title=" " alt="" coords="586,102,663,143,660,148,584,106"/>
-<area shape="poly" title=" " alt="" coords="685,179,606,253,551,293,547,289,602,249,682,176"/>
-<area shape="poly" title=" " alt="" coords="725,103,745,136,750,157,747,178,719,231,688,267,648,296,596,326,555,346,512,361,434,380,433,375,511,356,553,341,593,322,645,291,684,263,715,228,741,177,744,158,740,138,721,106"/>
-<area shape="poly" title=" " alt="" coords="713,105,704,140,699,138,708,104"/>
+<area shape="rect" title=" " alt="" coords="461,5,593,31"/>
+<area shape="rect" title=" " alt="" coords="5,79,96,104"/>
+<area shape="poly" title=" " alt="" coords="461,31,115,81,110,82,109,77,114,76,460,26"/>
+<area shape="rect" href="CsvParser_8h.html" title=" " alt="" coords="329,152,426,177"/>
+<area shape="poly" title=" " alt="" coords="462,32,418,50,399,63,384,80,377,93,374,108,375,138,369,138,368,108,372,92,379,77,396,59,416,45,460,27"/>
+<area shape="rect" title=" " alt="" coords="205,372,264,397"/>
+<area shape="poly" title=" " alt="" coords="461,32,363,51,256,80,208,98,170,118,145,140,138,152,136,164,136,239,143,276,162,310,186,339,210,361,206,365,182,342,157,313,138,278,131,240,131,163,133,150,141,137,167,114,206,93,254,75,361,46,460,27"/>
+<area shape="rect" href="Graph_8h.html" title=" " alt="" coords="669,152,742,177"/>
+<area shape="poly" title=" " alt="" coords="593,28,640,46,662,60,682,77,699,107,706,138,701,139,694,108,678,80,659,64,637,51,591,33"/>
+<area shape="rect" href="MaxFlowSolver_8h.html" title=" " alt="" coords="535,79,668,104"/>
+<area shape="poly" title=" " alt="" coords="540,29,581,67,577,71,537,33"/>
+<area shape="rect" href="OutputWriter_8h.html" title=" " alt="" coords="393,79,511,104"/>
+<area shape="poly" title=" " alt="" coords="517,33,476,71,472,67,513,29"/>
+<area shape="rect" title=" " alt="" coords="743,79,847,104"/>
+<area shape="poly" title=" " alt="" coords="570,28,739,73,738,78,569,33"/>
+<area shape="rect" title=" " alt="" coords="871,79,945,104"/>
+<area shape="poly" title=" " alt="" coords="593,28,858,76,857,81,593,33"/>
+<area shape="rect" href="Reviewer_8h.html" title=" " alt="" coords="449,299,543,324"/>
+<area shape="poly" title=" " alt="" coords="389,176,480,286,476,290,385,179"/>
+<area shape="poly" title=" " alt="" coords="334,180,295,198,277,211,262,227,246,259,237,294,234,329,235,358,229,358,229,329,232,294,241,257,258,224,274,207,292,193,332,175"/>
+<area shape="rect" href="Submission_8h.html" title=" " alt="" coords="315,299,424,324"/>
+<area shape="poly" title=" " alt="" coords="387,176,401,209,405,230,404,251,388,288,383,286,399,250,400,231,396,211,382,179"/>
+<area shape="rect" title=" " alt="" coords="272,225,315,251"/>
+<area shape="poly" title=" " alt="" coords="366,179,319,218,316,214,362,175"/>
+<area shape="rect" title=" " alt="" coords="613,299,675,324"/>
+<area shape="poly" title=" " alt="" coords="427,172,521,194,565,208,595,223,621,253,638,284,633,287,617,256,592,227,563,213,520,199,426,178"/>
+<area shape="rect" title=" " alt="" coords="339,225,389,251"/>
+<area shape="poly" title=" " alt="" coords="378,178,371,212,366,211,373,177"/>
+<area shape="rect" href="Data_8h.html" title=" " alt="" coords="515,225,581,251"/>
+<area shape="poly" title=" " alt="" coords="406,175,509,218,507,222,404,180"/>
+<area shape="poly" title=" " alt="" coords="455,327,278,374,277,369,453,321"/>
+<area shape="poly" title=" " alt="" coords="349,326,270,368,268,363,346,322"/>
+<area shape="poly" title=" " alt="" coords="542,253,515,289,510,286,537,249"/>
+<area shape="poly" title=" " alt="" coords="520,253,412,296,410,291,518,248"/>
+<area shape="poly" title=" " alt="" coords="565,249,619,288,616,292,562,253"/>
+<area shape="poly" title=" " alt="" coords="707,178,702,212,690,252,666,289,662,287,686,250,697,211,702,177"/>
+<area shape="poly" title=" " alt="" coords="681,180,587,222,585,217,679,175"/>
+<area shape="poly" title=" " alt="" coords="734,149,757,151,765,156,769,165,762,176,748,181,747,175,759,172,763,164,761,159,755,156,734,155"/>
+<area shape="rect" title=" " alt="" coords="757,225,837,251"/>
+<area shape="poly" title=" " alt="" coords="722,175,773,215,770,219,718,179"/>
+<area shape="poly" title=" " alt="" coords="620,102,678,142,675,146,617,106"/>
+<area shape="rect" href="Result_8h.html" title=" " alt="" coords="477,152,552,177"/>
+<area shape="poly" title=" " alt="" coords="589,106,541,145,538,141,586,102"/>
+<area shape="rect" title=" " alt="" coords="577,152,639,177"/>
+<area shape="poly" title=" " alt="" coords="605,104,608,138,603,139,600,105"/>
+<area shape="poly" title=" " alt="" coords="553,171,599,189,622,204,640,224,650,254,651,285,646,285,645,255,635,227,618,208,597,194,551,176"/>
+<area shape="poly" title=" " alt="" coords="414,107,370,123,322,148,277,183,258,203,242,227,230,260,226,295,232,358,226,358,221,295,225,259,238,224,254,200,273,179,319,144,368,118,412,102"/>
+<area shape="poly" title=" " alt="" coords="464,103,497,140,493,143,460,106"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aa70e0461524469d855f98019122a9b50" id="r_aa70e0461524469d855f98019122a9b50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runTests_8cpp.html#aa70e0461524469d855f98019122a9b50">verifyCsvLinesMatch</a> (const std::string &amp;actualPath, const std::string &amp;expectedPath)</td></tr>
+<tr class="separator:aa70e0461524469d855f98019122a9b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a261df42edbebcaf64cce457be1b5d8a4" id="r_a261df42edbebcaf64cce457be1b5d8a4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runTests_8cpp.html#a261df42edbebcaf64cce457be1b5d8a4">TEST</a> (test_datasets, test_all_dataset)</td></tr>
 <tr class="separator:a261df42edbebcaf64cce457be1b5d8a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -165,6 +168,34 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">test_all_dataset&#160;</td>
           <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa70e0461524469d855f98019122a9b50" name="aa70e0461524469d855f98019122a9b50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa70e0461524469d855f98019122a9b50">&#9670;&#160;</a></span>verifyCsvLinesMatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void verifyCsvLinesMatch </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>actualPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>expectedPath</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

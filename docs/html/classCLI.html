@@ -99,9 +99,9 @@ Collaboration diagram for CLI:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1a5b0f7ec3b242c5c56e4745adbb391e" id="r_a1a5b0f7ec3b242c5c56e4745adbb391e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLI.html#a1a5b0f7ec3b242c5c56e4745adbb391e">CLI</a> ()</td></tr>
 <tr class="separator:a1a5b0f7ec3b242c5c56e4745adbb391e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1a25530fcfde1f7ced28eef58e7e696" id="r_ac1a25530fcfde1f7ced28eef58e7e696"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLI.html#ac1a25530fcfde1f7ced28eef58e7e696">writeOutput</a> (const <a class="el" href="structResult.html">Result</a> &amp;result, int riskAnalysis, std::string &amp;outputFileName)</td></tr>
-<tr class="memdesc:ac1a25530fcfde1f7ced28eef58e7e696"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="classOutputWriter.html">OutputWriter</a> object and uses it to write the output file with the given result and risk analysis.  <br /></td></tr>
-<tr class="separator:ac1a25530fcfde1f7ced28eef58e7e696"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9dd58881dfbdd0ba87b92d4d9fc289a" id="r_ac9dd58881dfbdd0ba87b92d4d9fc289a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLI.html#ac9dd58881dfbdd0ba87b92d4d9fc289a">writeOutput</a> (const <a class="el" href="structResult.html">Result</a> &amp;result, int riskAnalysis, const std::string &amp;outputFileName)</td></tr>
+<tr class="memdesc:ac9dd58881dfbdd0ba87b92d4d9fc289a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="classOutputWriter.html" title="Responsible for writing the output of the algorithm to a CSV file.">OutputWriter</a> object and uses it to write the output file with the given result and risk analysis.  <br /></td></tr>
+<tr class="separator:ac9dd58881dfbdd0ba87b92d4d9fc289a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68af1f9fb906579e7c2842d288a3db02" id="r_a68af1f9fb906579e7c2842d288a3db02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLI.html#a68af1f9fb906579e7c2842d288a3db02">processArgs</a> (const std::vector&lt; std::string &gt; &amp;args)</td></tr>
 <tr class="memdesc:a68af1f9fb906579e7c2842d288a3db02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes the command line arguments and determines if the execution is in batch or interactive modes and behaves accordingly to check the validity of the input file's extension and set the input and output file paths.  <br /></td></tr>
 <tr class="separator:a68af1f9fb906579e7c2842d288a3db02"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -429,8 +429,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ac1a25530fcfde1f7ced28eef58e7e696" name="ac1a25530fcfde1f7ced28eef58e7e696"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1a25530fcfde1f7ced28eef58e7e696">&#9670;&#160;</a></span>writeOutput()</h2>
+<a id="ac9dd58881dfbdd0ba87b92d4d9fc289a" name="ac9dd58881dfbdd0ba87b92d4d9fc289a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9dd58881dfbdd0ba87b92d4d9fc289a">&#9670;&#160;</a></span>writeOutput()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -450,7 +450,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>outputFileName</em>&#160;</td>
         </tr>
         <tr>
@@ -461,7 +461,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates an <a class="el" href="classOutputWriter.html">OutputWriter</a> object and uses it to write the output file with the given result and risk analysis. </p>
+<p>Creates an <a class="el" href="classOutputWriter.html" title="Responsible for writing the output of the algorithm to a CSV file.">OutputWriter</a> object and uses it to write the output file with the given result and risk analysis. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">result</td><td>Struct containing the information about the matches, misses and risky reviewers after running the max flow algorithm. </td></tr>

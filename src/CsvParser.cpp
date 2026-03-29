@@ -138,7 +138,10 @@ void CSVParser::processTitle(std::istringstream& iss, std::string& data) {
 void CSVParser::parseIndividualSubmission(const std::string& line, Submission& s) {
     std::istringstream iss(line);
     std::string data;
-    int counter = 0, id = 0, primaryField = 0, secondaryField = 0;
+    int counter = 0;
+    int id = 0;
+    int primaryField = 0;
+    int secondaryField = 0;
     while (std::getline(iss, data, ',')) {
         switch (counter) {
             case 0:
@@ -174,7 +177,9 @@ void CSVParser::parseIndividualReviewer(const std::string& line, Reviewer& r) {
     std::istringstream iss(line);
     std::string data;
     int counter = 0;
-    int id = 0, primaryField = 0, secondaryField = 0;
+    int id = 0;
+    int primaryField = 0;
+    int secondaryField = 0;
     while (std::getline(iss, data, ',')) {
         switch (counter) {
             case 0:

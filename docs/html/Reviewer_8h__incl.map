@@ -1,7 +1,5 @@
 <map id="include/Reviewer.h" name="include/Reviewer.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="7,5,153,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,64,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,32,52,69,47,66,70,30"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="88,79,163,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="90,30,113,66,108,69,85,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,151,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="49,79,107,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,31,81,65,75,65,75,31"/>
 </map>

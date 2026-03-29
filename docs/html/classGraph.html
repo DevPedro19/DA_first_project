@@ -106,15 +106,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af9c903104ad69a7782979fa9caedf163" id="r_af9c903104ad69a7782979fa9caedf163"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#af9c903104ad69a7782979fa9caedf163">removeVertex</a> (const T &amp;in)</td></tr>
 <tr class="memdesc:af9c903104ad69a7782979fa9caedf163"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function removes a vertex with a given content, and all outgoing and incoming edges of that vertex.  <br /></td></tr>
 <tr class="separator:af9c903104ad69a7782979fa9caedf163"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab19ea4b723565d46bf6eeb2007e15a3c" id="r_ab19ea4b723565d46bf6eeb2007e15a3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#ab19ea4b723565d46bf6eeb2007e15a3c">addEdge</a> (const T &amp;sourc, const T &amp;dest, double c, int domain=0)</td></tr>
-<tr class="memdesc:ab19ea4b723565d46bf6eeb2007e15a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function adds an edge to the graph.  <br /></td></tr>
-<tr class="separator:ab19ea4b723565d46bf6eeb2007e15a3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae0c92505aecf1aad2379932169c45d3" id="r_aae0c92505aecf1aad2379932169c45d3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#aae0c92505aecf1aad2379932169c45d3">addEdge</a> (const T &amp;source, const T &amp;dest, double c, int domain=0)</td></tr>
+<tr class="memdesc:aae0c92505aecf1aad2379932169c45d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function adds an edge to the graph.  <br /></td></tr>
+<tr class="separator:aae0c92505aecf1aad2379932169c45d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8949d071d45bf93e171e275462e1007a" id="r_a8949d071d45bf93e171e275462e1007a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a8949d071d45bf93e171e275462e1007a">removeEdge</a> (const T &amp;source, const T &amp;dest)</td></tr>
 <tr class="memdesc:a8949d071d45bf93e171e275462e1007a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function removes an edge from the graph.  <br /></td></tr>
 <tr class="separator:a8949d071d45bf93e171e275462e1007a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0853eac15cdf0f06d63f4b8a7820ec71" id="r_a0853eac15cdf0f06d63f4b8a7820ec71"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a0853eac15cdf0f06d63f4b8a7820ec71">getNumVertex</a> () const</td></tr>
-<tr class="memdesc:a0853eac15cdf0f06d63f4b8a7820ec71"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the number of vertices in the graph.  <br /></td></tr>
-<tr class="separator:a0853eac15cdf0f06d63f4b8a7820ec71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77a9b35e84df786daa7b8504e67ce38c" id="r_a77a9b35e84df786daa7b8504e67ce38c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a77a9b35e84df786daa7b8504e67ce38c">getNumVertex</a> () const</td></tr>
+<tr class="memdesc:a77a9b35e84df786daa7b8504e67ce38c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the number of vertices in the graph.  <br /></td></tr>
+<tr class="separator:a77a9b35e84df786daa7b8504e67ce38c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41624b03fcb6bd29e4df574a1ec58541" id="r_a41624b03fcb6bd29e4df574a1ec58541"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a41624b03fcb6bd29e4df574a1ec58541">getVertexSet</a> () const</td></tr>
 <tr class="memdesc:a41624b03fcb6bd29e4df574a1ec58541"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the list of vertices in the graph.  <br /></td></tr>
 <tr class="separator:a41624b03fcb6bd29e4df574a1ec58541"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,13 +160,20 @@ template&lt;class T &gt; </div>
   </table>
   </dd>
 </dl>
-<p>The graph is built as follows: the source node is connected to each submission node with an edge of capacity equal to the minimum number of reviews per submission, and the domain of the edge is the primary field of the submission. Each submission node is connected to each reviewer node with an edge of capacity 1, and the domain of the edge is determined by the GenerateAssignments parameter in the control struct. Finally, each reviewer node is connected to the sink node with an edge of capacity equal to the maximum number of reviews per reviewer. </p>
+<p>The graph is built as follows: the source node is connected to each submission node with an edge of capacity equal to the minimum number of reviews per submission, and the domain of the edge is the primary field of the submission. Each submission node is connected to each reviewer node with an edge of capacity 1, and the domain of the edge is determined by the GenerateAssignments parameter in the control struct. Finally, each reviewer node is connected to the sink node with an edge of capacity equal to the maximum number of reviews per reviewer.</p>
+<p>Constructor for the <a class="el" href="classGraph.html" title="This class represents the graph, which consists of a set of vertices and edges. It also contains the ...">Graph</a> class, which builds the bipartite graph from the input data. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The input data, which consists of the list of submissions, reviewers, parameters and control. The graph is built according to the specifications of the input data, creating the vertices and edges accordingly.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The graph is built as follows: the source node is connected to each submission node with an edge of capacity equal to the minimum number of reviews per submission, and the domain of the edge is the primary field of the submission. Each submission node is connected to each reviewer node with an edge of capacity 1. Finally, each reviewer node is connected to the sink node with an edge of capacity equal to the maximum number of reviews per reviewer. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab19ea4b723565d46bf6eeb2007e15a3c" name="ab19ea4b723565d46bf6eeb2007e15a3c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab19ea4b723565d46bf6eeb2007e15a3c">&#9670;&#160;</a></span>addEdge()</h2>
+<a id="aae0c92505aecf1aad2379932169c45d3" name="aae0c92505aecf1aad2379932169c45d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae0c92505aecf1aad2379932169c45d3">&#9670;&#160;</a></span>addEdge()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -177,7 +184,7 @@ template&lt;class T &gt; </div>
           <td class="memname">bool <a class="el" href="classGraph.html">Graph</a>&lt; T &gt;::addEdge </td>
           <td>(</td>
           <td class="paramtype">const T &amp;&#160;</td>
-          <td class="paramname"><em>sourc</em>, </td>
+          <td class="paramname"><em>source</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -208,7 +215,7 @@ template&lt;class T &gt; </div>
 <p>This function adds an edge to the graph. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sourc</td><td>The content of the source vertex of the edge, which consists of its type and id, the struct <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a>. </td></tr>
+    <tr><td class="paramname">source</td><td>The content of the source vertex of the edge, which consists of its type and id, the struct <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a>. </td></tr>
     <tr><td class="paramname">dest</td><td>The content of the destination vertex of the edge, which consists of its type and id, the struct <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a>. </td></tr>
     <tr><td class="paramname">c</td><td>The capacity of the edge, which is the weight of the edge. </td></tr>
     <tr><td class="paramname">domain</td><td>The domain of the edge, which is used to check if the edge is a primary or secondary edge when generating the assignments. </td></tr>
@@ -279,8 +286,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="a0853eac15cdf0f06d63f4b8a7820ec71" name="a0853eac15cdf0f06d63f4b8a7820ec71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0853eac15cdf0f06d63f4b8a7820ec71">&#9670;&#160;</a></span>getNumVertex()</h2>
+<a id="a77a9b35e84df786daa7b8504e67ce38c" name="a77a9b35e84df786daa7b8504e67ce38c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a9b35e84df786daa7b8504e67ce38c">&#9670;&#160;</a></span>getNumVertex()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,7 +295,7 @@ template&lt;class T &gt; </div>
 template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="classGraph.html">Graph</a>&lt; T &gt;::getNumVertex </td>
+          <td class="memname">size_t <a class="el" href="classGraph.html">Graph</a>&lt; T &gt;::getNumVertex </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -354,7 +361,7 @@ template&lt;class T &gt; </div>
 <p>This function removes an edge from the graph. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sourc</td><td>The content of the source vertex of the edge, which consists of its type and id, the struct <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a>. </td></tr>
+    <tr><td class="paramname">source</td><td>The content of the source vertex of the edge, which consists of its type and id, the struct <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a>. </td></tr>
     <tr><td class="paramname">dest</td><td>The content of the destination vertex of the edge, which consists of its type and id, the struct <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a>. </td></tr>
   </table>
   </dd>
