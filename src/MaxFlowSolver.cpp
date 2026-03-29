@@ -144,6 +144,15 @@ void MaxFlowSolver::checkResults(Result &result, int riskAnalysis, int r, int ma
             result.misses.push_back({e->getDest()->getInfo().id, e->getDomain(), missingReviews});
         }
     }
+
+    for (auto v : flowNetwork->getVertexSet()) {
+        for (auto e : v->getAdj()) {
+            std::cout << enumToString(v->getInfo().type) << " " << v->getInfo().id << " -- "
+            << e->getFlow() << "/" << e->getCapacity() << " --> " << enumToString(e->getDest()->getInfo().type)
+            << " " << e->getDest()->getInfo().id << std::endl;
+        }
+    }
+
     if (riskAnalysis == 0) return;
 
     double flow = getFlow();

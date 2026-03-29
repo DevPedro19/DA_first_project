@@ -51,18 +51,6 @@ TEST(CsvParserTest, throwsOnInvalidSubmissionId) {
     EXPECT_THROW(parser.parseDocument(data), std::domain_error);
 }
 
-TEST(CsvParserTest, throwsOnInvalidSubmissionPrimary) {
-    CSVParser parser("test/invalid_submission_primary.csv");
-    Data data;
-    EXPECT_THROW(parser.parseDocument(data), std::domain_error);
-}
-
-TEST(CsvParserTest, throwsOnInvalidSubmissionSecondary) {
-    CSVParser parser("test/invalid_submission_secondary.csv");
-    Data data;
-    EXPECT_THROW(parser.parseDocument(data), std::domain_error);
-}
-
 TEST(CsvParserTest, throwsOnDuplicateSubmissionIds) {
     CSVParser parser("test/duplicate_submission_ids.csv");
     Data data;

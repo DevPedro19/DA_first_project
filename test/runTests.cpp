@@ -45,7 +45,7 @@ TEST(test_datasets, test_all_dataset) {
         MaxFlowSolver solver(&graph);
         solver.execute();
         Result result;
-        solver.checkResults(result);
+        solver.checkResults(result, data.control.RiskAnalysis, data.reviewers.size(), data.parameters.MaxReviewsPerReviewer);
         OutputWriter output_writer(data.control.OutputFileName);
         output_writer.writeOutput(result, data.control.RiskAnalysis);
         verifyCsvLinesMatch(outputFilepath, expectedOutputFilepath);
