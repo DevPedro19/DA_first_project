@@ -20,13 +20,11 @@ var searchData=
   ['settitle_17',['setTitle',['../classSubmission.html#a0d92c13d960d0ef0376e5293efb670ce',1,'Submission']]],
   ['setvisited_18',['setVisited',['../classVertex.html#a95a3f3c55f2ba371fae51d3fe0e76c23',1,'Vertex']]],
   ['sink_19',['SINK',['../Graph_8h.html#a7aead736a07eaf25623ad7bfa1f0ee2da7e4dee78b6ed4fc604a66f1a96c60dcc',1,'Graph.h']]],
-  ['source_20',['source',['../classMaxFlowSolver.html#afa9bfc94b170feea9971e946203deff9',1,'MaxFlowSolver::source'],['../Graph_8h.html#a7aead736a07eaf25623ad7bfa1f0ee2da0159491ea913604389155db907e0d1c0',1,'SOURCE:&#160;Graph.h']]],
-  ['spanningtreecost_21',['spanningTreeCost',['../MSTTestAux_8h.html#a433a8e033df41363e90aa2d4869992e5',1,'MSTTestAux.h']]],
-  ['string_22',['string',['../MaxFlowSolver_8h.html#ad453f9f71ce1f9153fb748d6bb25e454',1,'MaxFlowSolver.h']]],
-  ['submission_23',['submission',['../classSubmission.html',1,'Submission'],['../Graph_8h.html#a7aead736a07eaf25623ad7bfa1f0ee2da3b07fb0b7f97231274708718383b086d',1,'SUBMISSION:&#160;Graph.h'],['../classSubmission.html#aec6f1ae8d7639c467e7348b572320449',1,'Submission::Submission(int id, const std::string &amp;title, const std::string &amp;author, const std::string &amp;email, int primaryField)'],['../classSubmission.html#adc357e6d7b44178d1f52017615751138',1,'Submission::Submission()']]],
-  ['submission_2ecpp_24',['Submission.cpp',['../Submission_8cpp.html',1,'']]],
-  ['submission_2eh_25',['Submission.h',['../Submission_8h.html',1,'']]],
-  ['submissionid_26',['submissionid',['../structMiss.html#ae579b824312f14662b026306dd8f655a',1,'Miss::submissionId'],['../structMatch.html#a672bf5322db10361c3b9e2525db880b9',1,'Match::submissionId']]],
-  ['submissionids_27',['submissionIds',['../classCSVParser.html#a744dea583da6e5dd9c88748ae7d757eb',1,'CSVParser']]],
-  ['submissions_28',['submissions',['../structData.html#a031e7ee06674b5ad6ef5eec7c1228c44',1,'Data']]]
+  ['source_20',['source',['../Graph_8h.html#a7aead736a07eaf25623ad7bfa1f0ee2da0159491ea913604389155db907e0d1c0',1,'SOURCE:&#160;Graph.h'],['../classMaxFlowSolver.html#afa9bfc94b170feea9971e946203deff9',1,'MaxFlowSolver::source']]],
+  ['submission_21',['submission',['../classSubmission.html',1,'Submission'],['../Graph_8h.html#a7aead736a07eaf25623ad7bfa1f0ee2da3b07fb0b7f97231274708718383b086d',1,'SUBMISSION:&#160;Graph.h'],['../classSubmission.html#aec6f1ae8d7639c467e7348b572320449',1,'Submission::Submission(int id, const std::string &amp;title, const std::string &amp;author, const std::string &amp;email, int primaryField)'],['../classSubmission.html#adc357e6d7b44178d1f52017615751138',1,'Submission::Submission()']]],
+  ['submission_2ecpp_22',['Submission.cpp',['../Submission_8cpp.html',1,'']]],
+  ['submission_2eh_23',['Submission.h',['../Submission_8h.html',1,'']]],
+  ['submissionid_24',['submissionid',['../structMatch.html#a672bf5322db10361c3b9e2525db880b9',1,'Match::submissionId'],['../structMiss.html#ae579b824312f14662b026306dd8f655a',1,'Miss::submissionId']]],
+  ['submissionids_25',['submissionIds',['../classCSVParser.html#a744dea583da6e5dd9c88748ae7d757eb',1,'CSVParser']]],
+  ['submissions_26',['submissions',['../structData.html#a031e7ee06674b5ad6ef5eec7c1228c44',1,'Data']]]
 ];

@@ -8,7 +8,7 @@
 
 #include "CLI.h"
 
-int main(int argc, char* argv[]) {
+int main(const int argc, char* argv[]) {
     const std::vector<std::string> args(argv, argv + argc);
 
     try {

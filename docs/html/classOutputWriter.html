@@ -78,13 +78,16 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Responsible for writing the output of the algorithm to a CSV file.  
+ <a href="classOutputWriter.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="OutputWriter_8h_source.html">OutputWriter.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for OutputWriter:</div>
 <div class="dyncontent">
 <div class="center"><img src="classOutputWriter__coll__graph.png" border="0" usemap="#aOutputWriter_coll__map" alt="Collaboration graph"/></div>
 <map name="aOutputWriter_coll__map" id="aOutputWriter_coll__map">
-<area shape="rect" title=" " alt="" coords="21,183,128,208"/>
+<area shape="rect" title="Responsible for writing the output of the algorithm to a CSV file." alt="" coords="21,183,128,208"/>
 <area shape="rect" title=" " alt="" coords="31,95,118,120"/>
 <area shape="poly" title=" " alt="" coords="77,134,77,182,72,182,72,134"/>
 <area shape="rect" title=" " alt="" coords="5,5,144,45"/>
@@ -95,17 +98,22 @@ Collaboration diagram for OutputWriter:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a011d47955b82250f36b3764457aac939" id="r_a011d47955b82250f36b3764457aac939"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOutputWriter.html#a011d47955b82250f36b3764457aac939">OutputWriter</a> (const std::string &amp;outputFileName)</td></tr>
+<tr class="memdesc:a011d47955b82250f36b3764457aac939"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classOutputWriter.html" title="Responsible for writing the output of the algorithm to a CSV file.">OutputWriter</a> with specified output file name. Creates the "output" directory if it does not exist.  <br /></td></tr>
 <tr class="separator:a011d47955b82250f36b3764457aac939"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46214f5911b2e7f5a336fd0f36fc3033" id="r_a46214f5911b2e7f5a336fd0f36fc3033"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOutputWriter.html#a46214f5911b2e7f5a336fd0f36fc3033">writeOutput</a> (const <a class="el" href="structResult.html">Result</a> &amp;result, int riskAnalysis) const</td></tr>
+<tr class="memdesc:a46214f5911b2e7f5a336fd0f36fc3033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the output of the algorithm to a CSV file, including matches, misses, and risk analysis if applicable.  <br /></td></tr>
 <tr class="separator:a46214f5911b2e7f5a336fd0f36fc3033"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
 <tr class="memitem:a9200f75e7451b2d20abc50a9f1c8628f" id="r_a9200f75e7451b2d20abc50a9f1c8628f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOutputWriter.html#a9200f75e7451b2d20abc50a9f1c8628f">writeMatches</a> (std::ofstream &amp;ofs, std::vector&lt; <a class="el" href="structMatch.html">Match</a> &gt; matches)</td></tr>
+<tr class="memdesc:a9200f75e7451b2d20abc50a9f1c8628f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the matches data in a structured way to the specified .csv output file.  <br /></td></tr>
 <tr class="separator:a9200f75e7451b2d20abc50a9f1c8628f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25a05d054f455febe48dd048fa68d320" id="r_a25a05d054f455febe48dd048fa68d320"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOutputWriter.html#a25a05d054f455febe48dd048fa68d320">writeMisses</a> (std::ofstream &amp;ofs, std::vector&lt; <a class="el" href="structMiss.html">Miss</a> &gt; misses)</td></tr>
+<tr class="memdesc:a25a05d054f455febe48dd048fa68d320"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the misses data in a structured way to the specified .csv output file.  <br /></td></tr>
 <tr class="separator:a25a05d054f455febe48dd048fa68d320"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf098a365494bd1739725cd5ab54bc65" id="r_abf098a365494bd1739725cd5ab54bc65"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOutputWriter.html#abf098a365494bd1739725cd5ab54bc65">writeRiskAnalysis</a> (std::ofstream &amp;ofs, std::vector&lt; int &gt; riskyReviewers, int riskAnalysis)</td></tr>
+<tr class="memdesc:abf098a365494bd1739725cd5ab54bc65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the risk analysis data in a structured way to the specified .csv output file.  <br /></td></tr>
 <tr class="separator:abf098a365494bd1739725cd5ab54bc65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -113,7 +121,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a5038f37e3389bb060d92b81f5beb0a89" id="r_a5038f37e3389bb060d92b81f5beb0a89"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOutputWriter.html#a5038f37e3389bb060d92b81f5beb0a89">outputFileName_</a></td></tr>
 <tr class="separator:a5038f37e3389bb060d92b81f5beb0a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Responsible for writing the output of the algorithm to a CSV file. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a011d47955b82250f36b3764457aac939" name="a011d47955b82250f36b3764457aac939"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a011d47955b82250f36b3764457aac939">&#9670;&#160;</a></span>OutputWriter()</h2>
 
@@ -129,6 +139,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Constructs an <a class="el" href="classOutputWriter.html" title="Responsible for writing the output of the algorithm to a CSV file.">OutputWriter</a> with specified output file name. Creates the "output" directory if it does not exist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">outputFileName</td><td>Name for the output CSV file. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -167,6 +185,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Writes the matches data in a structured way to the specified .csv output file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ofs</td><td>output file stream to write the matches data as a string. </td></tr>
+    <tr><td class="paramname">matches</td><td>matches populated with the results of the algorithm. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a25a05d054f455febe48dd048fa68d320" name="a25a05d054f455febe48dd048fa68d320"></a>
@@ -203,6 +230,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Writes the misses data in a structured way to the specified .csv output file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ofs</td><td>output file stream to write the misses data as a string. </td></tr>
+    <tr><td class="paramname">misses</td><td>misses populated with the results of the algorithm. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a46214f5911b2e7f5a336fd0f36fc3033" name="a46214f5911b2e7f5a336fd0f36fc3033"></a>
@@ -230,6 +266,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Writes the output of the algorithm to a CSV file, including matches, misses, and risk analysis if applicable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">result</td><td>the result of the algorithm, after running the max flow solver and possibly risk analysis, containing all the resulting data. </td></tr>
+    <tr><td class="paramname">riskAnalysis</td><td>the risk analysis value, if not 0 should be included in the file. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -272,6 +317,16 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Writes the risk analysis data in a structured way to the specified .csv output file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ofs</td><td>output file stream to write the risk analysis data as a string. </td></tr>
+    <tr><td class="paramname">riskyReviewers</td><td>vector of reviewer IDs that are considered risky based on the risk analysis. </td></tr>
+    <tr><td class="paramname">riskAnalysis</td><td>the risk analysis parameter value, which is used for output purposes in this case. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
