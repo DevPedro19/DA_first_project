@@ -120,8 +120,6 @@ double MaxFlowSolver::getFlow() const {
     return flow;
 }
 
-// usar um BFS
-
 void MaxFlowSolver::resetAllFlow() const{
     for(auto v : flowNetwork->getVertexSet()){
         v->setVisited(false);
