@@ -90,11 +90,31 @@ public:
      * @return Human-readable reviewer summary.
      */
     [[nodiscard]] std::string toString() const;
+
 private:
+    /**
+     * @brief Unique identifier for the reviewer.
+     */
     int id;
+
+    /**
+     * @brief Name of the reviewer.
+     */
     std::string name;
+
+    /**
+     * @brief Reviewer contact email.
+     */
     std::string email;
+
+    /**
+     * @brief Primary field of expertise for the reviewer, represented as an integer identifier.
+     */
     int primaryField;
+
+    /**
+     * @brief Secondary field of expertise for the reviewer, represented as an integer identifier. This field can be set to 0 if not defined.
+     */
     int secondaryField;
 };
 

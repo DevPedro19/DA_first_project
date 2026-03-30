@@ -8,7 +8,7 @@
 #include <limits>
 #include <random>
 
-InfoMenu::InfoMenu(Data &data) : data_(data) {}
+InfoMenu::InfoMenu(const Data &data) : data_(data) {}
 
 void InfoMenu::displayControl() const {
     std::cout << "\n=== Control Settings ===" << std::endl;
@@ -64,7 +64,7 @@ void InfoMenu::displayOptions() {
               << "  [2] View Reviewers\n"
               << "  [3] Parameter Settings\n"
               << "  [4] Control Settings\n"
-              << "  [5] Run Max Flow Algorithm\n"
+              << "  [5] Run Max Flow Solver\n"
               << "  [6] Exit\n"
               << "========================================\n"
               << "  Select an option (1-6): ";

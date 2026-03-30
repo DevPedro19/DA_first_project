@@ -104,12 +104,36 @@ public:
      * @return Human-readable submission summary.
      */
     [[nodiscard]] std::string toString() const;
+
 private:
+    /**
+     * @brief Unique identifier for the submission.
+     */
     int id;
+
+    /**
+     * @brief Title of the submission.
+     */
     std::string title;
+
+    /**
+     * @brief Name of the author(s) of the submission.
+     */
     std::string author;
+
+    /**
+     * @brief Author(s)'s contact email.
+     */
     std::string email;
+
+    /**
+     * @brief Primary domain of study the submission belongs to.
+     */
     int primaryField;
+
+    /**
+     * @brief Secondary domain of study the submission belongs to. This field can be set to 0 if not defined.
+     */
     int secondaryField;
 };
 

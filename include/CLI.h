@@ -18,6 +18,9 @@
 class CLI {
 public:
 
+    /**
+     * @brief Default constructor of the CLI class.
+     */
     CLI();
 
     /**
@@ -75,7 +78,12 @@ public:
      * @param outputFileName Name of the output file to be set.
      */
     void setOutputFileName(const std::string& outputFileName);
-    void setIsValidOutputFileName(bool value);
+
+    /**
+     * @brief Sets the boolean value indicating whether the output file name comes from batch mode (true) or not (false).
+     * @param value Boolean value to be attributed to the isValidOutputFileName_ field.
+     */
+    void setOutputFromBatch(bool value);
 
 private:
     /**
@@ -89,8 +97,8 @@ private:
     std::string outputFileName_;
     
     /**
-     * @brief Boolean value indicating whether the output file name comes from batch mode (true) or not (false). This is used to determine if the output file name provided in batch mode should be considered over the output file name specified in the input csv file.
+     * @brief Boolean value indicating whether the output file name comes from batch mode (true) or not (false). This is used to determine if the output file name provided in batch mode should be considered over the output file name specified in the input .csv file. Its value is false by default.
      */
-    bool isValidOutputFileName_ = false; // Initially false
+    bool outputFromBatch_ = false;
 };
 #endif //FIRST_PROJECT_CLI_H
