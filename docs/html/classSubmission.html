@@ -77,13 +77,16 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Represents a submission that can be assigned to reviewers.  
+ <a href="classSubmission.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="Submission_8h_source.html">Submission.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Submission:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSubmission__coll__graph.png" border="0" usemap="#aSubmission_coll__map" alt="Collaboration graph"/></div>
 <map name="aSubmission_coll__map" id="aSubmission_coll__map">
-<area shape="rect" title=" " alt="" coords="26,212,123,237"/>
+<area shape="rect" title="Represents a submission that can be assigned to reviewers." alt="" coords="26,212,123,237"/>
 <area shape="rect" title=" " alt="" coords="31,95,118,120"/>
 <area shape="poly" title=" " alt="" coords="77,133,77,212,72,212,72,133"/>
 <area shape="rect" title=" " alt="" coords="5,5,144,45"/>
@@ -94,34 +97,49 @@ Collaboration diagram for Submission:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adc357e6d7b44178d1f52017615751138" id="r_adc357e6d7b44178d1f52017615751138"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#adc357e6d7b44178d1f52017615751138">Submission</a> ()</td></tr>
+<tr class="memdesc:adc357e6d7b44178d1f52017615751138"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructs an empty submission.  <br /></td></tr>
 <tr class="separator:adc357e6d7b44178d1f52017615751138"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec6f1ae8d7639c467e7348b572320449" id="r_aec6f1ae8d7639c467e7348b572320449"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#aec6f1ae8d7639c467e7348b572320449">Submission</a> (int <a class="el" href="classSubmission.html#a7b6e2405d79134e923f1d74beba845a0">id</a>, const std::string &amp;<a class="el" href="classSubmission.html#ae143f4081965aaa80af89fc3a1b5baa6">title</a>, const std::string &amp;<a class="el" href="classSubmission.html#a4aa82369da56d3661fc89d099c78bfee">author</a>, const std::string &amp;<a class="el" href="classSubmission.html#ab524f4484bf346c7ba0d94b0a7dd114c">email</a>, int <a class="el" href="classSubmission.html#a013aaf716e23549da249a18e5fd8b94f">primaryField</a>)</td></tr>
+<tr class="memdesc:aec6f1ae8d7639c467e7348b572320449"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a submission with the provided metadata.  <br /></td></tr>
 <tr class="separator:aec6f1ae8d7639c467e7348b572320449"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af59a22b09e0fb4c13ac9ecda74ac344e" id="r_af59a22b09e0fb4c13ac9ecda74ac344e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#af59a22b09e0fb4c13ac9ecda74ac344e">getId</a> () const</td></tr>
+<tr class="memdesc:af59a22b09e0fb4c13ac9ecda74ac344e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the submission identifier.  <br /></td></tr>
 <tr class="separator:af59a22b09e0fb4c13ac9ecda74ac344e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a912c347d63c0f9ee7301c61c962b8e59" id="r_a912c347d63c0f9ee7301c61c962b8e59"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#a912c347d63c0f9ee7301c61c962b8e59">getTitle</a> () const</td></tr>
+<tr class="memdesc:a912c347d63c0f9ee7301c61c962b8e59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the submission title.  <br /></td></tr>
 <tr class="separator:a912c347d63c0f9ee7301c61c962b8e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f8e72716f6a8ef2c57a12a381a8b9ed" id="r_a0f8e72716f6a8ef2c57a12a381a8b9ed"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#a0f8e72716f6a8ef2c57a12a381a8b9ed">getAuthor</a> () const</td></tr>
+<tr class="memdesc:a0f8e72716f6a8ef2c57a12a381a8b9ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the author name.  <br /></td></tr>
 <tr class="separator:a0f8e72716f6a8ef2c57a12a381a8b9ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74f035ac2e8d59b02e94a2e217a8e2eb" id="r_a74f035ac2e8d59b02e94a2e217a8e2eb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#a74f035ac2e8d59b02e94a2e217a8e2eb">getEmail</a> () const</td></tr>
+<tr class="memdesc:a74f035ac2e8d59b02e94a2e217a8e2eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the author contact email.  <br /></td></tr>
 <tr class="separator:a74f035ac2e8d59b02e94a2e217a8e2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a504228f5d605c952a513d0eb44fb6a69" id="r_a504228f5d605c952a513d0eb44fb6a69"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#a504228f5d605c952a513d0eb44fb6a69">getPrimaryField</a> () const</td></tr>
+<tr class="memdesc:a504228f5d605c952a513d0eb44fb6a69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the primary field identifier for the submission.  <br /></td></tr>
 <tr class="separator:a504228f5d605c952a513d0eb44fb6a69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45a55b04613c6b9c3d5301d42ee848ab" id="r_a45a55b04613c6b9c3d5301d42ee848ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#a45a55b04613c6b9c3d5301d42ee848ab">setId</a> (int newId)</td></tr>
+<tr class="memdesc:a45a55b04613c6b9c3d5301d42ee848ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the submission identifier.  <br /></td></tr>
 <tr class="separator:a45a55b04613c6b9c3d5301d42ee848ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d92c13d960d0ef0376e5293efb670ce" id="r_a0d92c13d960d0ef0376e5293efb670ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#a0d92c13d960d0ef0376e5293efb670ce">setTitle</a> (const std::string &amp;newTitle)</td></tr>
+<tr class="memdesc:a0d92c13d960d0ef0376e5293efb670ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the submission title.  <br /></td></tr>
 <tr class="separator:a0d92c13d960d0ef0376e5293efb670ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ffd951ade690ae3f72826dcbed315f5" id="r_a4ffd951ade690ae3f72826dcbed315f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#a4ffd951ade690ae3f72826dcbed315f5">setAuthor</a> (const std::string &amp;newAuthor)</td></tr>
+<tr class="memdesc:a4ffd951ade690ae3f72826dcbed315f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the author name.  <br /></td></tr>
 <tr class="separator:a4ffd951ade690ae3f72826dcbed315f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c110910c6737bc5312c7e55d24d7183" id="r_a5c110910c6737bc5312c7e55d24d7183"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#a5c110910c6737bc5312c7e55d24d7183">setEmail</a> (const std::string &amp;newEmail)</td></tr>
+<tr class="memdesc:a5c110910c6737bc5312c7e55d24d7183"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the author contact email.  <br /></td></tr>
 <tr class="separator:a5c110910c6737bc5312c7e55d24d7183"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf852a48e9481ec077d0f3f2c2e58be3" id="r_adf852a48e9481ec077d0f3f2c2e58be3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#adf852a48e9481ec077d0f3f2c2e58be3">setPrimaryField</a> (int newPrimaryField)</td></tr>
+<tr class="memdesc:adf852a48e9481ec077d0f3f2c2e58be3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the primary field.  <br /></td></tr>
 <tr class="separator:adf852a48e9481ec077d0f3f2c2e58be3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add692bc3f1954e38058fe594cee351d4" id="r_add692bc3f1954e38058fe594cee351d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#add692bc3f1954e38058fe594cee351d4">getSecondaryField</a> () const</td></tr>
+<tr class="memdesc:add692bc3f1954e38058fe594cee351d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the secondary field identifier for the submission.  <br /></td></tr>
 <tr class="separator:add692bc3f1954e38058fe594cee351d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48c85ab6e7f6a985c09eaa4ccc3c1982" id="r_a48c85ab6e7f6a985c09eaa4ccc3c1982"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#a48c85ab6e7f6a985c09eaa4ccc3c1982">setSecondaryField</a> (int newSecondaryField)</td></tr>
+<tr class="memdesc:a48c85ab6e7f6a985c09eaa4ccc3c1982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the secondary field identifier.  <br /></td></tr>
 <tr class="separator:a48c85ab6e7f6a985c09eaa4ccc3c1982"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8054e4f83a05157470d64e605bd96ddb" id="r_a8054e4f83a05157470d64e605bd96ddb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#a8054e4f83a05157470d64e605bd96ddb">toString</a> () const</td></tr>
+<tr class="memdesc:a8054e4f83a05157470d64e605bd96ddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formats the submission data as a string.  <br /></td></tr>
 <tr class="separator:a8054e4f83a05157470d64e605bd96ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -139,7 +157,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a78960b1b18c0168e0d32774f07059b1b" id="r_a78960b1b18c0168e0d32774f07059b1b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSubmission.html#a78960b1b18c0168e0d32774f07059b1b">secondaryField</a></td></tr>
 <tr class="separator:a78960b1b18c0168e0d32774f07059b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a submission that can be assigned to reviewers. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="adc357e6d7b44178d1f52017615751138" name="adc357e6d7b44178d1f52017615751138"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adc357e6d7b44178d1f52017615751138">&#9670;&#160;</a></span>Submission() <span class="overload">[1/2]</span></h2>
 
@@ -154,6 +174,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Default constructs an empty submission. </p>
 
 </div>
 </div>
@@ -201,6 +223,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructs a submission with the provided metadata. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Unique identifier for the submission. </td></tr>
+    <tr><td class="paramname">title</td><td>Title of the submission. </td></tr>
+    <tr><td class="paramname">author</td><td>Author name for the submission. </td></tr>
+    <tr><td class="paramname">email</td><td>Contact email for the author. </td></tr>
+    <tr><td class="paramname">primaryField</td><td>Primary field of study the submission belongs to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -219,6 +253,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the author name. </p>
+<dl class="section return"><dt>Returns</dt><dd>Author name string. </dd></dl>
+
 </div>
 </div>
 <a id="a74f035ac2e8d59b02e94a2e217a8e2eb" name="a74f035ac2e8d59b02e94a2e217a8e2eb"></a>
@@ -235,6 +272,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the author contact email. </p>
+<dl class="section return"><dt>Returns</dt><dd>Email string. </dd></dl>
 
 </div>
 </div>
@@ -253,6 +293,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the submission identifier. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classSubmission.html" title="Represents a submission that can be assigned to reviewers.">Submission</a> id. </dd></dl>
+
 </div>
 </div>
 <a id="a504228f5d605c952a513d0eb44fb6a69" name="a504228f5d605c952a513d0eb44fb6a69"></a>
@@ -269,6 +312,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the primary field identifier for the submission. </p>
+<dl class="section return"><dt>Returns</dt><dd>Primary field as an integer. </dd></dl>
 
 </div>
 </div>
@@ -287,6 +333,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the secondary field identifier for the submission. </p>
+<dl class="section return"><dt>Returns</dt><dd>Secondary field as an integer. </dd></dl>
+
 </div>
 </div>
 <a id="a912c347d63c0f9ee7301c61c962b8e59" name="a912c347d63c0f9ee7301c61c962b8e59"></a>
@@ -303,6 +352,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the submission title. </p>
+<dl class="section return"><dt>Returns</dt><dd>Title string. </dd></dl>
 
 </div>
 </div>
@@ -322,6 +374,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Updates the author name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newAuthor</td><td>New author name. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a5c110910c6737bc5312c7e55d24d7183" name="a5c110910c6737bc5312c7e55d24d7183"></a>
@@ -339,6 +399,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Updates the author contact email. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newEmail</td><td>New email string. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -358,6 +426,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Updates the submission identifier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newId</td><td>New id value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="adf852a48e9481ec077d0f3f2c2e58be3" name="adf852a48e9481ec077d0f3f2c2e58be3"></a>
@@ -375,6 +451,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Updates the primary field. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newPrimaryField</td><td>New primary field id. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -394,6 +478,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Updates the secondary field identifier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newSecondaryField</td><td>New secondary field id. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a0d92c13d960d0ef0376e5293efb670ce" name="a0d92c13d960d0ef0376e5293efb670ce"></a>
@@ -412,6 +504,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Updates the submission title. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newTitle</td><td>New title string. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a8054e4f83a05157470d64e605bd96ddb" name="a8054e4f83a05157470d64e605bd96ddb"></a>
@@ -428,6 +528,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Formats the submission data as a string. </p>
+<dl class="section return"><dt>Returns</dt><dd>Human-readable submission summary. </dd></dl>
 
 </div>
 </div>

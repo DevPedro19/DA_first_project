@@ -16,6 +16,5 @@ var searchData=
   ['setsecondaryfield_13',['setsecondaryfield',['../classReviewer.html#a36c281319c2be282ff3727cb64a7b4c0',1,'Reviewer::setSecondaryField()'],['../classSubmission.html#a48c85ab6e7f6a985c09eaa4ccc3c1982',1,'Submission::setSecondaryField(int newSecondaryField)']]],
   ['settitle_14',['setTitle',['../classSubmission.html#a0d92c13d960d0ef0376e5293efb670ce',1,'Submission']]],
   ['setvisited_15',['setVisited',['../classVertex.html#a95a3f3c55f2ba371fae51d3fe0e76c23',1,'Vertex']]],
-  ['spanningtreecost_16',['spanningTreeCost',['../MSTTestAux_8h.html#a433a8e033df41363e90aa2d4869992e5',1,'MSTTestAux.h']]],
-  ['submission_17',['submission',['../classSubmission.html#adc357e6d7b44178d1f52017615751138',1,'Submission::Submission()'],['../classSubmission.html#aec6f1ae8d7639c467e7348b572320449',1,'Submission::Submission(int id, const std::string &amp;title, const std::string &amp;author, const std::string &amp;email, int primaryField)']]]
+  ['submission_16',['submission',['../classSubmission.html#adc357e6d7b44178d1f52017615751138',1,'Submission::Submission()'],['../classSubmission.html#aec6f1ae8d7639c467e7348b572320449',1,'Submission::Submission(int id, const std::string &amp;title, const std::string &amp;author, const std::string &amp;email, int primaryField)']]]
 ];

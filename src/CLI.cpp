@@ -90,8 +90,8 @@ void CLI::writeOutput(const Result& result, int riskAnalysis, const std::string&
         setOutputFileName(outputFileName);
         setIsValidOutputFileName(true);
     }
-    const OutputWriter& output_writer = OutputWriter(outputFileName_);
-    output_writer.writeOutput(result, riskAnalysis);
+    const OutputWriter outputWriter(outputFileName_);
+    outputWriter.writeOutput(result, riskAnalysis);
 }
 
 
@@ -110,12 +110,11 @@ void CLI::execute(const std::vector<std::string>& args) {
         solver.execute();
 
         Result result;
-        solver.checkResults(result, data.control.RiskAnalysis, data.reviewers.size(), data.parameters.MaxReviewsPerReviewer);
+        solver.checkResults(result, data.control.RiskAnalysis, static_cast<int>(data.reviewers.size()), data.parameters.MaxReviewsPerReviewer);
         if (data.control.GenerateAssignments) {
             writeOutput(result, data.control.RiskAnalysis, data.control.OutputFileName);
         }
-
-
+        // Pretty print the output
         for (auto v : flowNetwork.getVertexSet()) {
             for (auto e : v->getAdj()) {
                 std::cout << enumToString(v->getInfo().type) << " " << v->getInfo().id << " -- "

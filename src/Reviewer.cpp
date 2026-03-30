@@ -1,10 +1,11 @@
 #include "Reviewer.h"
 #include <sstream>
+#include <utility>
 
 Reviewer::Reviewer() : Reviewer(0, "", "", 0) {}
 
-Reviewer::Reviewer(int id, const std::string& name, const std::string& email, int primaryField)
-    : id(id), name(name), email(email), primaryField(primaryField), secondaryField(0) {}
+Reviewer::Reviewer(const int id, std::string  name, std::string  email, const int primaryField)
+    : id(id), name(std::move(name)), email(std::move(email)), primaryField(primaryField), secondaryField(0) {}
 
 int Reviewer::getId() const {
     return id;
@@ -39,11 +40,11 @@ void Reviewer::setEmail(const std::string& newEmail) {
     email = newEmail;
 }
 
-void Reviewer::setPrimaryField(int newPrimaryField) {
+void Reviewer::setPrimaryField(const int newPrimaryField) {
     primaryField = newPrimaryField;
 }
 
-void Reviewer::setSecondaryField(int newSecondaryField) {
+void Reviewer::setSecondaryField(const int newSecondaryField) {
     secondaryField = newSecondaryField;
 }
 

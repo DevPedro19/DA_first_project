@@ -1,5 +1,5 @@
 <map id="MaxFlowSolver" name="MaxFlowSolver">
-<area shape="rect" id="Node000001" title=" " alt="" coords="981,45,1104,70"/>
+<area shape="rect" id="Node000001" title="Solves the assignment problem using the Edmonds&#45;Karp maximum flow algorithm." alt="" coords="981,45,1104,70"/>
 <area shape="rect" id="Node000002" href="$classVertex.html" title=" " alt="" coords="169,153,320,178"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="270,142,340,95,385,73,433,57,508,44,586,36,739,31,877,37,981,47,981,52,876,43,739,37,586,41,509,50,434,63,387,78,343,100,273,146"/>
 <area shape="rect" id="Node000005" href="$classEdge.html" title=" " alt="" coords="437,214,578,239"/>

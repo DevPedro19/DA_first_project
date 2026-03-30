@@ -5,7 +5,6 @@
 #ifndef ORGANIZATIONAL_TOOL_REVIEWER_H
 #define ORGANIZATIONAL_TOOL_REVIEWER_H
 #include <string>
-#include <sstream>
 
 /**
  * @brief Represents a reviewer who can assess submissions.
@@ -24,31 +23,31 @@ public:
      * @param email Contact email for the reviewer.
      * @param primaryField Primary field of expertise.
      */
-    Reviewer(int id, const std::string& name, const std::string& email, int primaryField);
+    Reviewer(int id, std::string  name, std::string  email, int primaryField);
 
     /**
      * @brief Returns the reviewer identifier.
      * @return Reviewer id.
      */
-    int getId() const;
+    [[nodiscard]] int getId() const;
 
     /**
      * @brief Returns the reviewer name.
      * @return Name string.
      */
-    std::string getName() const;
+    [[nodiscard]] std::string getName() const;
 
     /**
      * @brief Returns the reviewer contact email.
      * @return Email string.
      */
-    std::string getEmail() const;
+    [[nodiscard]] std::string getEmail() const;
 
     /**
      * @brief Returns the primary field identifier for the reviewer.
      * @return Primary field as an integer.
      */
-    int getPrimaryField() const;
+    [[nodiscard]] int getPrimaryField() const;
 
     /**
      * @brief Updates the reviewer identifier.
@@ -78,7 +77,7 @@ public:
      * @brief Returns the secondary field identifier for the reviewer.
      * @return Secondary field as an integer.
      */
-    int getSecondaryField() const;
+    [[nodiscard]] int getSecondaryField() const;
 
     /**
      * @brief Updates the secondary field identifier.
@@ -90,7 +89,7 @@ public:
      * @brief Formats the reviewer data as a string.
      * @return Human-readable reviewer summary.
      */
-    std::string toString() const;
+    [[nodiscard]] std::string toString() const;
 private:
     int id;
     std::string name;

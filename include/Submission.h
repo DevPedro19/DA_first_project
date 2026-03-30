@@ -31,31 +31,31 @@ public:
      * @brief Returns the submission identifier.
      * @return Submission id.
      */
-    int getId() const;
+    [[nodiscard]] int getId() const;
 
     /**
      * @brief Returns the submission title.
      * @return Title string.
      */
-    std::string getTitle() const;
+    [[nodiscard]] std::string getTitle() const;
 
     /**
      * @brief Returns the author name.
      * @return Author name string.
      */
-    std::string getAuthor() const;
+    [[nodiscard]] std::string getAuthor() const;
 
     /**
      * @brief Returns the author contact email.
      * @return Email string.
      */
-    std::string getEmail() const;
+    [[nodiscard]] std::string getEmail() const;
 
     /**
      * @brief Returns the primary field identifier for the submission.
      * @return Primary field as an integer.
      */
-    int getPrimaryField() const;
+    [[nodiscard]] int getPrimaryField() const;
 
     /**
      * @brief Updates the submission identifier.
@@ -91,7 +91,7 @@ public:
      * @brief Returns the secondary field identifier for the submission.
      * @return Secondary field as an integer.
      */
-    int getSecondaryField() const;
+    [[nodiscard]] int getSecondaryField() const;
 
     /**
      * @brief Updates the secondary field identifier.
@@ -103,7 +103,7 @@ public:
      * @brief Formats the submission data as a string.
      * @return Human-readable submission summary.
      */
-    std::string toString() const;
+    [[nodiscard]] std::string toString() const;
 private:
     int id;
     std::string title;
