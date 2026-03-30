@@ -296,6 +296,8 @@ public:
      * @brief Constructor for the Graph class, which builds the bipartite graph from the input data.
      * @param data The input data, which consists of the list of submissions, reviewers, parameters and control. The graph is built according to the specifications of the input data, creating the vertices and edges accordingly.
      * @details The graph is built with the help of auxiliary functions as follows: the source node is connected to each submission node with an edge of capacity equal to the minimum number of reviews per submission, and the domain of the edge is the primary field of the submission. Each submission node is connected to each reviewer node with an edge of capacity 1, and the domain of the edge is determined by the GenerateAssignments parameter in the control struct. Finally, each reviewer node is connected to the sink node with an edge of capacity equal to the maximum number of reviews per reviewer.
+     * @par Complexity
+     * Time: O(V^2)
      */
     explicit Graph(const Data &data);
 
@@ -305,6 +307,8 @@ public:
      * @param sink The sink node.
      * @param submissions Array of submissions, each represented as a node in the graph.
      * @param reviewers Array of reviewers, each represented as a node in the graph.
+     * @par Complexity
+     * Time: O(V)
      */
     void createNodes(nodeInfo source, nodeInfo sink, const std::vector<Submission> & submissions, const std::vector<Reviewer> & reviewers);
 
@@ -316,6 +320,8 @@ public:
      * @param reviewers Array of reviewers.
      * @param parameters Parameters which indicate the type of connections, regarding expertise matching between submissions and reviewers, that will be made.
      * @param generateAssignments Integer value that indicates the type of connections, regarding expertise matching between submissions and reviewers, that will be made.
+     * @par Complexity
+     * Time: O(V^2)
      */
     void createEdges(nodeInfo source, nodeInfo sink, const std::vector<Submission> & submissions, const std::vector<Reviewer> & reviewers, const Parameters & parameters, int generateAssignments);
 

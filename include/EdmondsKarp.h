@@ -24,6 +24,8 @@ public:
 
     /**
      * @brief Executes the Edmonds Karp algorithm that repeatedly finds augmenting paths and augments flow, while possible, until no more augmenting paths exist, at which point the maximum flow of the network is achieved.
+     * @par Complexity
+     * Time: O(V * E^2)
      */
     void execute() const override;
 
@@ -36,18 +38,24 @@ private:
      * @param e Edge leading to the vertex.
      * @param w Destination vertex to potentially mark as visited.
      * @param residual Residual capacity of the edge.
+     * @par Complexity
+     * Time: O(1)
      */
     static void testAndVisit(std::queue<Vertex<nodeInfo>*> &q, Edge<nodeInfo> *e, Vertex<nodeInfo> *w, int residual);
 
     /**
      * @brief Finds an augmenting path from source to sink using breadth-first search (BFS).
      * @return True if an augmenting path exists, false otherwise.
+     * @par Complexity
+     * Time: O(V + E)
      */
     [[nodiscard]] bool findAugmentingPath() const;
 
     /**
      * @brief Computes the minimum residual capacity along the current augmenting path.
      * @return The bottleneck value (minimum residual capacity).
+     * @par Complexity
+     * Time: O(V)
      */
     [[nodiscard]] int findMinResidualAlongPath() const;
 
@@ -55,6 +63,8 @@ private:
      * @brief Augments flow along the current augmenting path by the given amount.
      * Updates both forward and backward edges in the residual graph.
      * @param f Amount of flow to augment (the bottleneck value).
+     * @par Complexity
+     * Time: O(V)
      */
     void augmentFlowAlongPath(int f) const;
 };
