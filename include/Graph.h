@@ -19,6 +19,11 @@ enum type {
     REVIEWER
 };
 
+/**
+ * @brief This function converts the type of the node to a string with the name of the type, for printing purposes.
+ * @param t The type of the node, which can be a source, sink, submission or reviewer.
+ * @return The string with the name of the type of the node.
+ */
 inline std::string enumToString(const type t) {
     switch (t) {
         case SOURCE: return "SOURCE";
@@ -29,21 +34,33 @@ inline std::string enumToString(const type t) {
     return "";
 }
 
+/**
+ * @brief This constant is used to represent the absence of a field in the input .csv file, which is represented by 0.
+ */
 constexpr int NO_FIELD = 0;
 
 /**
  * @brief This struct is responsible for representing the information of a node in the graph, which consists of its type and id.
  */
-
 struct nodeInfo {
     enum type type;
     int id;
 };
 
+/**
+ * @brief Equality operator for nodeInfo struct, which is used to compare the content of the vertices in the graph. Two nodeInfo are considered equal if they have the same type and id.
+ * @param n1 The first nodeInfo to be compared.
+ * @param n2 The second nodeInfo to be compared.
+ * @return Whether the two nodeInfo are equal or not.
+ */
+inline bool operator==(const nodeInfo& n1, const nodeInfo& n2) {
+    return n1.id == n2.id && n1.type == n2.type;
+}
+
 template <class T>
 class Edge;
 
-#define INF std::numeric_limits<double>::max()
+#define INF std::numeric_limits<int>::max();
 
 /************************* Vertex  **************************/
 /** 
@@ -85,7 +102,7 @@ public:
 
     /**
      * @brief This function returns the list of incoming edges of the vertex.
-     * It's used to find if a edge is a forward or backward edge when finding the augmenting path and to update the flow of the edges accordingly.
+     * It's used to find if an edge is a forward or backward edge when finding the augmenting path and to update the flow of the edges accordingly.
      * @return The list of incoming edges of the vertex.
      */
     std::vector<Edge<T>*> getIncoming() const;
@@ -115,7 +132,7 @@ public:
      * @param domain The domain of the edge, which is used to check if the edge is a primary or secondary edge when generating the assignments.
      * @details The edge is added to the list of outgoing edges of the vertex, and a corresponding incoming edge is added to the destination vertex.
      */
-    Edge<T>* addEdge(Vertex<T> *d, double capacity, int domain = 0);
+    Edge<T>* addEdge(Vertex<T> *d, int capacity, int domain = 0);
 
     /**
      * @brief This function removes an outgoing edge of the vertex, given the id of the destination vertex.
@@ -133,7 +150,7 @@ public:
 protected:
 
     /**
-     * @brief The infomation of the vertex, nodeInfo
+     * @brief The information of the vertex, nodeInfo
      */
     T info_;          
 
@@ -174,7 +191,6 @@ protected:
  * @brief This class represents the edges of the graph, which consist of a destination vertex, capacity, flow and domain.
  * @param <T> The type of the vertex information, which in this case is nodeInfo.
  */
-
 template <class T>
 class Edge {
 public:
@@ -186,7 +202,7 @@ public:
      * @param capacity The capacity of the edge, which is the weight of the edge.
      * @param domain The domain of the edge, which is used to check if the edge is a primary or secondary edge when generating the assignments.
      */
-    Edge(Vertex<T> *orig, Vertex<T> *dest, double capacity, int domain=0);
+    Edge(Vertex<T> *orig, Vertex<T> *dest, int capacity, int domain=0);
 
     /**
      * @brief This function returns the destination vertex of the edge.
@@ -198,7 +214,7 @@ public:
      * @brief This function returns the capacity of the edge.
      * @return The capacity of the edge.
      */
-    [[nodiscard]] double getCapacity() const;
+    [[nodiscard]] int getCapacity() const;
 
     /**
      * @brief This function returns the origin vertex of the edge.
@@ -210,7 +226,7 @@ public:
      * @brief This function returns the current flow of the edge.
      * @return The current flow of the edge.
      */
-    [[nodiscard]] double getFlow() const;
+    [[nodiscard]] int getFlow() const;
 
     /**
      * @brief This function returns the domain of the edge, which is used to check if the edge is a primary or secondary edge when generating the assignments.
@@ -222,7 +238,7 @@ public:
      * @brief This function sets the current flow of the edge.
      * @param flow The current flow of the edge, which is updated when an augmenting path is found in the max flow algorithm.
      */
-    void setFlow(double flow);
+    void setFlow(int flow);
 
     /**
      * @brief This function sets the domain of the edge.
@@ -234,7 +250,7 @@ public:
      * @brief This function sets the capacity of the edge.
      * @param capacity The capacity of the edge, which is the weight of the edge.
      */
-    void setCapacity(double capacity);
+    void setCapacity(int capacity);
 
 protected:
 
@@ -246,7 +262,7 @@ protected:
     /**
      * @brief The capacity of the edge.
      */
-    double capacity_;
+    int capacity_;
 
     /**
      * @brief The domain of the edge.
@@ -263,7 +279,7 @@ protected:
      * @brief The current flow of the edge
      * @details Initially, the flow of the edge is set to 0, and it is updated when an augmenting path is found in the max flow algorithm. The flow of an edge cannot exceed its capacity, and it cannot be negative.
      */
-    double flow_ = 0; // current flow of the edge
+    int flow_ = 0;
 
 };
 
@@ -281,10 +297,37 @@ public:
     /**
      * @brief Constructor for the Graph class, which builds the bipartite graph from the input data.
      * @param data The input data, which consists of the list of submissions, reviewers, parameters and control. The graph is built according to the specifications of the input data, creating the vertices and edges accordingly.
-     * @details The graph is built as follows: the source node is connected to each submission node with an edge of capacity equal to the minimum number of reviews per submission, and the domain of the edge is the primary field of the submission. Each submission node is connected to each reviewer node with an edge of capacity 1, and the domain of the edge is determined by the GenerateAssignments parameter in the control struct. Finally, each reviewer node is connected to the sink node with an edge of capacity equal to the maximum number of reviews per reviewer.
+     * @details The graph is built with the help of auxiliary functions as follows: the source node is connected to each submission node with an edge of capacity equal to the minimum number of reviews per submission, and the domain of the edge is the primary field of the submission. Each submission node is connected to each reviewer node with an edge of capacity 1, and the domain of the edge is determined by the GenerateAssignments parameter in the control struct. Finally, each reviewer node is connected to the sink node with an edge of capacity equal to the maximum number of reviews per reviewer.
      */
-    Graph(Data &data);
-   
+    explicit Graph(const Data &data);
+
+    /**
+     * @brief Auxiliary function to create the nodes of the graph.
+     * @param source The source node.
+     * @param sink The sink node.
+     * @param submissions Array of submissions, each represented as a node in the graph.
+     * @param reviewers Array of reviewers, each represented as a node in the graph.
+     */
+    void createNodes(nodeInfo source, nodeInfo sink, const std::vector<Submission> & submissions, const std::vector<Reviewer> & reviewers);
+
+    /**
+     * @brief Auxiliary function to create the edges of the graph.
+     * @param source The source node.
+     * @param sink The sink node.
+     * @param submissions Array of submissions.
+     * @param reviewers Array of reviewers.
+     * @param parameters Parameters which indicate the type of connections, regarding expertise matching between submissions and reviewers, that will be made.
+     * @param generateAssignments Integer value that indicates the type of connections, regarding expertise matching between submissions and reviewers, that will be made.
+     */
+    void createEdges(nodeInfo source, nodeInfo sink, const std::vector<Submission> & submissions, const std::vector<Reviewer> & reviewers, const Parameters & parameters, int generateAssignments);
+
+    /**
+     * @brief This function prints the details of the created graph, showing its nodes and edges.
+     * @param numSubmissions The number of submissions in the graph.
+     * @param numReviewers The number of reviewers in the graph.
+     */
+    void outputGraph(int numSubmissions, int numReviewers) const;
+
     /**
       * @brief Auxiliary function to find a vertex with a given content.
       * @param in The content of the vertex to be found, which consists of its type and id, the struct nodeInfo.
@@ -317,16 +360,16 @@ public:
      * @return Whether the edge was successfully added or not. The edge is not added if
      * @details The edge is not added if the source or destination vertex does not exist in the graph. The edge is identified by the source and destination vertices, so if there are multiple edges between the same pair of vertices, all of them will be added.
      */
-    bool addEdge(const T &source, const T &dest, double c, int domain = 0);
+    bool addEdge(const T &source, const T &dest, int c, int domain = 0);
 
     /**
      * @brief This function removes an edge from the graph.
-     * @param source The content of the source vertex of the edge, which consists of its type and id, the struct nodeInfo.
+     * @param src The content of the source vertex of the edge, which consists of its type and id, the struct nodeInfo.
      * @param dest The content of the destination vertex of the edge, which consists of its type and id, the struct nodeInfo.
      * @return Whether the edge was successfully removed or not
      * @details The edge is not removed if such edge does not exist in the graph. The edge is identified by the source and destination vertices, so if there are multiple edges between the same pair of vertices, all of them will be removed.
      */
-    bool removeEdge(const T &source, const T &dest);
+    bool removeEdge(const T &src, const T &dest);
 
 
     /**
@@ -361,23 +404,13 @@ protected:
 template <class T>
 Vertex<T>::Vertex(const T &in): info_(in) {}
 
-/*
- * Auxiliary function to add an outgoing edge to a vertex (this),
- * with a given destination vertex (d) and edge weight (w).
- */
 template <class T>
-Edge<T>* Vertex<T>::addEdge(Vertex<T> *d, double capacity, int domain) {
+Edge<T>* Vertex<T>::addEdge(Vertex<T> *d, int capacity, int domain) {
     auto newEdge = new Edge<T>(this, d, capacity, domain);
     adj.push_back(newEdge);
     d->incoming.push_back(newEdge);
     return newEdge;
 }
-
-/*
- * Auxiliary function to remove an outgoing edge (with a given destination (d))
- * from a vertex (this).
- * Returns true if successful, and false if such edge does not exist.
- */
 
 template<class T>
 bool Vertex<T>::removeEdge(const T &id) {
@@ -389,7 +422,7 @@ bool Vertex<T>::removeEdge(const T &id) {
         if (dest->getInfo() == id) {
             it = adj.erase(it);
             deleteEdge(edge);
-            removedEdge = true; // allows for multiple edges to connect the same pair of vertices (multigraph)
+            removedEdge = true; // not breaking allows for multiple edges to connect the same pair of vertices (multigraph)
         }
         else {
             ++it;
@@ -398,9 +431,6 @@ bool Vertex<T>::removeEdge(const T &id) {
     return removedEdge;
 }
 
-/*
- * Auxiliary function to remove an outgoing edge of a vertex.
- */
 template<class T>
 void Vertex<T>::removeOutgoingEdges() {
     auto it = adj.begin();
@@ -454,7 +484,7 @@ void Vertex<T>::setPath(Edge<T> *path) {
 template<class T>
 void Vertex<T>::deleteEdge(Edge<T> *edge) {
     Vertex<T> *dest = edge->getDest();
-    // Remove only the matching edge pointer from the incoming list.
+    // Remove only the matching edge pointer from the incoming list of the destination node
     auto it = dest->incoming.begin();
     while (it != dest->incoming.end()) {
         if (*it == edge) {
@@ -470,7 +500,7 @@ void Vertex<T>::deleteEdge(Edge<T> *edge) {
 /********************** Edge  ****************************/
 
 template<class T>
-Edge<T>::Edge(Vertex<T> *origVertex, Vertex<T> *destVertex, double capacity, int domain) : dest(destVertex), capacity_(capacity), domain_(domain), orig(origVertex) {}
+Edge<T>::Edge(Vertex<T> *orig, Vertex<T> *dest, const int capacity, const int domain) : dest(dest), capacity_(capacity), domain_(domain), orig(orig) {}
 
 template<class T>
 Vertex<T>* Edge<T>::getDest() const {
@@ -478,7 +508,7 @@ Vertex<T>* Edge<T>::getDest() const {
 }
 
 template<class T>
-double Edge<T>::getCapacity() const {
+int Edge<T>::getCapacity() const {
     return this->capacity_;
 }
 
@@ -488,7 +518,7 @@ Vertex<T>* Edge<T>::getOrig() const {
 }
 
 template<class T>
-double Edge<T>::getFlow() const {
+int Edge<T>::getFlow() const {
     return flow_;
 }
 
@@ -498,12 +528,12 @@ int Edge<T>::getDomain() const {
 }
 
 template<class T>
-void Edge<T>::setFlow(double flow) {
+void Edge<T>::setFlow(int flow) {
     this->flow_ = flow;
 }
 
 template<class T>
-void Edge<T>::setCapacity(double capacity) {
+void Edge<T>::setCapacity(int capacity) {
     this->capacity_ = capacity;
 }
 
@@ -519,14 +549,13 @@ size_t Graph<T>::getNumVertex() const {
     return vertexSet.size();
 }
 
+
 template<class T>
 std::vector<Vertex<T>*> Graph<T>::getVertexSet() const {
     return vertexSet;
 }
 
-/*
- * Auxiliary function to find a vertex with a given content.
- */
+
 template<class T>
 Vertex<T>* Graph<T>::findVertex(const T &in) const {
     for (const auto v : vertexSet)
@@ -535,10 +564,6 @@ Vertex<T>* Graph<T>::findVertex(const T &in) const {
     return nullptr;
 }
 
-/*
- *  Adds a vertex with a given content or info (in) to a graph (this).
- *  Returns true if successful, and false if a vertex with that content already exists.
- */
 
 template<class T>
 bool Graph<T>::addVertex(const T &in) {
@@ -548,11 +573,7 @@ bool Graph<T>::addVertex(const T &in) {
     return true;
 }
 
-/*
- *  Removes a vertex with a given content (in) from a graph (this), and
- *  all outgoing and incoming edges.
- *  Returns true if successful, and false if such vertex does not exist.
- */
+
 template<class T>
 bool Graph<T>::removeVertex(const T &in) {
     for (auto it = vertexSet.begin(); it != vertexSet.end(); ++it) {
@@ -570,13 +591,9 @@ bool Graph<T>::removeVertex(const T &in) {
     return false;
 }
 
-/*
- * Adds an edge to a graph (this), given the contents of the source and
- * destination vertices and the edge weight (w).
- * Returns true if successful, and false if the source or destination vertex does not exist.
- */
+
 template<class T>
-bool Graph<T>::addEdge(const T &source, const T &dest, double c, int domain) {
+bool Graph<T>::addEdge(const T &source, const T &dest, int c, int domain) {
     auto v1 = findVertex(source);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
@@ -585,44 +602,19 @@ bool Graph<T>::addEdge(const T &source, const T &dest, double c, int domain) {
     return true;
 }
 
-/*
- * Removes an edge from a graph (this).
- * The edge is identified by the source (sourc) and destination (dest) contents.
- * Returns true if successful, and false if such edge does not exist.
- */
+
 template<class T>
-bool Graph<T>::removeEdge(const T &sourc, const T &dest) {
-    Vertex<T>* srcVertex = findVertex(sourc);
+bool Graph<T>::removeEdge(const T &src, const T &dest) {
+    Vertex<T>* srcVertex = findVertex(src);
     if (srcVertex == nullptr) {
         return false;
     }
     return srcVertex->removeEdge(dest);
 }
 
-/**
- * Constructor for the Graph class, which builds the bipartite graph from the input data.
- * @param data The input data, which consists of the list of submissions, reviewers, parameters and control.
- * The graph is built according to the specifications of the input data, creating the vertices and edges accordingly.
- * @details The graph is built as follows: the source node is connected to each submission node with an edge of capacity
- * equal to the minimum number of reviews per submission,
- * and the domain of the edge is the primary field of the submission.
- * Each submission node is connected to each reviewer node with an edge of capacity 1.
- * Finally, each reviewer node is connected to the sink node with an edge of capacity equal to
- * the maximum number of reviews per reviewer.
- */
 
 template<class T>
-Graph<T>::Graph(Data &data) {
-
-    std::vector<Submission> &submissions = data.submissions;
-    std::vector<Reviewer> &reviewers = data.reviewers;
-    const Parameters &p = data.parameters;
-    const Control &c = data.control;
-
-    nodeInfo source = {SOURCE, 0};
-    nodeInfo sink = {SINK, -1};
-
-                                /* CREATE THE NODES */
+void Graph<T>::createNodes(nodeInfo source, nodeInfo sink, const std::vector<Submission> &submissions, const std::vector<Reviewer> &reviewers) {
     // Create the source node ID => 0
     this->addVertex(source);
     // Create the sink node ID => -1
@@ -636,19 +628,22 @@ Graph<T>::Graph(Data &data) {
     for (const Reviewer &r : reviewers) {
         this->addVertex({REVIEWER, r.getId()});
     }
-                                /* CREATE THE EDGES*/
+}
+
+template<class T>
+void Graph<T>::createEdges(nodeInfo source, nodeInfo sink, const std::vector<Submission> &submissions, const std::vector<Reviewer> &reviewers, const Parameters &parameters, int generateAssignments) {
     // Create edge from the source node to submission with capacity MinReviewsPerSubmission
     for (const Submission& s : submissions) {
-        // When checking the outputs the domain of this edge is always the primary Field
-        this->addEdge(source, {SUBMISSION, s.getId()}, p.MinReviewsPerSubmission, s.getPrimaryField());
+        // The domain of source edges is always the primary field of the submission
+        this->addEdge(source, {SUBMISSION, s.getId()}, parameters.MinReviewsPerSubmission, s.getPrimaryField());
     }
 
-    // Considerando submission para reviewer
-    bool primaryPrimary = (data.parameters.PrimarySubmissionDomain && data.parameters.PrimaryReviewerExpertise);
-    bool primarySecondary = (data.parameters.PrimarySubmissionDomain && data.parameters.SecondaryReviewerExpertise);
-    bool secondaryPrimary = (data.parameters.SecondarySubmissionDomain && data.parameters.PrimaryReviewerExpertise);
-    bool secondarySecondary = (data.parameters.SecondarySubmissionDomain && data.parameters.SecondaryReviewerExpertise);
-
+    // Create flags to help in the creation of the edges, regarding what types of edges to consider
+    // Names of the variables are of the type <submissionExpertise><reviewerExpertise>
+    const bool primaryPrimary = parameters.PrimarySubmissionDomain && parameters.PrimaryReviewerExpertise;
+    const bool primarySecondary = parameters.PrimarySubmissionDomain && parameters.SecondaryReviewerExpertise;
+    const bool secondaryPrimary = parameters.SecondarySubmissionDomain && parameters.PrimaryReviewerExpertise;
+    const bool secondarySecondary = parameters.SecondarySubmissionDomain && parameters.SecondaryReviewerExpertise;
 
     // Create edges between submissions and reviewers
     for (const Submission &s : submissions) {
@@ -657,11 +652,12 @@ Graph<T>::Graph(Data &data) {
             nodeInfo reviewer = {REVIEWER, r.getId()};
 
             // helper lambda function that reduces code repetition
+            // the variable 'field' will be the domain of the connection submission-reviewer established
             auto add = [&](int field) {
                 this->addEdge(submission, reviewer, 1, field);
             };
 
-            switch (c.GenerateAssignments) {
+            switch (generateAssignments) { // in addition to this value the flags above will be used to determine what edges are created
                 case 0:
                 case 1:
                     // Create only primary fields
@@ -718,13 +714,16 @@ Graph<T>::Graph(Data &data) {
 
     // Create edges to sink with capacity equal to the MaxReviewsPerReviewer
     for (const Reviewer& r : reviewers) {
-        this->addEdge({REVIEWER, r.getId()}, sink, p.MaxReviewsPerReviewer);
+        this->addEdge({REVIEWER, r.getId()}, sink, parameters.MaxReviewsPerReviewer);
     }
+}
 
-    // Output of execution
-    std::cout << "Graph created with " << submissions.size() << " submission nodes, " << reviewers.size()
+template<class T>
+void Graph<T>::outputGraph(const int numSubmissions, const int numReviewers) const {
+    std::cout << "\nGraph created with " << numSubmissions << " submission nodes, " << numReviewers
     << " reviewer nodes, and " << this->getNumVertex() << " vertices in total." << std::endl;
 
+    std::cout << "\n=============== Edges ===============\n" << std::endl;
     for (auto v: vertexSet) {
         for (auto e : v->getAdj()) {
             std::cout << enumToString(v->getInfo().type) << " " << v->getInfo().id << " -- "
@@ -734,15 +733,20 @@ Graph<T>::Graph(Data &data) {
     }
 }
 
-/**
- * @brief Equality operator for nodeInfo struct, which is used to compare the content of the vertices in the graph. Two nodeInfo are considered equal if they have the same type and id.
- * @param n1 The first nodeInfo to be compared.
- * @param n2 The second nodeInfo to be compared.
- * @return Whether the two nodeInfo are equal or not.
- */
+template<class T>
+Graph<T>::Graph(const Data &data) {
 
-inline bool operator==(const nodeInfo& n1, const nodeInfo& n2) {
-    return n1.id == n2.id && n1.type == n2.type;
+    const std::vector<Submission> &submissions = data.submissions;
+    const std::vector<Reviewer> &reviewers = data.reviewers;
+    const Parameters &parameters = data.parameters;
+    const Control &control = data.control;
+
+    constexpr nodeInfo source = {SOURCE, 0};
+    constexpr nodeInfo sink = {SINK, -1};
+
+    createNodes(source, sink, submissions, reviewers);
+    createEdges(source, sink, submissions, reviewers, parameters, control.GenerateAssignments);
+    outputGraph(submissions.size(), reviewers.size());
 }
 
 #endif  /*DA_TP_CLASSES_GRAPH*/
