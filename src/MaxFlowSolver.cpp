@@ -63,43 +63,74 @@ void MaxFlowSolver::outputResults() const {
 }
 
 
-// Note: only values 0 or 1 will be exercised in this project.
-void MaxFlowSolver::checkRisk(Result& result, const std::vector<Reviewer>& reviewers) const {
-    const int origFlow = getFlow();
-
-    for (const Reviewer& reviewer : reviewers) {
-        resetAllFlow();
-
-        // Searches the reviewer to be removed
-        const auto absent = flowNetwork->findVertex({REVIEWER, reviewer.getId()});
-        if (absent->getAdj().size() > 1) {
-            throw std::logic_error("Reviewer node cannot have more than one outgoing edge.");
-        }
-        Edge<nodeInfo>* absentToSink = absent->getAdj()[0]; // edge from the absent reviewer
-        const int origCapacity = absentToSink->getCapacity();
-        // Updates the flow from that reviewer to the sink to 0, meaning he cannot review any submission
-        absentToSink->setCapacity(0);
-
-        // Runs the maxFlow algorithm in the new updated graph
-        this->execute();
-
-        // Compares if it changed the maxFlow
-        if (getFlow() < origFlow) {
-            // If it changed the max flow, then it's a critical edge
-            result.riskyReviewers.push_back(reviewer.getId());
-        }
-
-        // reset the edge to the original capacity (MaxReviewsPerReviewer)
-        absentToSink->setCapacity(origCapacity);
+void MaxFlowSolver::validateReviewerNode(const Vertex<nodeInfo>* reviewer) {
+    if (reviewer->getAdj().size() > 1) {
+        throw std::logic_error("Reviewer node cannot have more than one outgoing edge.");
     }
 }
 
 
-void MaxFlowSolver::checkResults(Result &result, const int riskAnalysis, const std::vector<Reviewer>& reviewers) const {
+// Note: only values 0 or 1 will be exercised in this project.
+void MaxFlowSolver::checkRisk(Result& result, const std::vector<Reviewer>& reviewers, const int generateAssignments) const {
+
+    if (generateAssignments == 1) {
+        for (const Reviewer& absent : reviewers) {
+            const auto absentNode = flowNetwork->findVertex({REVIEWER, absent.getId()});
+            validateReviewerNode(absentNode);
+            const Edge<nodeInfo>* absentToSink = absentNode->getAdj()[0]; // edge from the absent reviewer
+            int reviewsMissing = absentToSink->getFlow();
+
+            for (const Reviewer& helper : reviewers) {
+                // the helper reviewer cannot be the absent, and he must have the same primary expertise as the absent reviewer
+                if (helper.getId() != absent.getId() && helper.getPrimaryField() == absent.getPrimaryField()) {
+
+                    const auto helperNode = flowNetwork->findVertex({REVIEWER, helper.getId()});
+                    validateReviewerNode(helperNode);
+                    const Edge<nodeInfo>* helperToSink = helperNode->getAdj()[0]; // edge from the helper reviewer
+                    reviewsMissing -= helperToSink->getCapacity() - helperToSink->getFlow();
+
+                    if (reviewsMissing <= 0) break;
+                }
+            }
+
+            if (reviewsMissing > 0) result.riskyReviewers.push_back(absent.getId());
+        }
+
+    } else if (generateAssignments > 1) {
+        const int origFlow = getFlow();
+
+        for (const Reviewer& absent : reviewers) {
+            resetAllFlow();
+
+            // Searches the reviewer to be removed
+            const auto absentNode = flowNetwork->findVertex({REVIEWER, absent.getId()});
+            validateReviewerNode(absentNode);
+            Edge<nodeInfo>* absentToSink = absentNode->getAdj()[0]; // edge from the absent reviewer
+            const int origCapacity = absentToSink->getCapacity();
+            // Updates the flow from that reviewer to the sink to 0, meaning he cannot review any submission
+            absentToSink->setCapacity(0);
+
+            // Runs the maxFlow algorithm in the new updated graph
+            this->execute();
+
+            // Compares if it changed the maxFlow
+            if (getFlow() < origFlow) {
+                // If it changed the max flow, then it's a critical edge
+                result.riskyReviewers.push_back(absent.getId());
+            }
+
+            // reset the edge to the original capacity (MaxReviewsPerReviewer)
+            absentToSink->setCapacity(origCapacity);
+        }
+    }
+}
+
+
+void MaxFlowSolver::checkResults(Result &result, const int riskAnalysis, const std::vector<Reviewer>& reviewers, const int generateAssignments) const {
     outputResults();
     checkMatches(result);
     checkMisses(result);
 
     if (riskAnalysis > 0)
-        checkRisk(result, reviewers);
+        checkRisk(result, reviewers, generateAssignments);
 }
