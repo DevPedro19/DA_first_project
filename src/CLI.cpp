@@ -111,7 +111,7 @@ void CLI::execute(const std::vector<std::string>& args) {
         solver.execute();
 
         Result result;
-        solver.checkResults(result, data.control.RiskAnalysis, data.reviewers);
+        solver.checkResults(result, data.control.RiskAnalysis, data.reviewers, data.control.GenerateAssignments);
         if (data.control.GenerateAssignments) {
             writeOutput(result, data.control.RiskAnalysis, data.control.OutputFileName);
         }

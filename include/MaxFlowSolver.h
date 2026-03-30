@@ -29,6 +29,7 @@ public:
      */
     void outputResults() const;
 
+
     /**
      * @brief Checks the residual graph after running the max flow algorithm to populate the result object with the matches, which are the edges from submissions to reviewers that have no residual capacity.
      * @param result The result object to be populated with the matches.
@@ -41,21 +42,28 @@ public:
      */
     void checkMisses(Result& result) const;
 
+    /**
+     * @brief Validates that a reviewer node has only one edge to the sink. If it has more than one edge to the sink, an exception is thrown.
+     * @param reviewer The reviewer node to be validated.
+     */
+    static void validateReviewerNode(const Vertex<nodeInfo> *reviewer);
 
     /**
-     * @brief Checks the risk of each reviewer by temporarily preventing him from reviewing any submission and checking if the maximum flow decreases.
+     * @brief Checks the risk of each reviewer. This function uses a hybrid strategy to check the risk of each reviewer, depending on the value of the Generate Assignments control parameter. If Generate Assignments is 1, it checks the risk of each reviewer by checking if the number of reviews missing from that reviewer can be covered by other reviewers with the same primary expertise, using simple iteration through the reviewers. If Generate Assignments is greater than 1, it checks the risk of each reviewer by temporarily preventing him from reviewing any submission and checking if the maximum flow decreases.
      * @param result The result object to be populated with the risky reviewers.
      * @param reviewers Array of all the reviewers of the flow network.
+     * @param generateAssignments Value of the Generate Assignments control parameter to decide which strategy to take in the risk analysis.
      */
-    void checkRisk(Result& result, const std::vector<Reviewer>& reviewers) const;
+    void checkRisk(Result& result, const std::vector<Reviewer>& reviewers, int generateAssignments) const;
 
     /**
      * @brief Calls auxiliary functions to populate the result object with the matches, misses and risky reviewers, if risk analysis is required.
      * @param result Result object to be populated with the matches, misses and risky reviewers, if risk analysis is required.
      * @param riskAnalysis Indicates whether risk analysis is required (> 0) or not (0).
      * @param reviewers Array of reviewers, which is used to check the risk of each reviewer in case risk analysis is required.
+     * @param generateAssignments Value of the Generate Assignments control parameter to decide which strategy to take in the risk analysis.
      */
-    void checkResults(Result& result, int riskAnalysis, const std::vector<Reviewer>& reviewers) const;
+    void checkResults(Result& result, int riskAnalysis, const std::vector<Reviewer>& reviewers, int generateAssignments) const;
 private:
     /**
      * @brief Computes the total flow from the source to the sink by summing the flow of all edges outgoing from the source.

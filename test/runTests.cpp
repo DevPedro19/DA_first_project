@@ -48,7 +48,7 @@ TEST(test_datasets, test_all_dataset) {
         MaxFlowSolver solver(&graph, &edmondsKarp);
         solver.execute();
         Result result;
-        solver.checkResults(result, data.control.RiskAnalysis, data.reviewers);
+        solver.checkResults(result, data.control.RiskAnalysis, data.reviewers, data.control.GenerateAssignments);
         OutputWriter output_writer(data.control.OutputFileName);
         output_writer.writeOutput(result, data.control.RiskAnalysis);
         verifyCsvLinesMatch(outputFilepath, expectedOutputFilepath);
