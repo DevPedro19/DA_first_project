@@ -15,6 +15,8 @@
 #include <vector>
 #include <filesystem>
 
+#include "EdmondsKarp.h"
+
 CLI::CLI() = default;
 
 
@@ -104,7 +106,8 @@ void CLI::execute(const std::vector<std::string>& args) {
     if (infoMenu.display()) {
         Graph<nodeInfo> flowNetwork(data);
 
-        MaxFlowSolver solver(&flowNetwork);
+        EdmondsKarp edmondsKarp(&flowNetwork);
+        const MaxFlowSolver solver(&flowNetwork, &edmondsKarp);
         solver.execute();
 
         Result result;

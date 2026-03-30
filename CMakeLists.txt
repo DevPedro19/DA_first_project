@@ -44,6 +44,10 @@ add_library(core STATIC
         src/InfoMenu.cpp
         src/OutputWriter.cpp
         src/MaxFlowSolver.cpp
+        include/EdmondsKarp.h
+        include/MaxFlowAlgorithm.h
+        src/MaxFlowAlgorithm.cpp
+        src/EdmondsKarp.cpp
 )
 add_executable(main src/main.cpp)
 

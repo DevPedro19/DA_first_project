@@ -60,8 +60,6 @@ inline bool operator==(const nodeInfo& n1, const nodeInfo& n2) {
 template <class T>
 class Edge;
 
-#define INF std::numeric_limits<int>::max();
-
 /************************* Vertex  **************************/
 /** 
  * @brief This class represents the vertices of the graph, which consist of a nodeInfo and a list of outgoing edges.
