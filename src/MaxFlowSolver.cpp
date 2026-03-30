@@ -11,7 +11,7 @@ MaxFlowSolver::MaxFlowSolver(Graph<nodeInfo>* g) {
 }
 
 // Function to test the given vertex 'w' and visit it if conditions are met
-void MaxFlowSolver::testAndVisit(std::queue<Vertex<nodeInfo>*> &q, Edge<nodeInfo> *e, Vertex<nodeInfo> *w, double residual) {
+void MaxFlowSolver::testAndVisit(std::queue<Vertex<nodeInfo>*> &q, Edge<nodeInfo> *e, Vertex<nodeInfo> *w, int residual) {
     // Check if the vertex 'w' is not visited and there is residual capacity
     if (!w->isVisited() && residual > 0) {
         // Mark 'w' as visited, set the path through which it was reached, and enqueue it
@@ -49,8 +49,8 @@ bool MaxFlowSolver::findAugmentingPath() const {
 
 
 // Function to find the minimum residual capacity along the augmenting path
-double MaxFlowSolver::findMinResidualAlongPath() const {
-    double f = INF;
+int MaxFlowSolver::findMinResidualAlongPath() const {
+    int f = INF;
     const Vertex<nodeInfo>* curr = target;
     while (curr != source) {
         // Check if it's a forward or back edge
@@ -75,7 +75,7 @@ double MaxFlowSolver::findMinResidualAlongPath() const {
 }
 
 // Function to augment flow along the augmenting path with the given flow value
-void MaxFlowSolver::augmentFlowAlongPath(double f) const {
+void MaxFlowSolver::augmentFlowAlongPath(int f) const {
     const Vertex<nodeInfo>* curr = target;
 
     while (curr != source) {
@@ -103,7 +103,7 @@ void MaxFlowSolver::edmondsKarp() const {
             e->setFlow(0);
 
     while (findAugmentingPath()) {
-        double bottleneck = findMinResidualAlongPath();
+        int bottleneck = findMinResidualAlongPath();
         augmentFlowAlongPath(bottleneck);
     }
 }
@@ -112,8 +112,8 @@ void MaxFlowSolver::execute() const {
     edmondsKarp();
 }
 
-double MaxFlowSolver::getFlow() const {
-    double flow = 0;
+int MaxFlowSolver::getFlow() const {
+    int flow = 0;
     for (const auto e : source->getAdj()) {
         flow += e->getFlow();
     }
@@ -121,63 +121,82 @@ double MaxFlowSolver::getFlow() const {
 }
 
 void MaxFlowSolver::resetAllFlow() const {
-    for (auto v : flowNetwork->getVertexSet())
-        for (auto e : v->getAdj())
+    for (const auto v : flowNetwork->getVertexSet())
+        for (const auto e : v->getAdj())
             e->setFlow(0);
 }
 
-void MaxFlowSolver::checkResults(Result &result, int riskAnalysis, int r, int maxRpR) const {
-    // Check matching submissions and reviewers
-    for (auto v : flowNetwork->getVertexSet()) {
+
+void MaxFlowSolver::checkMatches(Result& result) const {
+    for (const auto v : flowNetwork->getVertexSet()) {
         if (v->getInfo().type == SUBMISSION) {
-            for (auto e : v->getAdj()) {
-                if (e->getCapacity() - e->getFlow() == 0) {
+            for (const auto e : v->getAdj()) {
+                if (e->getCapacity() - e->getFlow() == 0) { // there is a match
                     result.matches.push_back({v->getInfo().id, e->getDest()->getInfo().id, e->getDomain()});
                 }
             }
         }
     }
-    // Check if submissions have missing Reviews
-    for (auto e : source->getAdj()) {
-        auto missingReviews = static_cast<int>(e->getCapacity() - e->getFlow());
+}
+
+void MaxFlowSolver::checkMisses(Result &result) const {
+    for (const auto e : source->getAdj()) {
+        int missingReviews = e->getCapacity() - e->getFlow();
         if (missingReviews > 0) {
             result.misses.push_back({e->getDest()->getInfo().id, e->getDomain(), missingReviews});
         }
     }
+}
 
-    for (auto v : flowNetwork->getVertexSet()) {
-        for (auto e : v->getAdj()) {
+void MaxFlowSolver::outputResults() const {
+    std::cout << "\n============ Residual Graph ============\n" << std::endl;
+    for (const auto v : flowNetwork->getVertexSet()) {
+        for (const auto e : v->getAdj()) {
             std::cout << enumToString(v->getInfo().type) << " " << v->getInfo().id << " -- "
             << e->getFlow() << "/" << e->getCapacity() << " --> " << enumToString(e->getDest()->getInfo().type)
             << " " << e->getDest()->getInfo().id << std::endl;
         }
     }
+}
 
-    if (riskAnalysis == 0) return;
 
-    double flow = getFlow();
+// Note: only values 0 or 1 will be exercised in this project.
+void MaxFlowSolver::checkRisk(Result& result, const std::vector<Reviewer>& reviewers) const {
+    const int origFlow = getFlow();
 
-    //Only values 0 or 1 will be exercised in this project.
-
-    for (int i = 1; i <= r; i++) {
-        // Resets all flows to 0
+    for (const Reviewer& reviewer : reviewers) {
         resetAllFlow();
 
-        // Searchs the reviewer to be removed
-        auto v = flowNetwork->findVertex({REVIEWER, i});
-        // Updates the flow from that reviewer to the sink to 0, as if it was eliminated
-        v->getAdj()[0]->setCapacity(0);
+        // Searches the reviewer to be removed
+        const auto absent = flowNetwork->findVertex({REVIEWER, reviewer.getId()});
+        if (absent->getAdj().size() > 1) {
+            throw std::logic_error("Reviewer node cannot have more than one outgoing edge.");
+        }
+        Edge<nodeInfo>* absentToSink = absent->getAdj()[0]; // edge from the absent reviewer
+        const int origCapacity = absentToSink->getCapacity();
+        // Updates the flow from that reviewer to the sink to 0, meaning he cannot review any submission
+        absentToSink->setCapacity(0);
 
         // Runs the maxFlow algorithm in the new updated graph
-        execute();
+        this->execute();
 
         // Compares if it changed the maxFlow
-        if (flow != getFlow()) {
+        if (getFlow() < origFlow) {
             // If it changed the max flow, then it's a critical edge
-            result.riskyReviewers.push_back(i);
+            result.riskyReviewers.push_back(reviewer.getId());
         }
 
-        // reset the edge to the normal capacity
-        v->getAdj()[0]->setCapacity(maxRpR);
+        // reset the edge to the original capacity (MaxReviewsPerReviewer)
+        absentToSink->setCapacity(origCapacity);
     }
+}
+
+
+void MaxFlowSolver::checkResults(Result &result, const int riskAnalysis, const std::vector<Reviewer>& reviewers) const {
+    outputResults();
+    checkMatches(result);
+    checkMisses(result);
+
+    if (riskAnalysis > 0)
+        checkRisk(result, reviewers);
 }

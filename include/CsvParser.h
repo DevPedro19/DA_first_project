@@ -34,7 +34,7 @@ public:
      * @brief Constructor for the CSVParser class.
      * @param filename Filename of the .csv file.
      */
-    CSVParser(std::string filename);
+    explicit CSVParser(std::string filename);
 
     /**
      * @brief This function essentially is the main method for parsing the .csv file.
