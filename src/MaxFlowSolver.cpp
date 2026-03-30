@@ -120,10 +120,26 @@ double MaxFlowSolver::getFlow() {
     return flow;
 }
 
+// usar um BFS
+
 void MaxFlowSolver::resetAllFlow() {
-    for (auto v : flowNetwork->getVertexSet())
-        for (auto e : v->getAdj())
-            e->setFlow(0);
+    for(auto v : flowNetwork->getVertexSet()){
+        v->setVisited(false);
+    }
+    std::queue<Vertex<nodeInfo>*> q;
+    q.push(source);
+    source->setVisited(true);
+    while(!q.empty()) {
+        auto u = q.front(); q.pop();
+        u->setVisited(true);
+        for (auto e : u->getAdj()) {
+            auto v = e->getDest();
+            if (!v->isVisited()) {
+                e->setFlow(0);
+                q.push(v);
+            }
+        }
+    }
 }
 
 void MaxFlowSolver::checkResults(Result &result, int riskAnalysis, int r, int maxRpR) {
