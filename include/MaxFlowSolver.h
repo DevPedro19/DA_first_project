@@ -32,12 +32,16 @@ public:
     /**
      * @brief Checks the residual graph after running the max flow algorithm to populate the result object with the matches, which are the edges from submissions to reviewers that have no residual capacity.
      * @param result The result object to be populated with the matches.
+     * @par Complexity
+     * Time: O(V + E)
      */
     void checkMatches(Result& result) const;
 
     /**
      * @brief Checks the residual graph after running the max flow algorithm to populate the result object with the misses, which are the edges from the source to submissions that have residual capacity.
      * @param result The result object to be populated with the misses.
+     * @par Complexity
+     * Time: O(E)
      */
     void checkMisses(Result& result) const;
 
@@ -46,6 +50,8 @@ public:
      * @brief Checks the risk of each reviewer by temporarily preventing him from reviewing any submission and checking if the maximum flow decreases.
      * @param result The result object to be populated with the risky reviewers.
      * @param reviewers Array of all the reviewers of the flow network.
+     * @par Complexity
+     * Time: O(V (V * E^2))
      */
     void checkRisk(Result& result, const std::vector<Reviewer>& reviewers) const;
 
@@ -54,17 +60,23 @@ public:
      * @param result Result object to be populated with the matches, misses and risky reviewers, if risk analysis is required.
      * @param riskAnalysis Indicates whether risk analysis is required (> 0) or not (0).
      * @param reviewers Array of reviewers, which is used to check the risk of each reviewer in case risk analysis is required.
+     * @par Complexity
+     * Time: O(V (V * E^2)) if risk analysis is required, O(V + E) otherwise.
      */
     void checkResults(Result& result, int riskAnalysis, const std::vector<Reviewer>& reviewers) const;
 private:
     /**
      * @brief Computes the total flow from the source to the sink by summing the flow of all edges outgoing from the source.
      * @return The total flow value, which represents the maximum flow of the network after running the max flow algorithm.
+     * @par Complexity
+     * Time: O(E)
      */
     [[nodiscard]] int getFlow() const;
 
     /**
      * @brief Sets the flow of all the edges in the flow network to 0.
+     * @par Complexity
+     * Time: O(V + E)
      */
     void resetAllFlow() const;
 
