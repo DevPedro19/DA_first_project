@@ -6,6 +6,9 @@
 #define ORGANIZATIONALTOOL_MAXFLOWALGORITHM_H
 #include "Graph.h"
 
+/**
+ * @brief Abstract base class for maximum flow algorithms.
+ */
 class MaxFlowAlgorithm {
 public:
     /**

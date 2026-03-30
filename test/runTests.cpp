@@ -8,9 +8,11 @@
 #include "Graph.h"
 #include "MaxFlowSolver.h"
 #include "OutputWriter.h"
+#include "EdmondsKarp.h"
 #include "gtest/gtest.h"
 #include <fstream>
 #include <string>
+
 
 void verifyCsvLinesMatch(const std::string &actualPath, const std::string &expectedPath) {
     std::ifstream actual(actualPath);
@@ -42,7 +44,8 @@ TEST(test_datasets, test_all_dataset) {
         CSVParser parser(inputFilepath);
         parser.parseDocument(data);
         Graph<nodeInfo> graph(data);
-        MaxFlowSolver solver(&graph);
+        EdmondsKarp edmondsKarp(&graph);
+        MaxFlowSolver solver(&graph, &edmondsKarp);
         solver.execute();
         Result result;
         solver.checkResults(result, data.control.RiskAnalysis, data.reviewers);

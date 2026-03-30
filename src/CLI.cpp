@@ -19,17 +19,18 @@
 
 CLI::CLI() = default;
 
-
 void CLI::setInputFileName(const std::string &inputFileName) {
-    this->inputFileName_ = inputFileName;
+    std::filesystem::path p = "input";
+    p /= inputFileName; // correctly handles separator
+    this->inputFileName_ = p.string();
 }
 
 void CLI::setOutputFileName(const std::string &outputFileName) {
     this->outputFileName_ = outputFileName;
 }
 
-void CLI::setIsValidOutputFileName(bool value) {
-    this->isValidOutputFileName_ = value;
+void CLI::setOutputFromBatch(const bool value) {
+    this->outputFromBatch_ = value;
 }
 
 
@@ -46,12 +47,12 @@ void CLI::processArgs(const std::vector<std::string> &args) {
         setInputFileName(args[2]);
         if (args.size() == 4) {
             setOutputFileName(args[3]);
-            setIsValidOutputFileName(true); // Batch mode output specified - will be considered over the filepath inside the input csv
+            setOutputFromBatch(true); // Batch mode output specified - will be considered over the filepath inside the input csv
         }
         // otherwise, the risk output will be written in the same output file as the rest
 
     } else { // interactive mode
-        std::string inputFileName = askInputFilePath();
+        const std::string inputFileName = askInputFilePath();
         checkValidInputFile(inputFileName);
         setInputFileName(inputFileName);
     }
@@ -72,8 +73,8 @@ void CLI::checkValidInputFile(const std::string& inputFile) {
 
 
 std::string CLI::askInputFilePath() {
-    char sep = std::filesystem::path::preferred_separator;
-    std::cout << "Enter input path to input file (.csv):\n(" << std::filesystem::current_path().string() << sep << ")";
+    constexpr char sep = std::filesystem::path::preferred_separator;
+    std::cout << "Enter input path to input file (.csv):\n(" << std::filesystem::current_path().string() << sep << "input" << sep << ")";
     std::string inputFilepath;
     std::cin >> inputFilepath;
     return inputFilepath;
@@ -85,10 +86,9 @@ void CLI::readInput(const std::string &inputFileName, Data &data) {
     csvParser.parseDocument(data);
 }
 
-void CLI::writeOutput(const Result& result, int riskAnalysis, const std::string& outputFileName) {
-    if (!isValidOutputFileName_) { // As we are not in batch mode the output is only present inside .csv or use the default filepath
+void CLI::writeOutput(const Result& result, const int riskAnalysis, const std::string& outputFileName) {
+    if (!outputFromBatch_) { // As we are not in batch mode the output is only present inside .csv or use the default filepath
         setOutputFileName(outputFileName);
-        setIsValidOutputFileName(true);
     }
     const OutputWriter outputWriter(outputFileName_);
     outputWriter.writeOutput(result, riskAnalysis);

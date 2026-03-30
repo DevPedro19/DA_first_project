@@ -14,11 +14,11 @@
 class OutputWriter {
 public:
     /**
-     * @brief Constructs an OutputWriter with specified output file name.
-     * Creates the "output" directory if it does not exist.
+     * @brief Constructs an OutputWriter with specified output filename.
+     * Creates the "output/" directory if it does not exist.
      * @param outputFileName Name for the output CSV file.
      */
-    OutputWriter(const std::string& outputFileName);
+    explicit OutputWriter(const std::string& outputFileName);
 
     /**
      * @brief Writes the output of the algorithm to a CSV file, including matches, misses, and risk analysis if applicable.
@@ -51,6 +51,9 @@ private:
      */
     static void writeRiskAnalysis(std::ofstream& ofs, std::vector<int> riskyReviewers, int riskAnalysis);
 
+    /**
+     * @brief The name of the output file to be written.
+     */
     std::string outputFileName_;
 };
 #endif //ORGANIZATIONALTOOL_OUTPUTWRITER_H

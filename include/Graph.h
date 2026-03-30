@@ -72,7 +72,7 @@ public:
      * @brief Constructor for the Vertex class.
      * @param in The information of the vertex, which consists of its type and id, the struct nodeInfo.
      */
-    Vertex(const T &in);
+    explicit Vertex(const T &in);
 
     /**
      * @brief This function returns the information of the vertex, which consists of its type and id, the struct nodeInfo.

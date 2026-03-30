@@ -11,6 +11,9 @@
 
 #define INF std::numeric_limits<int>::max();
 
+/**
+ * @brief Implements the Edmonds-Karp algorithm for computing maximum flow in a flow network.
+ */
 class EdmondsKarp : public MaxFlowAlgorithm {
 public:
     /**

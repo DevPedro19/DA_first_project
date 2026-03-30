@@ -16,15 +16,15 @@ public:
      * @brief Constructs an InfoMenu with the given data reference.
      * @param data Reference to the Data object containing submissions, reviewers, and configuration.
      */
-    InfoMenu(Data& data);
+    explicit InfoMenu(const Data& data);
 
     /**
      * @brief Displays the information menu and handles user interaction for displaying different sections of the data.
-     * The user can choose to view submissions, reviewers, parameters, control settings, or run the solver.
-     * The method continues to prompt the user until they choose to exit.
-     * @return An integer status code (0 for normal exit, non-zero for errors).
+     * The user can choose to view submissions, reviewers, parameters, control settings, or run the max flow solver.
+     * The method continues to prompt the user until they choose to exit or run the solver.
+     * @return Either 0, if the user chooses to exit, or 1, if the user chooses to run the max flow solver.
      */
-    int display() const;
+    [[nodiscard]] int display() const;
 
 private:
     /**
@@ -57,7 +57,11 @@ private:
      * @brief Displays control parameter settings.
      */
     void displayControl() const;
-    Data& data_;
+
+    /**
+     * @brief Reference to the Data object containing all the information about submissions, reviewers, parameters and control settings. This reference is used to access the data and display it in the menu options.
+     */
+    const Data& data_;
 };
 
 #endif //ORGANIZATIONALTOOL_INFOMENU_H

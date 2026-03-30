@@ -11,7 +11,7 @@
 
 OutputWriter::OutputWriter(const std::string& outputFileName) :
 outputFileName_("output/" + outputFileName) {
-    std::string outputDirectoryName = "output";
+    const std::string outputDirectoryName = "output";
     // Create directory
     std::filesystem::create_directory(outputDirectoryName);
 }
@@ -53,7 +53,7 @@ void OutputWriter::writeMisses(std::ofstream& ofs, std::vector<Miss> misses) {
 }
 
 
-void OutputWriter::writeRiskAnalysis(std::ofstream& ofs, std::vector<int> riskyReviewers, int riskAnalysis) {
+void OutputWriter::writeRiskAnalysis(std::ofstream& ofs, std::vector<int> riskyReviewers, const int riskAnalysis) {
     std::sort(riskyReviewers.begin(), riskyReviewers.end());
     ofs << "#Risk Analysis: " << riskAnalysis << std::endl;
 
@@ -67,7 +67,7 @@ void OutputWriter::writeRiskAnalysis(std::ofstream& ofs, std::vector<int> riskyR
 }
 
 
-void OutputWriter::writeOutput(const Result &result, int riskAnalysis) const {
+void OutputWriter::writeOutput(const Result &result, const int riskAnalysis) const {
     std::ofstream ofs(this->outputFileName_);
     writeMatches(ofs, result.matches);
     if (!result.misses.empty()) {
