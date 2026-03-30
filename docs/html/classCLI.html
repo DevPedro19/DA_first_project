@@ -98,6 +98,7 @@ Collaboration diagram for CLI:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1a5b0f7ec3b242c5c56e4745adbb391e" id="r_a1a5b0f7ec3b242c5c56e4745adbb391e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLI.html#a1a5b0f7ec3b242c5c56e4745adbb391e">CLI</a> ()</td></tr>
+<tr class="memdesc:a1a5b0f7ec3b242c5c56e4745adbb391e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor of the <a class="el" href="classCLI.html" title="This class is the CLI of the program, that exposes all implemented functionalities in a user-friendly...">CLI</a> class.  <br /></td></tr>
 <tr class="separator:a1a5b0f7ec3b242c5c56e4745adbb391e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9dd58881dfbdd0ba87b92d4d9fc289a" id="r_ac9dd58881dfbdd0ba87b92d4d9fc289a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLI.html#ac9dd58881dfbdd0ba87b92d4d9fc289a">writeOutput</a> (const <a class="el" href="structResult.html">Result</a> &amp;result, int riskAnalysis, const std::string &amp;outputFileName)</td></tr>
 <tr class="memdesc:ac9dd58881dfbdd0ba87b92d4d9fc289a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="classOutputWriter.html" title="Responsible for writing the output of the algorithm to a CSV file.">OutputWriter</a> object and uses it to write the output file with the given result and risk analysis.  <br /></td></tr>
@@ -114,8 +115,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa1687ea49528bc54d7edc53bd38bd028" id="r_aa1687ea49528bc54d7edc53bd38bd028"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLI.html#aa1687ea49528bc54d7edc53bd38bd028">setOutputFileName</a> (const std::string &amp;outputFileName)</td></tr>
 <tr class="memdesc:aa1687ea49528bc54d7edc53bd38bd028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the output file name.  <br /></td></tr>
 <tr class="separator:aa1687ea49528bc54d7edc53bd38bd028"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18f96eb78737ee2c379609a29d0e1a77" id="r_a18f96eb78737ee2c379609a29d0e1a77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLI.html#a18f96eb78737ee2c379609a29d0e1a77">setIsValidOutputFileName</a> (bool value)</td></tr>
-<tr class="separator:a18f96eb78737ee2c379609a29d0e1a77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15eda26e9d3cc221f370e3ee21a7f38c" id="r_a15eda26e9d3cc221f370e3ee21a7f38c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLI.html#a15eda26e9d3cc221f370e3ee21a7f38c">setOutputFromBatch</a> (bool value)</td></tr>
+<tr class="memdesc:a15eda26e9d3cc221f370e3ee21a7f38c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the boolean value indicating whether the output file name comes from batch mode (true) or not (false).  <br /></td></tr>
+<tr class="separator:a15eda26e9d3cc221f370e3ee21a7f38c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -140,9 +142,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a9a1fa77b57c69e0f68a7a55fcd258450" id="r_a9a1fa77b57c69e0f68a7a55fcd258450"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLI.html#a9a1fa77b57c69e0f68a7a55fcd258450">outputFileName_</a></td></tr>
 <tr class="memdesc:a9a1fa77b57c69e0f68a7a55fcd258450"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the output file to be written.  <br /></td></tr>
 <tr class="separator:a9a1fa77b57c69e0f68a7a55fcd258450"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fa9b0d913ed9c721fd18c8a85592522" id="r_a2fa9b0d913ed9c721fd18c8a85592522"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLI.html#a2fa9b0d913ed9c721fd18c8a85592522">isValidOutputFileName_</a> = false</td></tr>
-<tr class="memdesc:a2fa9b0d913ed9c721fd18c8a85592522"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean value indicating whether the output file name comes from batch mode (true) or not (false). This is used to determine if the output file name provided in batch mode should be considered over the output file name specified in the input csv file.  <br /></td></tr>
-<tr class="separator:a2fa9b0d913ed9c721fd18c8a85592522"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02f7c1bc0910205bc67d0a7a5237c795" id="r_a02f7c1bc0910205bc67d0a7a5237c795"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCLI.html#a02f7c1bc0910205bc67d0a7a5237c795">outputFromBatch_</a> = false</td></tr>
+<tr class="memdesc:a02f7c1bc0910205bc67d0a7a5237c795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean value indicating whether the output file name comes from batch mode (true) or not (false). This is used to determine if the output file name provided in batch mode should be considered over the output file name specified in the input .csv file. Its value is false by default.  <br /></td></tr>
+<tr class="separator:a02f7c1bc0910205bc67d0a7a5237c795"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class is the <a class="el" href="classCLI.html" title="This class is the CLI of the program, that exposes all implemented functionalities in a user-friendly...">CLI</a> of the program, that exposes all implemented functionalities in a user-friendly manner. </p>
@@ -169,6 +171,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Default constructor of the <a class="el" href="classCLI.html" title="This class is the CLI of the program, that exposes all implemented functionalities in a user-friendly...">CLI</a> class. </p>
 
 </div>
 </div>
@@ -385,24 +389,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a18f96eb78737ee2c379609a29d0e1a77" name="a18f96eb78737ee2c379609a29d0e1a77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18f96eb78737ee2c379609a29d0e1a77">&#9670;&#160;</a></span>setIsValidOutputFileName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CLI::setIsValidOutputFileName </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="aa1687ea49528bc54d7edc53bd38bd028" name="aa1687ea49528bc54d7edc53bd38bd028"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1687ea49528bc54d7edc53bd38bd028">&#9670;&#160;</a></span>setOutputFileName()</h2>
 
@@ -423,6 +409,32 @@ Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">outputFileName</td><td>Name of the output file to be set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a15eda26e9d3cc221f370e3ee21a7f38c" name="a15eda26e9d3cc221f370e3ee21a7f38c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15eda26e9d3cc221f370e3ee21a7f38c">&#9670;&#160;</a></span>setOutputFromBatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLI::setOutputFromBatch </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the boolean value indicating whether the output file name comes from batch mode (true) or not (false). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Boolean value to be attributed to the isValidOutputFileName_ field. </td></tr>
   </table>
   </dd>
 </dl>
@@ -498,30 +510,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a2fa9b0d913ed9c721fd18c8a85592522" name="a2fa9b0d913ed9c721fd18c8a85592522"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2fa9b0d913ed9c721fd18c8a85592522">&#9670;&#160;</a></span>isValidOutputFileName_</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CLI::isValidOutputFileName_ = false</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Boolean value indicating whether the output file name comes from batch mode (true) or not (false). This is used to determine if the output file name provided in batch mode should be considered over the output file name specified in the input csv file. </p>
-
-</div>
-</div>
 <a id="a9a1fa77b57c69e0f68a7a55fcd258450" name="a9a1fa77b57c69e0f68a7a55fcd258450"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9a1fa77b57c69e0f68a7a55fcd258450">&#9670;&#160;</a></span>outputFileName_</h2>
 
@@ -543,6 +531,30 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Name of the output file to be written. </p>
+
+</div>
+</div>
+<a id="a02f7c1bc0910205bc67d0a7a5237c795" name="a02f7c1bc0910205bc67d0a7a5237c795"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02f7c1bc0910205bc67d0a7a5237c795">&#9670;&#160;</a></span>outputFromBatch_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CLI::outputFromBatch_ = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Boolean value indicating whether the output file name comes from batch mode (true) or not (false). This is used to determine if the output file name provided in batch mode should be considered over the output file name specified in the input .csv file. Its value is false by default. </p>
 
 </div>
 </div>

@@ -76,7 +76,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
@@ -148,11 +147,6 @@ Data Structures</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class represents the graph, which consists of a set of vertices and edges. It also contains the constructor that builds the bipartite graph from the input data and auxiliary functions to add and remove vertices and edges, as well as to find a vertex with a given content.  <a href="classGraph.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a12c2040f25d8e3a7b9e1c2024c618cb6" id="r_a12c2040f25d8e3a7b9e1c2024c618cb6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Graph_8h.html#a12c2040f25d8e3a7b9e1c2024c618cb6">INF</a>&#160;&#160;&#160;std::numeric_limits&lt;double&gt;::max()</td></tr>
-<tr class="separator:a12c2040f25d8e3a7b9e1c2024c618cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a7aead736a07eaf25623ad7bfa1f0ee2d" id="r_a7aead736a07eaf25623ad7bfa1f0ee2d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Graph_8h.html#a7aead736a07eaf25623ad7bfa1f0ee2d">type</a> { <a class="el" href="Graph_8h.html#a7aead736a07eaf25623ad7bfa1f0ee2da0159491ea913604389155db907e0d1c0">SOURCE</a>
@@ -166,6 +160,7 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a2b462240e2c79988dba9a183be53cd1c" id="r_a2b462240e2c79988dba9a183be53cd1c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Graph_8h.html#a2b462240e2c79988dba9a183be53cd1c">enumToString</a> (const <a class="el" href="Graph_8h.html#a7aead736a07eaf25623ad7bfa1f0ee2d">type</a> t)</td></tr>
+<tr class="memdesc:a2b462240e2c79988dba9a183be53cd1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function converts the type of the node to a string with the name of the type, for printing purposes.  <br /></td></tr>
 <tr class="separator:a2b462240e2c79988dba9a183be53cd1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae388fc1f561d6de0cc76e975d037248" id="r_aae388fc1f561d6de0cc76e975d037248"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Graph_8h.html#aae388fc1f561d6de0cc76e975d037248">operator==</a> (const <a class="el" href="structnodeInfo.html">nodeInfo</a> &amp;n1, const <a class="el" href="structnodeInfo.html">nodeInfo</a> &amp;n2)</td></tr>
 <tr class="memdesc:aae388fc1f561d6de0cc76e975d037248"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality operator for <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a> struct, which is used to compare the content of the vertices in the graph. Two <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a> are considered equal if they have the same type and id.  <br /></td></tr>
@@ -174,23 +169,9 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a2d95683c7bfa57fbcc3dfb1fb9a2e35c" id="r_a2d95683c7bfa57fbcc3dfb1fb9a2e35c"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Graph_8h.html#a2d95683c7bfa57fbcc3dfb1fb9a2e35c">NO_FIELD</a> = 0</td></tr>
+<tr class="memdesc:a2d95683c7bfa57fbcc3dfb1fb9a2e35c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This constant is used to represent the absence of a field in the input .csv file, which is represented by 0.  <br /></td></tr>
 <tr class="separator:a2d95683c7bfa57fbcc3dfb1fb9a2e35c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a12c2040f25d8e3a7b9e1c2024c618cb6" name="a12c2040f25d8e3a7b9e1c2024c618cb6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12c2040f25d8e3a7b9e1c2024c618cb6">&#9670;&#160;</a></span>INF</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define INF&#160;&#160;&#160;std::numeric_limits&lt;double&gt;::max()</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a7aead736a07eaf25623ad7bfa1f0ee2d" name="a7aead736a07eaf25623ad7bfa1f0ee2d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7aead736a07eaf25623ad7bfa1f0ee2d">&#9670;&#160;</a></span>type</h2>
@@ -238,6 +219,15 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>This function converts the type of the node to a string with the name of the type, for printing purposes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>The type of the node, which can be a source, sink, submission or reviewer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The string with the name of the type of the node. </dd></dl>
 
 </div>
 </div>
@@ -307,6 +297,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>This constant is used to represent the absence of a field in the input .csv file, which is represented by 0. </p>
 
 </div>
 </div>

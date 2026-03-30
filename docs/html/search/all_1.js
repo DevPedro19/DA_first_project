@@ -1,14 +1,19 @@
 var searchData=
 [
-  ['capacity_5f_0',['capacity_',['../classEdge.html#a6f510e1a8b5ca95fbb05ab549c56bcba',1,'Edge']]],
-  ['checkresults_1',['checkResults',['../classMaxFlowSolver.html#aac9b03a2b47db1dd24800072ff657bc3',1,'MaxFlowSolver']]],
-  ['checkvalidinputfile_2',['checkValidInputFile',['../classCLI.html#abc6c45fb659fe3784a310cf6c0ca7b81',1,'CLI']]],
-  ['cli_3',['cli',['../classCLI.html',1,'CLI'],['../classCLI.html#a1a5b0f7ec3b242c5c56e4745adbb391e',1,'CLI::CLI()']]],
-  ['cli_2ecpp_4',['CLI.cpp',['../CLI_8cpp.html',1,'']]],
-  ['cli_2eh_5',['CLI.h',['../CLI_8h.html',1,'']]],
-  ['control_6',['control',['../structControl.html',1,'Control'],['../structData.html#a1ad5c7f7ea348ae3fff09be52972d678',1,'Data::control']]],
-  ['csvparser_7',['csvparser',['../classCSVParser.html',1,'CSVParser'],['../classCSVParser.html#a4212465f00ae35f823a74c333a5012cc',1,'CSVParser::CSVParser()']]],
-  ['csvparser_2ecpp_8',['CsvParser.cpp',['../CsvParser_8cpp.html',1,'']]],
-  ['csvparser_2eh_9',['CsvParser.h',['../CsvParser_8h.html',1,'']]],
-  ['csvparsertest_2ecpp_10',['CsvparserTest.cpp',['../CsvparserTest_8cpp.html',1,'']]]
+  ['capacity_5f_0',['capacity_',['../classEdge.html#a868ae3f2aa0490eeb13f01cc9215b608',1,'Edge']]],
+  ['checkmatches_1',['checkMatches',['../classMaxFlowSolver.html#aaf34f3856b5a218486ddfc8d0ba84de6',1,'MaxFlowSolver']]],
+  ['checkmisses_2',['checkMisses',['../classMaxFlowSolver.html#ab20f8c887c04e6a97219af71185eaf0e',1,'MaxFlowSolver']]],
+  ['checkresults_3',['checkResults',['../classMaxFlowSolver.html#a2c9daab7a9776b56c79ac80acb3a0cb4',1,'MaxFlowSolver']]],
+  ['checkrisk_4',['checkRisk',['../classMaxFlowSolver.html#ac0266b052bfc5bfbfbaf524e1ee3cb62',1,'MaxFlowSolver']]],
+  ['checkvalidinputfile_5',['checkValidInputFile',['../classCLI.html#abc6c45fb659fe3784a310cf6c0ca7b81',1,'CLI']]],
+  ['cli_6',['cli',['../classCLI.html',1,'CLI'],['../classCLI.html#a1a5b0f7ec3b242c5c56e4745adbb391e',1,'CLI::CLI()']]],
+  ['cli_2ecpp_7',['CLI.cpp',['../CLI_8cpp.html',1,'']]],
+  ['cli_2eh_8',['CLI.h',['../CLI_8h.html',1,'']]],
+  ['control_9',['control',['../structControl.html',1,'Control'],['../structData.html#a1ad5c7f7ea348ae3fff09be52972d678',1,'Data::control']]],
+  ['createedges_10',['createEdges',['../classGraph.html#a5c73596e7a7a6db16158e37aa86bb7cc',1,'Graph']]],
+  ['createnodes_11',['createNodes',['../classGraph.html#ad74355689c3244df7e064bd33ec53c98',1,'Graph']]],
+  ['csvparser_12',['csvparser',['../classCSVParser.html',1,'CSVParser'],['../classCSVParser.html#a4212465f00ae35f823a74c333a5012cc',1,'CSVParser::CSVParser()']]],
+  ['csvparser_2ecpp_13',['CsvParser.cpp',['../CsvParser_8cpp.html',1,'']]],
+  ['csvparser_2eh_14',['CsvParser.h',['../CsvParser_8h.html',1,'']]],
+  ['csvparsertest_2ecpp_15',['CsvparserTest.cpp',['../CsvparserTest_8cpp.html',1,'']]]
 ];

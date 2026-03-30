@@ -94,9 +94,18 @@ Collaboration diagram for Graph&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa5e83c84712ca5330581069f0126a5ac" id="r_aa5e83c84712ca5330581069f0126a5ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#aa5e83c84712ca5330581069f0126a5ac">Graph</a> (<a class="el" href="structData.html">Data</a> &amp;data)</td></tr>
-<tr class="memdesc:aa5e83c84712ca5330581069f0126a5ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="classGraph.html" title="This class represents the graph, which consists of a set of vertices and edges. It also contains the ...">Graph</a> class, which builds the bipartite graph from the input data.  <br /></td></tr>
-<tr class="separator:aa5e83c84712ca5330581069f0126a5ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3eca8cc9dcc95eeeb48662d71d693be" id="r_ab3eca8cc9dcc95eeeb48662d71d693be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#ab3eca8cc9dcc95eeeb48662d71d693be">Graph</a> (const <a class="el" href="structData.html">Data</a> &amp;data)</td></tr>
+<tr class="memdesc:ab3eca8cc9dcc95eeeb48662d71d693be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="classGraph.html" title="This class represents the graph, which consists of a set of vertices and edges. It also contains the ...">Graph</a> class, which builds the bipartite graph from the input data.  <br /></td></tr>
+<tr class="separator:ab3eca8cc9dcc95eeeb48662d71d693be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad74355689c3244df7e064bd33ec53c98" id="r_ad74355689c3244df7e064bd33ec53c98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#ad74355689c3244df7e064bd33ec53c98">createNodes</a> (<a class="el" href="structnodeInfo.html">nodeInfo</a> source, <a class="el" href="structnodeInfo.html">nodeInfo</a> sink, const std::vector&lt; <a class="el" href="classSubmission.html">Submission</a> &gt; &amp;submissions, const std::vector&lt; <a class="el" href="classReviewer.html">Reviewer</a> &gt; &amp;reviewers)</td></tr>
+<tr class="memdesc:ad74355689c3244df7e064bd33ec53c98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary function to create the nodes of the graph.  <br /></td></tr>
+<tr class="separator:ad74355689c3244df7e064bd33ec53c98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c73596e7a7a6db16158e37aa86bb7cc" id="r_a5c73596e7a7a6db16158e37aa86bb7cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a5c73596e7a7a6db16158e37aa86bb7cc">createEdges</a> (<a class="el" href="structnodeInfo.html">nodeInfo</a> source, <a class="el" href="structnodeInfo.html">nodeInfo</a> sink, const std::vector&lt; <a class="el" href="classSubmission.html">Submission</a> &gt; &amp;submissions, const std::vector&lt; <a class="el" href="classReviewer.html">Reviewer</a> &gt; &amp;reviewers, const <a class="el" href="structParameters.html">Parameters</a> &amp;parameters, int generateAssignments)</td></tr>
+<tr class="memdesc:a5c73596e7a7a6db16158e37aa86bb7cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary function to create the edges of the graph.  <br /></td></tr>
+<tr class="separator:a5c73596e7a7a6db16158e37aa86bb7cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdcc1bef9c273905ab72c6d61014eb6f" id="r_acdcc1bef9c273905ab72c6d61014eb6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#acdcc1bef9c273905ab72c6d61014eb6f">outputGraph</a> (int numSubmissions, int numReviewers) const</td></tr>
+<tr class="memdesc:acdcc1bef9c273905ab72c6d61014eb6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function prints the details of the created graph, showing its nodes and edges.  <br /></td></tr>
+<tr class="separator:acdcc1bef9c273905ab72c6d61014eb6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b7b7465fbfd562e2a469f90a437ab75" id="r_a8b7b7465fbfd562e2a469f90a437ab75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classVertex.html">Vertex</a>&lt; T &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a8b7b7465fbfd562e2a469f90a437ab75">findVertex</a> (const T &amp;in) const</td></tr>
 <tr class="memdesc:a8b7b7465fbfd562e2a469f90a437ab75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary function to find a vertex with a given content.  <br /></td></tr>
 <tr class="separator:a8b7b7465fbfd562e2a469f90a437ab75"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,12 +115,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af9c903104ad69a7782979fa9caedf163" id="r_af9c903104ad69a7782979fa9caedf163"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#af9c903104ad69a7782979fa9caedf163">removeVertex</a> (const T &amp;in)</td></tr>
 <tr class="memdesc:af9c903104ad69a7782979fa9caedf163"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function removes a vertex with a given content, and all outgoing and incoming edges of that vertex.  <br /></td></tr>
 <tr class="separator:af9c903104ad69a7782979fa9caedf163"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae0c92505aecf1aad2379932169c45d3" id="r_aae0c92505aecf1aad2379932169c45d3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#aae0c92505aecf1aad2379932169c45d3">addEdge</a> (const T &amp;source, const T &amp;dest, double c, int domain=0)</td></tr>
-<tr class="memdesc:aae0c92505aecf1aad2379932169c45d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function adds an edge to the graph.  <br /></td></tr>
-<tr class="separator:aae0c92505aecf1aad2379932169c45d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8949d071d45bf93e171e275462e1007a" id="r_a8949d071d45bf93e171e275462e1007a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a8949d071d45bf93e171e275462e1007a">removeEdge</a> (const T &amp;source, const T &amp;dest)</td></tr>
-<tr class="memdesc:a8949d071d45bf93e171e275462e1007a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function removes an edge from the graph.  <br /></td></tr>
-<tr class="separator:a8949d071d45bf93e171e275462e1007a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dce8c3c6954b3ffc6cfca1c4053b933" id="r_a7dce8c3c6954b3ffc6cfca1c4053b933"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a7dce8c3c6954b3ffc6cfca1c4053b933">addEdge</a> (const T &amp;source, const T &amp;dest, int c, int domain=0)</td></tr>
+<tr class="memdesc:a7dce8c3c6954b3ffc6cfca1c4053b933"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function adds an edge to the graph.  <br /></td></tr>
+<tr class="separator:a7dce8c3c6954b3ffc6cfca1c4053b933"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1391d4df8bd3008efc1108e4ed34db9f" id="r_a1391d4df8bd3008efc1108e4ed34db9f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a1391d4df8bd3008efc1108e4ed34db9f">removeEdge</a> (const T &amp;src, const T &amp;dest)</td></tr>
+<tr class="memdesc:a1391d4df8bd3008efc1108e4ed34db9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function removes an edge from the graph.  <br /></td></tr>
+<tr class="separator:a1391d4df8bd3008efc1108e4ed34db9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77a9b35e84df786daa7b8504e67ce38c" id="r_a77a9b35e84df786daa7b8504e67ce38c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a77a9b35e84df786daa7b8504e67ce38c">getNumVertex</a> () const</td></tr>
 <tr class="memdesc:a77a9b35e84df786daa7b8504e67ce38c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the number of vertices in the graph.  <br /></td></tr>
 <tr class="separator:a77a9b35e84df786daa7b8504e67ce38c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,22 +144,30 @@ class Graph&lt; T &gt;</div><p>This class represents the graph, which consists o
   </dd>
 </dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa5e83c84712ca5330581069f0126a5ac" name="aa5e83c84712ca5330581069f0126a5ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa5e83c84712ca5330581069f0126a5ac">&#9670;&#160;</a></span>Graph()</h2>
+<a id="ab3eca8cc9dcc95eeeb48662d71d693be" name="ab3eca8cc9dcc95eeeb48662d71d693be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3eca8cc9dcc95eeeb48662d71d693be">&#9670;&#160;</a></span>Graph()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classGraph.html">Graph</a>&lt; T &gt;<a class="el" href="classGraph.html">::Graph</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structData.html">Data</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="structData.html">Data</a> &amp;&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Constructor for the <a class="el" href="classGraph.html" title="This class represents the graph, which consists of a set of vertices and edges. It also contains the ...">Graph</a> class, which builds the bipartite graph from the input data. </p>
@@ -160,20 +177,13 @@ template&lt;class T &gt; </div>
   </table>
   </dd>
 </dl>
-<p>The graph is built as follows: the source node is connected to each submission node with an edge of capacity equal to the minimum number of reviews per submission, and the domain of the edge is the primary field of the submission. Each submission node is connected to each reviewer node with an edge of capacity 1, and the domain of the edge is determined by the GenerateAssignments parameter in the control struct. Finally, each reviewer node is connected to the sink node with an edge of capacity equal to the maximum number of reviews per reviewer.</p>
-<p>Constructor for the <a class="el" href="classGraph.html" title="This class represents the graph, which consists of a set of vertices and edges. It also contains the ...">Graph</a> class, which builds the bipartite graph from the input data. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">data</td><td>The input data, which consists of the list of submissions, reviewers, parameters and control. The graph is built according to the specifications of the input data, creating the vertices and edges accordingly.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>The graph is built as follows: the source node is connected to each submission node with an edge of capacity equal to the minimum number of reviews per submission, and the domain of the edge is the primary field of the submission. Each submission node is connected to each reviewer node with an edge of capacity 1. Finally, each reviewer node is connected to the sink node with an edge of capacity equal to the maximum number of reviews per reviewer. </p>
+<p>The graph is built with the help of auxiliary functions as follows: the source node is connected to each submission node with an edge of capacity equal to the minimum number of reviews per submission, and the domain of the edge is the primary field of the submission. Each submission node is connected to each reviewer node with an edge of capacity 1, and the domain of the edge is determined by the GenerateAssignments parameter in the control struct. Finally, each reviewer node is connected to the sink node with an edge of capacity equal to the maximum number of reviews per reviewer. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aae0c92505aecf1aad2379932169c45d3" name="aae0c92505aecf1aad2379932169c45d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae0c92505aecf1aad2379932169c45d3">&#9670;&#160;</a></span>addEdge()</h2>
+<a id="a7dce8c3c6954b3ffc6cfca1c4053b933" name="a7dce8c3c6954b3ffc6cfca1c4053b933"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dce8c3c6954b3ffc6cfca1c4053b933">&#9670;&#160;</a></span>addEdge()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -195,7 +205,7 @@ template&lt;class T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>c</em>, </td>
         </tr>
         <tr>
@@ -254,6 +264,126 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether the vertex was successfully added or not. The vertex is not added if</dd></dl>
 <p>The vertex is not added if a vertex with that content already exists in the graph. The content of the vertex consists of its type and id, the struct <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a>, so if there are multiple vertices with the same type and id, only one of them will be added to the graph. </p>
+
+</div>
+</div>
+<a id="a5c73596e7a7a6db16158e37aa86bb7cc" name="a5c73596e7a7a6db16158e37aa86bb7cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c73596e7a7a6db16158e37aa86bb7cc">&#9670;&#160;</a></span>createEdges()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classGraph.html">Graph</a>&lt; T &gt;::createEdges </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structnodeInfo.html">nodeInfo</a>&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structnodeInfo.html">nodeInfo</a>&#160;</td>
+          <td class="paramname"><em>sink</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classSubmission.html">Submission</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>submissions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classReviewer.html">Reviewer</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>reviewers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structParameters.html">Parameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>parameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>generateAssignments</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Auxiliary function to create the edges of the graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>The source node. </td></tr>
+    <tr><td class="paramname">sink</td><td>The sink node. </td></tr>
+    <tr><td class="paramname">submissions</td><td>Array of submissions. </td></tr>
+    <tr><td class="paramname">reviewers</td><td>Array of reviewers. </td></tr>
+    <tr><td class="paramname">parameters</td><td><a class="el" href="structParameters.html" title="Input parameters from the CSV configuration, related to the constraints of the problem instance.">Parameters</a> which indicate the type of connections, regarding expertise matching between submissions and reviewers, that will be made. </td></tr>
+    <tr><td class="paramname">generateAssignments</td><td>Integer value that indicates the type of connections, regarding expertise matching between submissions and reviewers, that will be made. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad74355689c3244df7e064bd33ec53c98" name="ad74355689c3244df7e064bd33ec53c98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad74355689c3244df7e064bd33ec53c98">&#9670;&#160;</a></span>createNodes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classGraph.html">Graph</a>&lt; T &gt;::createNodes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structnodeInfo.html">nodeInfo</a>&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structnodeInfo.html">nodeInfo</a>&#160;</td>
+          <td class="paramname"><em>sink</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classSubmission.html">Submission</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>submissions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classReviewer.html">Reviewer</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>reviewers</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Auxiliary function to create the nodes of the graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>The source node. </td></tr>
+    <tr><td class="paramname">sink</td><td>The sink node. </td></tr>
+    <tr><td class="paramname">submissions</td><td>Array of submissions, each represented as a node in the graph. </td></tr>
+    <tr><td class="paramname">reviewers</td><td>Array of reviewers, each represented as a node in the graph. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -330,8 +460,47 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="a8949d071d45bf93e171e275462e1007a" name="a8949d071d45bf93e171e275462e1007a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8949d071d45bf93e171e275462e1007a">&#9670;&#160;</a></span>removeEdge()</h2>
+<a id="acdcc1bef9c273905ab72c6d61014eb6f" name="acdcc1bef9c273905ab72c6d61014eb6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdcc1bef9c273905ab72c6d61014eb6f">&#9670;&#160;</a></span>outputGraph()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classGraph.html">Graph</a>&lt; T &gt;::outputGraph </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numSubmissions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numReviewers</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function prints the details of the created graph, showing its nodes and edges. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numSubmissions</td><td>The number of submissions in the graph. </td></tr>
+    <tr><td class="paramname">numReviewers</td><td>The number of reviewers in the graph. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1391d4df8bd3008efc1108e4ed34db9f" name="a1391d4df8bd3008efc1108e4ed34db9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1391d4df8bd3008efc1108e4ed34db9f">&#9670;&#160;</a></span>removeEdge()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -342,7 +511,7 @@ template&lt;class T &gt; </div>
           <td class="memname">bool <a class="el" href="classGraph.html">Graph</a>&lt; T &gt;::removeEdge </td>
           <td>(</td>
           <td class="paramtype">const T &amp;&#160;</td>
-          <td class="paramname"><em>source</em>, </td>
+          <td class="paramname"><em>src</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -361,7 +530,7 @@ template&lt;class T &gt; </div>
 <p>This function removes an edge from the graph. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">source</td><td>The content of the source vertex of the edge, which consists of its type and id, the struct <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a>. </td></tr>
+    <tr><td class="paramname">src</td><td>The content of the source vertex of the edge, which consists of its type and id, the struct <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a>. </td></tr>
     <tr><td class="paramname">dest</td><td>The content of the destination vertex of the edge, which consists of its type and id, the struct <a class="el" href="structnodeInfo.html" title="This struct is responsible for representing the information of a node in the graph,...">nodeInfo</a>. </td></tr>
   </table>
   </dd>

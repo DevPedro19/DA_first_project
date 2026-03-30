@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['findaugmentingpath_0',['findAugmentingPath',['../classMaxFlowSolver.html#a31926dde57637168941188a05227ffc6',1,'MaxFlowSolver']]],
-  ['findminresidualalongpath_1',['findMinResidualAlongPath',['../classMaxFlowSolver.html#a92841fb00d4c1802bda45bddd0af9d1f',1,'MaxFlowSolver']]],
+  ['findaugmentingpath_0',['findAugmentingPath',['../classEdmondsKarp.html#a37646eb1c8d1e4b944ffe55b742a4a51',1,'EdmondsKarp']]],
+  ['findminresidualalongpath_1',['findMinResidualAlongPath',['../classEdmondsKarp.html#a842ec6b3d838cf033ac81049171aff10',1,'EdmondsKarp']]],
   ['findvertex_2',['findVertex',['../classGraph.html#a8b7b7465fbfd562e2a469f90a437ab75',1,'Graph']]]
 ];

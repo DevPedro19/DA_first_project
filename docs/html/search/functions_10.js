@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertex_0',['Vertex',['../classVertex.html#afcbdd4d4198b672356559cb8fa088408',1,'Vertex']]]
+  ['_7emaxflowalgorithm_0',['~MaxFlowAlgorithm',['../classMaxFlowAlgorithm.html#a87947e099d7ec39e8ceed60a428dd165',1,'MaxFlowAlgorithm']]]
 ];

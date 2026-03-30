@@ -152,15 +152,16 @@ Static Private Member Functions</h2></td></tr>
 <tr class="memdesc:ab422ce6ce3177e5e090fe8259c22fc38"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if the given ID has already been processed.  <br /></td></tr>
 <tr class="separator:ab422ce6ce3177e5e090fe8259c22fc38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78763bc21506df4310eff014bfab1436" id="r_a78763bc21506df4310eff014bfab1436"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a78763bc21506df4310eff014bfab1436">getInteger</a> (std::string &amp;str)</td></tr>
-<tr class="memdesc:a78763bc21506df4310eff014bfab1436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convertes a string to an integer.  <br /></td></tr>
+<tr class="memdesc:a78763bc21506df4310eff014bfab1436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a string to an integer.  <br /></td></tr>
 <tr class="separator:a78763bc21506df4310eff014bfab1436"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae56d207a16b49f2756ba717796715c25" id="r_ae56d207a16b49f2756ba717796715c25"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#ae56d207a16b49f2756ba717796715c25">isValidIntField</a> (int fieldValue, const std::string &amp;fieldName, int min)</td></tr>
 <tr class="memdesc:ae56d207a16b49f2756ba717796715c25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given integer field is valid (positive integer) throws a domain_error if the field is not valid.  <br /></td></tr>
 <tr class="separator:ae56d207a16b49f2756ba717796715c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83425697d7043904d97bc34cbde3a80e" id="r_a83425697d7043904d97bc34cbde3a80e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a83425697d7043904d97bc34cbde3a80e">isUniqueId</a> (int id, const std::string &amp;fieldName, std::set&lt; int &gt; &amp;existingIds)</td></tr>
-<tr class="memdesc:a83425697d7043904d97bc34cbde3a80e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given ID is unique among the existing IDs throws an invalid_argument if the ID is not unique.  <br /></td></tr>
+<tr class="memdesc:a83425697d7043904d97bc34cbde3a80e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given ID is unique among the existing IDs and, if so, adds it to the set of existing IDs. Otherwise, throws an invalid_argument if the ID is not unique.  <br /></td></tr>
 <tr class="separator:a83425697d7043904d97bc34cbde3a80e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cf21e8eb3bea709216274f6aab6a0ca" id="r_a6cf21e8eb3bea709216274f6aab6a0ca"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a6cf21e8eb3bea709216274f6aab6a0ca">parseIndividualControlParameter</a> (const std::string &amp;line, <a class="el" href="structData.html">Data</a> &amp;data)</td></tr>
+<tr class="memdesc:a6cf21e8eb3bea709216274f6aab6a0ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for parsing a single control line of the CSV file and populating the control field of the data object.  <br /></td></tr>
 <tr class="separator:a6cf21e8eb3bea709216274f6aab6a0ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fabd36485d57bd1164d31eb6e9e0194" id="r_a0fabd36485d57bd1164d31eb6e9e0194"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a0fabd36485d57bd1164d31eb6e9e0194">validateGenerateAssignments</a> (int generateAssignments)</td></tr>
 <tr class="memdesc:a0fabd36485d57bd1164d31eb6e9e0194"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates the value of the GenerateAssignments parameter, ensuring it is either 0, 1 or 2. Throws a domain_error if the value is not valid.  <br /></td></tr>
@@ -175,12 +176,16 @@ Static Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:adeac14aa5f4cf638f69c033beb2a2ccb" id="r_adeac14aa5f4cf638f69c033beb2a2ccb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#adeac14aa5f4cf638f69c033beb2a2ccb">filename</a></td></tr>
+<tr class="memdesc:adeac14aa5f4cf638f69c033beb2a2ccb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The filename of the .csv file to be parsed.  <br /></td></tr>
 <tr class="separator:adeac14aa5f4cf638f69c033beb2a2ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a744dea583da6e5dd9c88748ae7d757eb" id="r_a744dea583da6e5dd9c88748ae7d757eb"><td class="memItemLeft" align="right" valign="top">std::set&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a744dea583da6e5dd9c88748ae7d757eb">submissionIds</a></td></tr>
+<tr class="memdesc:a744dea583da6e5dd9c88748ae7d757eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set of submission IDs that have already been processed, used to ensure uniqueness of submission IDs and to validate the data in the .csv file.  <br /></td></tr>
 <tr class="separator:a744dea583da6e5dd9c88748ae7d757eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85785f66ff018fe8667b5a3cdf7f16f3" id="r_a85785f66ff018fe8667b5a3cdf7f16f3"><td class="memItemLeft" align="right" valign="top">std::set&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a85785f66ff018fe8667b5a3cdf7f16f3">reviewerIds</a></td></tr>
+<tr class="memdesc:a85785f66ff018fe8667b5a3cdf7f16f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set of reviewer IDs that have already been processed, used to ensure uniqueness of reviewer IDs and to validate the data in the .csv file.  <br /></td></tr>
 <tr class="separator:a85785f66ff018fe8667b5a3cdf7f16f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05ee0a835744ae1144d39ab5f86c3f91" id="r_a05ee0a835744ae1144d39ab5f86c3f91"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCSVParser.html#a05ee0a835744ae1144d39ab5f86c3f91">fileSections</a></td></tr>
+<tr class="memdesc:a05ee0a835744ae1144d39ab5f86c3f91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map that associates each section header of the .csv file ("#Submissions", "#Reviewers", "#Parameters", "#Control") with a vector of strings containing the lines associated with that section.  <br /></td></tr>
 <tr class="separator:a05ee0a835744ae1144d39ab5f86c3f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -196,6 +201,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">CSVParser::CSVParser </td>
@@ -205,6 +213,11 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Constructor for the <a class="el" href="classCSVParser.html" title="This class is responsible for parsing the .csv file and extracting the data from it.">CSVParser</a> class. </p>
@@ -242,7 +255,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Convertes a string to an integer. </p>
+<p>Converts a string to an integer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">str</td><td>Parse string to be converted to an integer. </td></tr>
@@ -339,7 +352,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Checks if the given ID is unique among the existing IDs throws an invalid_argument if the ID is not unique. </p>
+<p>Checks if the given ID is unique among the existing IDs and, if so, adds it to the set of existing IDs. Otherwise, throws an invalid_argument if the ID is not unique. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>ID to be checked for uniqueness. </td></tr>
@@ -528,6 +541,15 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>This function is responsible for parsing a single control line of the CSV file and populating the control field of the data object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">line</td><td>The line from the CSV file that contains the data for a single control parameter. </td></tr>
+    <tr><td class="paramname">data</td><td>The data object that will have its control field populated with the control parameter from the line. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1014,6 +1036,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The filename of the .csv file to be parsed. </p>
+
 </div>
 </div>
 <a id="a05ee0a835744ae1144d39ab5f86c3f91" name="a05ee0a835744ae1144d39ab5f86c3f91"></a>
@@ -1035,6 +1059,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Map that associates each section header of the .csv file ("#Submissions", "#Reviewers", "#Parameters", "#Control") with a vector of strings containing the lines associated with that section. </p>
 
 </div>
 </div>
@@ -1058,6 +1084,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Set of reviewer IDs that have already been processed, used to ensure uniqueness of reviewer IDs and to validate the data in the .csv file. </p>
+
 </div>
 </div>
 <a id="a744dea583da6e5dd9c88748ae7d757eb" name="a744dea583da6e5dd9c88748ae7d757eb"></a>
@@ -1079,6 +1107,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Set of submission IDs that have already been processed, used to ensure uniqueness of submission IDs and to validate the data in the .csv file. </p>
 
 </div>
 </div>

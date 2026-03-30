@@ -72,14 +72,14 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle"><div class="title">MaxFlowSolver Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Solves the assignment problem using the Edmonds-Karp maximum flow algorithm.  
+<p>Solves the assignment problem using a maximum flow algorithm.  
  <a href="classMaxFlowSolver.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="MaxFlowSolver_8h_source.html">MaxFlowSolver.h</a>&gt;</code></p>
@@ -109,54 +109,60 @@ Collaboration diagram for MaxFlowSolver:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9247afc3b6c0cfa43f6334aaeb5ea0f0" id="r_a9247afc3b6c0cfa43f6334aaeb5ea0f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#a9247afc3b6c0cfa43f6334aaeb5ea0f0">MaxFlowSolver</a> (<a class="el" href="classGraph.html">Graph</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; *g)</td></tr>
-<tr class="memdesc:a9247afc3b6c0cfa43f6334aaeb5ea0f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classMaxFlowSolver.html" title="Solves the assignment problem using the Edmonds-Karp maximum flow algorithm.">MaxFlowSolver</a> with the given flow network graph.  <br /></td></tr>
-<tr class="separator:a9247afc3b6c0cfa43f6334aaeb5ea0f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ad7621ac2de52bfce607eed044be4fb" id="r_a9ad7621ac2de52bfce607eed044be4fb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#a9ad7621ac2de52bfce607eed044be4fb">MaxFlowSolver</a> (<a class="el" href="classGraph.html">Graph</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; *g, <a class="el" href="classMaxFlowAlgorithm.html">MaxFlowAlgorithm</a> *maxFlowAlgorithm)</td></tr>
+<tr class="memdesc:a9ad7621ac2de52bfce607eed044be4fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classMaxFlowSolver.html" title="Solves the assignment problem using a maximum flow algorithm.">MaxFlowSolver</a> with the given flow network graph.  <br /></td></tr>
+<tr class="separator:a9ad7621ac2de52bfce607eed044be4fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa92e053f5ab9f0134f087e18d15a69ed" id="r_aa92e053f5ab9f0134f087e18d15a69ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#aa92e053f5ab9f0134f087e18d15a69ed">execute</a> () const</td></tr>
-<tr class="memdesc:aa92e053f5ab9f0134f087e18d15a69ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the Edmonds-Karp algorithm to compute maximum flow.  <br /></td></tr>
+<tr class="memdesc:aa92e053f5ab9f0134f087e18d15a69ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the maximum flow algorithm to compute maximum flow.  <br /></td></tr>
 <tr class="separator:aa92e053f5ab9f0134f087e18d15a69ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac9b03a2b47db1dd24800072ff657bc3" id="r_aac9b03a2b47db1dd24800072ff657bc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#aac9b03a2b47db1dd24800072ff657bc3">checkResults</a> (<a class="el" href="structResult.html">Result</a> &amp;result, int riskAnalysis, int r, int maxRpR) const</td></tr>
-<tr class="separator:aac9b03a2b47db1dd24800072ff657bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a776fd456a2badc0ba45ac2d5040b5e07" id="r_a776fd456a2badc0ba45ac2d5040b5e07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#a776fd456a2badc0ba45ac2d5040b5e07">outputResults</a> () const</td></tr>
+<tr class="memdesc:a776fd456a2badc0ba45ac2d5040b5e07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs the residual graph after running the max flow algorithm, showing the flow and capacity of each edge.  <br /></td></tr>
+<tr class="separator:a776fd456a2badc0ba45ac2d5040b5e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf34f3856b5a218486ddfc8d0ba84de6" id="r_aaf34f3856b5a218486ddfc8d0ba84de6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#aaf34f3856b5a218486ddfc8d0ba84de6">checkMatches</a> (<a class="el" href="structResult.html">Result</a> &amp;result) const</td></tr>
+<tr class="memdesc:aaf34f3856b5a218486ddfc8d0ba84de6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the residual graph after running the max flow algorithm to populate the result object with the matches, which are the edges from submissions to reviewers that have no residual capacity.  <br /></td></tr>
+<tr class="separator:aaf34f3856b5a218486ddfc8d0ba84de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab20f8c887c04e6a97219af71185eaf0e" id="r_ab20f8c887c04e6a97219af71185eaf0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#ab20f8c887c04e6a97219af71185eaf0e">checkMisses</a> (<a class="el" href="structResult.html">Result</a> &amp;result) const</td></tr>
+<tr class="memdesc:ab20f8c887c04e6a97219af71185eaf0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the residual graph after running the max flow algorithm to populate the result object with the misses, which are the edges from the source to submissions that have residual capacity.  <br /></td></tr>
+<tr class="separator:ab20f8c887c04e6a97219af71185eaf0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0266b052bfc5bfbfbaf524e1ee3cb62" id="r_ac0266b052bfc5bfbfbaf524e1ee3cb62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#ac0266b052bfc5bfbfbaf524e1ee3cb62">checkRisk</a> (<a class="el" href="structResult.html">Result</a> &amp;result, const std::vector&lt; <a class="el" href="classReviewer.html">Reviewer</a> &gt; &amp;reviewers, int generateAssignments) const</td></tr>
+<tr class="memdesc:ac0266b052bfc5bfbfbaf524e1ee3cb62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the risk of each reviewer. This function uses a hybrid strategy to check the risk of each reviewer, depending on the value of the Generate Assignments control parameter. If Generate Assignments is 1, it checks the risk of each reviewer by checking if the number of reviews missing from that reviewer can be covered by other reviewers with the same primary expertise, using simple iteration through the reviewers. If Generate Assignments is greater than 1, it checks the risk of each reviewer by temporarily preventing him from reviewing any submission and checking if the maximum flow decreases.  <br /></td></tr>
+<tr class="separator:ac0266b052bfc5bfbfbaf524e1ee3cb62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c9daab7a9776b56c79ac80acb3a0cb4" id="r_a2c9daab7a9776b56c79ac80acb3a0cb4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#a2c9daab7a9776b56c79ac80acb3a0cb4">checkResults</a> (<a class="el" href="structResult.html">Result</a> &amp;result, int riskAnalysis, const std::vector&lt; <a class="el" href="classReviewer.html">Reviewer</a> &gt; &amp;reviewers, int generateAssignments) const</td></tr>
+<tr class="memdesc:a2c9daab7a9776b56c79ac80acb3a0cb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls auxiliary functions to populate the result object with the matches, misses and risky reviewers, if risk analysis is required.  <br /></td></tr>
+<tr class="separator:a2c9daab7a9776b56c79ac80acb3a0cb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a454762bfae75c6800b0d797adb7b27b8" id="r_a454762bfae75c6800b0d797adb7b27b8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#a454762bfae75c6800b0d797adb7b27b8">validateReviewerNode</a> (const <a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; *reviewer)</td></tr>
+<tr class="memdesc:a454762bfae75c6800b0d797adb7b27b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates that a reviewer node has only one edge to the sink. If it has more than one edge to the sink, an exception is thrown.  <br /></td></tr>
+<tr class="separator:a454762bfae75c6800b0d797adb7b27b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a31926dde57637168941188a05227ffc6" id="r_a31926dde57637168941188a05227ffc6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#a31926dde57637168941188a05227ffc6">findAugmentingPath</a> () const</td></tr>
-<tr class="memdesc:a31926dde57637168941188a05227ffc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds an augmenting path from source to sink using breadth-first search (BFS).  <br /></td></tr>
-<tr class="separator:a31926dde57637168941188a05227ffc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92841fb00d4c1802bda45bddd0af9d1f" id="r_a92841fb00d4c1802bda45bddd0af9d1f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#a92841fb00d4c1802bda45bddd0af9d1f">findMinResidualAlongPath</a> () const</td></tr>
-<tr class="memdesc:a92841fb00d4c1802bda45bddd0af9d1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the minimum residual capacity along the current augmenting path.  <br /></td></tr>
-<tr class="separator:a92841fb00d4c1802bda45bddd0af9d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e2422904fd940b411007a485b9626da" id="r_a3e2422904fd940b411007a485b9626da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#a3e2422904fd940b411007a485b9626da">augmentFlowAlongPath</a> (double f) const</td></tr>
-<tr class="memdesc:a3e2422904fd940b411007a485b9626da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Augments flow along the current augmenting path by the given amount. Updates both forward and backward edges in the residual graph.  <br /></td></tr>
-<tr class="separator:a3e2422904fd940b411007a485b9626da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa92faaf38fa1504a3b993a56120fc9f8" id="r_aa92faaf38fa1504a3b993a56120fc9f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#aa92faaf38fa1504a3b993a56120fc9f8">edmondsKarp</a> () const</td></tr>
-<tr class="memdesc:aa92faaf38fa1504a3b993a56120fc9f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main algorithm implementation that repeatedly finds augmenting paths and augments flow, while possible, until no more augmenting paths exist, at which point the maximum flow of the network is achieved.  <br /></td></tr>
-<tr class="separator:aa92faaf38fa1504a3b993a56120fc9f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0a1fed4265518c94608784ef0fc7a54" id="r_ae0a1fed4265518c94608784ef0fc7a54"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#ae0a1fed4265518c94608784ef0fc7a54">getFlow</a> () const</td></tr>
-<tr class="separator:ae0a1fed4265518c94608784ef0fc7a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74d61f6f23765836c9ae1e4baa9db4eb" id="r_a74d61f6f23765836c9ae1e4baa9db4eb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#a74d61f6f23765836c9ae1e4baa9db4eb">getFlow</a> () const</td></tr>
+<tr class="memdesc:a74d61f6f23765836c9ae1e4baa9db4eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the total flow from the source to the sink by summing the flow of all edges outgoing from the source.  <br /></td></tr>
+<tr class="separator:a74d61f6f23765836c9ae1e4baa9db4eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fde463fc525a58bb5624b174c4f255a" id="r_a3fde463fc525a58bb5624b174c4f255a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#a3fde463fc525a58bb5624b174c4f255a">resetAllFlow</a> () const</td></tr>
+<tr class="memdesc:a3fde463fc525a58bb5624b174c4f255a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the flow of all the edges in the flow network to 0.  <br /></td></tr>
 <tr class="separator:a3fde463fc525a58bb5624b174c4f255a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
-Static Private Member Functions</h2></td></tr>
-<tr class="memitem:a9bda0663ab13269bf1caa447fa26f2ff" id="r_a9bda0663ab13269bf1caa447fa26f2ff"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#a9bda0663ab13269bf1caa447fa26f2ff">testAndVisit</a> (std::queue&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; * &gt; &amp;q, <a class="el" href="classEdge.html">Edge</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; *e, <a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; *w, double residual)</td></tr>
-<tr class="memdesc:a9bda0663ab13269bf1caa447fa26f2ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a vertex as visited and enqueues it if unvisited and residual capacity exists. Used during breadth-first search to explore reachable vertices in the residual graph.  <br /></td></tr>
-<tr class="separator:a9bda0663ab13269bf1caa447fa26f2ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:afa9bfc94b170feea9971e946203deff9" id="r_afa9bfc94b170feea9971e946203deff9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#afa9bfc94b170feea9971e946203deff9">source</a></td></tr>
+<tr class="memdesc:afa9bfc94b170feea9971e946203deff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The source node of the flow network.  <br /></td></tr>
 <tr class="separator:afa9bfc94b170feea9971e946203deff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97755ce70139bfa3bdaa06b8a6d264bd" id="r_a97755ce70139bfa3bdaa06b8a6d264bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#a97755ce70139bfa3bdaa06b8a6d264bd">target</a></td></tr>
-<tr class="separator:a97755ce70139bfa3bdaa06b8a6d264bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1cecc62fb43448320eaaf2cef0b52e07" id="r_a1cecc62fb43448320eaaf2cef0b52e07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGraph.html">Graph</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#a1cecc62fb43448320eaaf2cef0b52e07">flowNetwork</a></td></tr>
+<tr class="memdesc:a1cecc62fb43448320eaaf2cef0b52e07"><td class="mdescLeft">&#160;</td><td class="mdescRight">The flow network bipartite graph.  <br /></td></tr>
 <tr class="separator:a1cecc62fb43448320eaaf2cef0b52e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa30f8971ae8399eee991625ae72c59a8" id="r_aa30f8971ae8399eee991625ae72c59a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMaxFlowAlgorithm.html">MaxFlowAlgorithm</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaxFlowSolver.html#aa30f8971ae8399eee991625ae72c59a8">maxFlowAlgorithm_</a></td></tr>
+<tr class="memdesc:aa30f8971ae8399eee991625ae72c59a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum flow algorithm to be executed on the flow network, which must be a specific implementation of a maximum flow algorithm that inherits from the <a class="el" href="classMaxFlowAlgorithm.html" title="Abstract base class for maximum flow algorithms.">MaxFlowAlgorithm</a> class.  <br /></td></tr>
+<tr class="separator:aa30f8971ae8399eee991625ae72c59a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Solves the assignment problem using the Edmonds-Karp maximum flow algorithm. </p>
+<div class="textblock"><p>Solves the assignment problem using a maximum flow algorithm. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a9247afc3b6c0cfa43f6334aaeb5ea0f0" name="a9247afc3b6c0cfa43f6334aaeb5ea0f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9247afc3b6c0cfa43f6334aaeb5ea0f0">&#9670;&#160;</a></span>MaxFlowSolver()</h2>
+<a id="a9ad7621ac2de52bfce607eed044be4fb" name="a9ad7621ac2de52bfce607eed044be4fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ad7621ac2de52bfce607eed044be4fb">&#9670;&#160;</a></span>MaxFlowSolver()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -168,8 +174,18 @@ Private Attributes</h2></td></tr>
           <td class="memname">MaxFlowSolver::MaxFlowSolver </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classGraph.html">Graph</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; *&#160;</td>
-          <td class="paramname"><em>g</em></td><td>)</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classMaxFlowAlgorithm.html">MaxFlowAlgorithm</a> *&#160;</td>
+          <td class="paramname"><em>maxFlowAlgorithm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -179,10 +195,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructs a <a class="el" href="classMaxFlowSolver.html" title="Solves the assignment problem using the Edmonds-Karp maximum flow algorithm.">MaxFlowSolver</a> with the given flow network graph. </p>
+<p>Constructs a <a class="el" href="classMaxFlowSolver.html" title="Solves the assignment problem using a maximum flow algorithm.">MaxFlowSolver</a> with the given flow network graph. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">g</td><td>Flow network graph with source and sink vertices. </td></tr>
+    <tr><td class="paramname">maxFlowAlgorithm</td><td>The maximum flow algorithm to be executed on the flow network, which must be a specific implementation of a maximum flow algorithm that inherits from the <a class="el" href="classMaxFlowAlgorithm.html" title="Abstract base class for maximum flow algorithms.">MaxFlowAlgorithm</a> class. </td></tr>
   </table>
   </dd>
 </dl>
@@ -190,42 +207,60 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a3e2422904fd940b411007a485b9626da" name="a3e2422904fd940b411007a485b9626da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e2422904fd940b411007a485b9626da">&#9670;&#160;</a></span>augmentFlowAlongPath()</h2>
+<a id="aaf34f3856b5a218486ddfc8d0ba84de6" name="aaf34f3856b5a218486ddfc8d0ba84de6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf34f3856b5a218486ddfc8d0ba84de6">&#9670;&#160;</a></span>checkMatches()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MaxFlowSolver::augmentFlowAlongPath </td>
+          <td class="memname">void MaxFlowSolver::checkMatches </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>f</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structResult.html">Result</a> &amp;&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Augments flow along the current augmenting path by the given amount. Updates both forward and backward edges in the residual graph. </p>
+<p>Checks the residual graph after running the max flow algorithm to populate the result object with the matches, which are the edges from submissions to reviewers that have no residual capacity. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">f</td><td>Amount of flow to augment (the bottleneck value). </td></tr>
+    <tr><td class="paramname">result</td><td>The result object to be populated with the matches. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="aac9b03a2b47db1dd24800072ff657bc3" name="aac9b03a2b47db1dd24800072ff657bc3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac9b03a2b47db1dd24800072ff657bc3">&#9670;&#160;</a></span>checkResults()</h2>
+<a id="ab20f8c887c04e6a97219af71185eaf0e" name="ab20f8c887c04e6a97219af71185eaf0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab20f8c887c04e6a97219af71185eaf0e">&#9670;&#160;</a></span>checkMisses()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MaxFlowSolver::checkMisses </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structResult.html">Result</a> &amp;&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks the residual graph after running the max flow algorithm to populate the result object with the misses, which are the edges from the source to submissions that have residual capacity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">result</td><td>The result object to be populated with the misses. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2c9daab7a9776b56c79ac80acb3a0cb4" name="a2c9daab7a9776b56c79ac80acb3a0cb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c9daab7a9776b56c79ac80acb3a0cb4">&#9670;&#160;</a></span>checkResults()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -245,14 +280,14 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>r</em>, </td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classReviewer.html">Reviewer</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>reviewers</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>maxRpR</em>&#160;</td>
+          <td class="paramname"><em>generateAssignments</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -262,32 +297,60 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Calls auxiliary functions to populate the result object with the matches, misses and risky reviewers, if risk analysis is required. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">result</td><td><a class="el" href="structResult.html" title="Stores the outputs of the MaxFlowSolver: matches, misses and riskyReviewers in case of a risk analysi...">Result</a> object to be populated with the matches, misses and risky reviewers, if risk analysis is required. </td></tr>
+    <tr><td class="paramname">riskAnalysis</td><td>Indicates whether risk analysis is required (&gt; 0) or not (0). </td></tr>
+    <tr><td class="paramname">reviewers</td><td>Array of reviewers, which is used to check the risk of each reviewer in case risk analysis is required. </td></tr>
+    <tr><td class="paramname">generateAssignments</td><td>Value of the Generate Assignments control parameter to decide which strategy to take in the risk analysis. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="aa92faaf38fa1504a3b993a56120fc9f8" name="aa92faaf38fa1504a3b993a56120fc9f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa92faaf38fa1504a3b993a56120fc9f8">&#9670;&#160;</a></span>edmondsKarp()</h2>
+<a id="ac0266b052bfc5bfbfbaf524e1ee3cb62" name="ac0266b052bfc5bfbfbaf524e1ee3cb62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0266b052bfc5bfbfbaf524e1ee3cb62">&#9670;&#160;</a></span>checkRisk()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MaxFlowSolver::edmondsKarp </td>
+          <td class="memname">void MaxFlowSolver::checkRisk </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype"><a class="el" href="structResult.html">Result</a> &amp;&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classReviewer.html">Reviewer</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>reviewers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>generateAssignments</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Main algorithm implementation that repeatedly finds augmenting paths and augments flow, while possible, until no more augmenting paths exist, at which point the maximum flow of the network is achieved. </p>
+<p>Checks the risk of each reviewer. This function uses a hybrid strategy to check the risk of each reviewer, depending on the value of the Generate Assignments control parameter. If Generate Assignments is 1, it checks the risk of each reviewer by checking if the number of reviews missing from that reviewer can be covered by other reviewers with the same primary expertise, using simple iteration through the reviewers. If Generate Assignments is greater than 1, it checks the risk of each reviewer by temporarily preventing him from reviewing any submission and checking if the maximum flow decreases. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">result</td><td>The result object to be populated with the risky reviewers. </td></tr>
+    <tr><td class="paramname">reviewers</td><td>Array of all the reviewers of the flow network. </td></tr>
+    <tr><td class="paramname">generateAssignments</td><td>Value of the Generate Assignments control parameter to decide which strategy to take in the risk analysis. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -306,12 +369,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Executes the Edmonds-Karp algorithm to compute maximum flow. </p>
+<p>Executes the maximum flow algorithm to compute maximum flow. </p>
 
 </div>
 </div>
-<a id="a31926dde57637168941188a05227ffc6" name="a31926dde57637168941188a05227ffc6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31926dde57637168941188a05227ffc6">&#9670;&#160;</a></span>findAugmentingPath()</h2>
+<a id="a74d61f6f23765836c9ae1e4baa9db4eb" name="a74d61f6f23765836c9ae1e4baa9db4eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74d61f6f23765836c9ae1e4baa9db4eb">&#9670;&#160;</a></span>getFlow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -320,7 +383,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool MaxFlowSolver::findAugmentingPath </td>
+          <td class="memname">int MaxFlowSolver::getFlow </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -333,61 +396,27 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Finds an augmenting path from source to sink using breadth-first search (BFS). </p>
-<dl class="section return"><dt>Returns</dt><dd>True if an augmenting path exists, false otherwise. </dd></dl>
+<p>Computes the total flow from the source to the sink by summing the flow of all edges outgoing from the source. </p>
+<dl class="section return"><dt>Returns</dt><dd>The total flow value, which represents the maximum flow of the network after running the max flow algorithm. </dd></dl>
 
 </div>
 </div>
-<a id="a92841fb00d4c1802bda45bddd0af9d1f" name="a92841fb00d4c1802bda45bddd0af9d1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92841fb00d4c1802bda45bddd0af9d1f">&#9670;&#160;</a></span>findMinResidualAlongPath()</h2>
+<a id="a776fd456a2badc0ba45ac2d5040b5e07" name="a776fd456a2badc0ba45ac2d5040b5e07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a776fd456a2badc0ba45ac2d5040b5e07">&#9670;&#160;</a></span>outputResults()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double MaxFlowSolver::findMinResidualAlongPath </td>
+          <td class="memname">void MaxFlowSolver::outputResults </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Computes the minimum residual capacity along the current augmenting path. </p>
-<dl class="section return"><dt>Returns</dt><dd>The bottleneck value (minimum residual capacity). </dd></dl>
-
-</div>
-</div>
-<a id="ae0a1fed4265518c94608784ef0fc7a54" name="ae0a1fed4265518c94608784ef0fc7a54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0a1fed4265518c94608784ef0fc7a54">&#9670;&#160;</a></span>getFlow()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double MaxFlowSolver::getFlow </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>Outputs the residual graph after running the max flow algorithm, showing the flow and capacity of each edge. </p>
 
 </div>
 </div>
@@ -414,10 +443,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Sets the flow of all the edges in the flow network to 0. </p>
+
 </div>
 </div>
-<a id="a9bda0663ab13269bf1caa447fa26f2ff" name="a9bda0663ab13269bf1caa447fa26f2ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bda0663ab13269bf1caa447fa26f2ff">&#9670;&#160;</a></span>testAndVisit()</h2>
+<a id="a454762bfae75c6800b0d797adb7b27b8" name="a454762bfae75c6800b0d797adb7b27b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a454762bfae75c6800b0d797adb7b27b8">&#9670;&#160;</a></span>validateReviewerNode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -426,49 +457,24 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MaxFlowSolver::testAndVisit </td>
+          <td class="memname">void MaxFlowSolver::validateReviewerNode </td>
           <td>(</td>
-          <td class="paramtype">std::queue&lt; <a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; * &gt; &amp;&#160;</td>
-          <td class="paramname"><em>q</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const <a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; *&#160;</td>
+          <td class="paramname"><em>reviewer</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classEdge.html">Edge</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; *&#160;</td>
-          <td class="paramname"><em>e</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classVertex.html">Vertex</a>&lt; <a class="el" href="structnodeInfo.html">nodeInfo</a> &gt; *&#160;</td>
-          <td class="paramname"><em>w</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>residual</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Marks a vertex as visited and enqueues it if unvisited and residual capacity exists. Used during breadth-first search to explore reachable vertices in the residual graph. </p>
+<p>Validates that a reviewer node has only one edge to the sink. If it has more than one edge to the sink, an exception is thrown. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">q</td><td>Queue of vertices to visit. </td></tr>
-    <tr><td class="paramname">e</td><td><a class="el" href="classEdge.html" title="This class represents the edges of the graph, which consist of a destination vertex,...">Edge</a> leading to the vertex. </td></tr>
-    <tr><td class="paramname">w</td><td>Destination vertex to potentially mark as visited. </td></tr>
-    <tr><td class="paramname">residual</td><td>Residual capacity of the edge. </td></tr>
+    <tr><td class="paramname">reviewer</td><td>The reviewer node to be validated. </td></tr>
   </table>
   </dd>
 </dl>
@@ -496,6 +502,32 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The flow network bipartite graph. </p>
+
+</div>
+</div>
+<a id="aa30f8971ae8399eee991625ae72c59a8" name="aa30f8971ae8399eee991625ae72c59a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa30f8971ae8399eee991625ae72c59a8">&#9670;&#160;</a></span>maxFlowAlgorithm_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMaxFlowAlgorithm.html">MaxFlowAlgorithm</a>* MaxFlowSolver::maxFlowAlgorithm_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The maximum flow algorithm to be executed on the flow network, which must be a specific implementation of a maximum flow algorithm that inherits from the <a class="el" href="classMaxFlowAlgorithm.html" title="Abstract base class for maximum flow algorithms.">MaxFlowAlgorithm</a> class. </p>
+
 </div>
 </div>
 <a id="afa9bfc94b170feea9971e946203deff9" name="afa9bfc94b170feea9971e946203deff9"></a>
@@ -518,27 +550,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a97755ce70139bfa3bdaa06b8a6d264bd" name="a97755ce70139bfa3bdaa06b8a6d264bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97755ce70139bfa3bdaa06b8a6d264bd">&#9670;&#160;</a></span>target</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classVertex.html">Vertex</a>&lt;<a class="el" href="structnodeInfo.html">nodeInfo</a>&gt; * MaxFlowSolver::target</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>The source node of the flow network. </p>
 
 </div>
 </div>

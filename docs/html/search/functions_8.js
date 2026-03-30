@@ -1,5 +1,6 @@
 var searchData=
 [
   ['main_0',['main',['../main_8cpp.html#a638b85ceffac097c2aa79b76ba8c055e',1,'main.cpp']]],
-  ['maxflowsolver_1',['MaxFlowSolver',['../classMaxFlowSolver.html#a9247afc3b6c0cfa43f6334aaeb5ea0f0',1,'MaxFlowSolver']]]
+  ['maxflowalgorithm_1',['MaxFlowAlgorithm',['../classMaxFlowAlgorithm.html#a02340ff8dea3ffcae6a053ee78e110b1',1,'MaxFlowAlgorithm']]],
+  ['maxflowsolver_2',['MaxFlowSolver',['../classMaxFlowSolver.html#a9ad7621ac2de52bfce607eed044be4fb',1,'MaxFlowSolver']]]
 ];

@@ -98,7 +98,7 @@ Collaboration diagram for OutputWriter:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a011d47955b82250f36b3764457aac939" id="r_a011d47955b82250f36b3764457aac939"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOutputWriter.html#a011d47955b82250f36b3764457aac939">OutputWriter</a> (const std::string &amp;outputFileName)</td></tr>
-<tr class="memdesc:a011d47955b82250f36b3764457aac939"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classOutputWriter.html" title="Responsible for writing the output of the algorithm to a CSV file.">OutputWriter</a> with specified output file name. Creates the "output" directory if it does not exist.  <br /></td></tr>
+<tr class="memdesc:a011d47955b82250f36b3764457aac939"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an <a class="el" href="classOutputWriter.html" title="Responsible for writing the output of the algorithm to a CSV file.">OutputWriter</a> with specified output filename. Creates the "output/" directory if it does not exist.  <br /></td></tr>
 <tr class="separator:a011d47955b82250f36b3764457aac939"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46214f5911b2e7f5a336fd0f36fc3033" id="r_a46214f5911b2e7f5a336fd0f36fc3033"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOutputWriter.html#a46214f5911b2e7f5a336fd0f36fc3033">writeOutput</a> (const <a class="el" href="structResult.html">Result</a> &amp;result, int riskAnalysis) const</td></tr>
 <tr class="memdesc:a46214f5911b2e7f5a336fd0f36fc3033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the output of the algorithm to a CSV file, including matches, misses, and risk analysis if applicable.  <br /></td></tr>
@@ -119,6 +119,7 @@ Static Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a5038f37e3389bb060d92b81f5beb0a89" id="r_a5038f37e3389bb060d92b81f5beb0a89"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOutputWriter.html#a5038f37e3389bb060d92b81f5beb0a89">outputFileName_</a></td></tr>
+<tr class="memdesc:a5038f37e3389bb060d92b81f5beb0a89"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the output file to be written.  <br /></td></tr>
 <tr class="separator:a5038f37e3389bb060d92b81f5beb0a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -129,6 +130,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">OutputWriter::OutputWriter </td>
@@ -138,9 +142,14 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Constructs an <a class="el" href="classOutputWriter.html" title="Responsible for writing the output of the algorithm to a CSV file.">OutputWriter</a> with specified output file name. Creates the "output" directory if it does not exist. </p>
+<p>Constructs an <a class="el" href="classOutputWriter.html" title="Responsible for writing the output of the algorithm to a CSV file.">OutputWriter</a> with specified output filename. Creates the "output/" directory if it does not exist. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">outputFileName</td><td>Name for the output CSV file. </td></tr>
@@ -350,6 +359,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The name of the output file to be written. </p>
 
 </div>
 </div>
