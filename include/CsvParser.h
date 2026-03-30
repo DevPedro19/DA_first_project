@@ -42,9 +42,24 @@ public:
     void parseDocument(Data& data);
 private:
     // Private fields
+    /**
+     * @brief The filename of the .csv file to be parsed.
+     */
     std::string filename;
+
+    /**
+     * @brief Set of submission IDs that have already been processed, used to ensure uniqueness of submission IDs and to validate the data in the .csv file.
+     */
     std::set<int> submissionIds;
+
+    /**
+     * @brief Set of reviewer IDs that have already been processed, used to ensure uniqueness of reviewer IDs and to validate the data in the .csv file.
+     */
     std::set<int> reviewerIds;
+
+    /**
+     * @brief Map that associates each section header of the .csv file ("#Submissions", "#Reviewers", "#Parameters", "#Control") with a vector of strings containing the lines associated with that section.
+     */
     std::map<std::string, std::vector<std::string>> fileSections;
 
 
@@ -151,8 +166,7 @@ private:
     static void isValidIntField(int fieldValue, const std::string& fieldName, int min);
 
     /**
-     * @brief Checks if the given ID is unique among the existing IDs
-     * throws an invalid_argument if the ID is not unique.
+     * @brief Checks if the given ID is unique among the existing IDs and, if so, adds it to the set of existing IDs. Otherwise, throws an invalid_argument if the ID is not unique.
      * @param id ID to be checked for uniqueness.
      * @param fieldName Name of the field where the violation occurs.
      * @param existingIds Set of existing IDs to check against for uniqueness.
