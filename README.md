@@ -1,8 +1,6 @@
 # DA_first_project
 Organizational tool for assigning papers to reviewers in a scientific committee based on expertise.
 
-## Windows build instructions
-
 ## Linux / MacOS build instructions
 ````
 # -S: uses the current directory as the source directory
