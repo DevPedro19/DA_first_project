@@ -120,13 +120,29 @@ double MaxFlowSolver::getFlow() const {
     return flow;
 }
 
-void MaxFlowSolver::resetAllFlow() const {
-    for (auto v : flowNetwork->getVertexSet())
-        for (auto e : v->getAdj())
-            e->setFlow(0);
+// usar um BFS
+
+void MaxFlowSolver::resetAllFlow() const{
+    for(auto v : flowNetwork->getVertexSet()){
+        v->setVisited(false);
+    }
+    std::queue<Vertex<nodeInfo>*> q;
+    q.push(source);
+    source->setVisited(true);
+    while(!q.empty()) {
+        auto u = q.front(); q.pop();
+        u->setVisited(true);
+        for (auto e : u->getAdj()) {
+            auto v = e->getDest();
+            if (!v->isVisited()) {
+                e->setFlow(0);
+                q.push(v);
+            }
+        }
+    }
 }
 
-void MaxFlowSolver::checkResults(Result &result, int riskAnalysis, int r, int maxRpR) const {
+void MaxFlowSolver::checkResults(Result &result, int riskAnalysis, int r, int maxRpR) const{
     // Check matching submissions and reviewers
     for (auto v : flowNetwork->getVertexSet()) {
         if (v->getInfo().type == SUBMISSION) {
