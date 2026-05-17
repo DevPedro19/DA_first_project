@@ -13,3 +13,4 @@ cmake --build build
 # TO run the tests
 ./OrgToolTests
 ````
+GRADE: 19.0/20
